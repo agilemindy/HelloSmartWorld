@@ -61,20 +61,20 @@
 <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="/smartWorld">HELLO SMART WORLD</a>
+                <a class="navbar-brand" href="/HelloSmartWorld">HELLO SMART WORLD</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="/smartWorld">HOME</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="/HelloSmartWorld">HOME</a></li>
 						<% if(loginUser == null){ %>
-						<li class="nav-item"><a class="nav-link" href="/smartWorld/login.do">로그인</a></li>
+						<li class="nav-item"><a class="nav-link" href="/HelloSmartWorld/login.do">로그인</a></li>
 						<% } %>
-                        <li class="nav-item"><a class="nav-link" href="/smartWorld/productList.do">제품보기</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/HelloSmartWorld/productList.do">제품보기</a></li>
                         
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="/smartWorld/reviewList.do" role="button" data-bs-toggle="dropdown" aria-expanded="false">리뷰페이지</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="/smartWorld/reviewList.do">전체리뷰</a></li>
+                                <li><a class="dropdown-item" href="/HelloSmartWorld/reviewList.do">전체리뷰</a></li>
                                 <li><a class="dropdown-item" href="#!">내가 쓴 리뷰</a></li>
                                 <li><a class="dropdown-item" href="#!">리뷰작성</a></li>                               
                             </ul>
@@ -82,16 +82,16 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">마이페이지</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="/smartWorld/memberInfo.do">내정보보기</a></li>
-                                <li><a class="dropdown-item" href="/smartWorld/orderInfo.do">주문내역보기</a></li>
-                                <li><a class="dropdown-item" href="/smartWorld/shipmentInfo.do">배송 조회</a></li>
-                                <li><a class="dropdown-item" href="/smartWorld/canceledOrderInfo.do">취소/반품내역보기</a></li>
-                                <li><a class="dropdown-item" href="/smartWorld/adminMain.do">관리자메뉴</a></li>
+                                <li><a class="dropdown-item" href="/HelloSmartWorld/memberInfo.do">내정보보기</a></li>
+                                <li><a class="dropdown-item" href="/HelloSmartWorld/orderInfo.do">주문내역보기</a></li>
+                                <li><a class="dropdown-item" href="/HelloSmartWorld/shipmentInfo.do">배송 조회</a></li>
+                                <li><a class="dropdown-item" href="/HelloSmartWorld/canceledOrderInfo.do">취소/반품내역보기</a></li>
+                                <li><a class="dropdown-item" href="/HelloSmartWorld/adminMain.do">관리자메뉴</a></li>
                             </ul>
                         </li>
                         <%if(loginUser != null) {%>
                         <li class="nav-item"><a class="nav-link"><b><%=loginUser.getUserName() %> 님 </b> 의 방문을 환영합니다.</a></li>
-						<li class="nav-item"><a class="nav-link" href="/smartWorld/logoutMember.do">로그아웃</a></li>
+						<li class="nav-item"><a class="nav-link" href="/HelloSmartWorld/logoutMember.do">로그아웃</a></li>
 						<% } %>
                     </ul>
                     <form class="d-flex">
