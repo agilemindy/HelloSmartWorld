@@ -33,6 +33,7 @@ String originUserPwd = m.getUserPwd();
 </script>
 </head>
 <body>
+<a href="/HellosmartWorld/orderForm.do">주문하기</a>
 	<%@ include file="../../views/common/menubar.jsp"%>
 	<div class="container">
 		<div class="input-form-backgroud row">
