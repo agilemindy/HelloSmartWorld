@@ -117,7 +117,7 @@ public class ReviewListServlet extends HttpServlet {
 		ArrayList<Review> list = new ReviewService().selectList(rpi);
 		
 		request.setAttribute("list", list);
-		request.setAttribute("pi", rpi);
+		request.setAttribute("rpi", rpi);
 		
 		request.getRequestDispatcher("views/review/reviewListView.jsp").forward(request, response);
 	

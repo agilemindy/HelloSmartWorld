@@ -8,6 +8,19 @@ String contextPath = request.getContextPath();
 
 ArrayList<Review> list = (ArrayList<Review>)request.getAttribute("list");
 
+ReviewPageInfo rpi = (ReviewPageInfo)request.getAttribute("rpi");
+
+int listCount = rpi.getListCount();
+
+int currentPage = rpi.getCurrentPage();
+
+int maxPage = rpi.getMaxPage();
+
+int startPage = rpi.getStartPage();
+
+int endPage = rpi.getEndPage();
+
+
 %>
 <!DOCTYPE html>
 <html>
@@ -154,6 +167,41 @@ background-color: gray;
   <!-- Core theme JS-->
   <script src="js/scripts.js"></script>
  
+ 
+        <!-- 페이징바 만들기 -->
+		<div class="pagingArea" align="center">
+			<!-- 맨 처음으로 (<<) -->
+			<button onclick="location.href='<%=contextPath%>/ReviewList.do.do?currentPage=1'"> &lt;&lt; </button>
+		
+			<!-- 이전페이지로(<) -->
+			<%if(currentPage == 1){ %>
+			<button disabled> &lt; </button>
+			<%}else{ %>
+			<button onclick="location.href='<%= contextPath %>/ReviewList.do?currentPage=<%= currentPage-1 %>'"> &lt; </button>
+			<%} %>
+			
+			<!-- 페이지 목록 -->
+			<%for(int p=startPage; p<=endPage; p++){ %>
+				
+				<%if(p == currentPage){ %>
+				<button disabled> <%= p %> </button>
+				<%}else{ %>
+				<button onclick="location.href='<%=contextPath %>/ReviewList.do?currentPage=<%= p %>'"> <%= p %> </button>
+				<%} %>
+				
+			<%} %>
+			
+			<!-- 다음페이지로(>) -->
+			<%if(currentPage == maxPage){ %>
+			<button disabled> &gt; </button>
+			<%}else { %>
+			<button onclick="location.href='<%= contextPath %>/ReviewList.do?currentPage=<%= currentPage+1 %>'"> &gt; </button>
+			<%} %>
+		
+			<!-- 맨 끝으로 (>>) -->
+			<button onclick="location.href='<%=contextPath%>/ReviewList.do?currentPage=<%=maxPage%>'"> &gt;&gt; </button>
+		</div> 
+		<br><br>
 
  
  <%@ include file = "../../views/common/footer.jsp" %>	
