@@ -19,14 +19,14 @@ import com.uni.review.model.vo.ReviewPageInfo;
 /**
  * Servlet implementation class ReviewListServlet
  */
-@WebServlet("/reviewList.do")
-public class ReviewListServlet extends HttpServlet {
+@WebServlet("/myReviewList.do")
+public class MyReviewListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ReviewListServlet() {
+    public MyReviewListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -113,13 +113,15 @@ public class ReviewListServlet extends HttpServlet {
 		}
 		
 		ReviewPageInfo rpi = new ReviewPageInfo(proCount, currentPage, startPage, endPage, maxPage, pageLimit, boardLimit);
+		Review r = new Review();
+		int rw = r.getReviewWriter();
 		
-		ArrayList<Review> list = new ReviewService().selectList(rpi);
+		ArrayList<Review> list = new ReviewService().myReviewList(rpi, rw);
 		
 		request.setAttribute("list", list);
 		request.setAttribute("rpi", rpi);
 		
-		request.getRequestDispatcher("views/review/reviewListView.jsp").forward(request, response);
+		request.getRequestDispatcher("views/review/myReviewList.jsp").forward(request, response);
 	
 	}
 

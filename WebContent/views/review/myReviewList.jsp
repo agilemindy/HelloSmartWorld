@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     import = "java.util.ArrayList, com.uni.review.model.vo.*" pageEncoding="UTF-8"%>
+
 <%
 	
 String msg = (String)session.getAttribute("msg");
@@ -26,6 +27,7 @@ int endPage = rpi.getEndPage();
 <html>
 <head>
 <meta charset="UTF-8">
+
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
 <!-- Favicon-->
@@ -42,69 +44,16 @@ background-color: gray;
 }
 
 </style>
-
-<title>Review | HELLO SMART WORLD</title>
-
+<title>My Review | HELLO SMART WORLD</title>
 </head>
 <body>
-
 <%@ include file = "../../views/common/menubar.jsp" %>
  
-<div class="topList" align="center">
-		<br>
-		<h2>Best Review Top3</h2>
 
-		<div id="thumbList">
-			<h5>구현예정</h5>
-			<%--  <div class="thumb" align="center">
-				<input type="hidden" value="1"> 
-				<img src="<%=contextPath%>/resources/board_upfiles/2020121711123393793.PNG" width="250px" height="200px"> <br>
-				<p>제목입니다.</p>
-			</div>--%>
 
-		</div>
 
-	</div>
-	<script>
-	$(function(){
-		
-		//
-		selectTopList();
-		
-		//
-		//setInterval(selectTopList,2000);
-		$("#thumbList").on("click",".thumb",function(){
-			var bId = $(this).children().eq(0).val();
-			location.href="<%=contextPath%>/detailThumb.do?bId="+bId;
-		})
-	})
-	function selectTopList(){
-		
-		
-		$.ajax({
-			url:"topList.do",
-			type:"get",
-			success:function(list){
-				var value = "";
-				for(var i in list){
-					value += '<div class="thumb" align="center">'+
-							 '<input type="hidden" value="' +list[i].boardNo+ '">'+
-							 '<img src="<%=contextPath%>/resources/board_upfiles/' + list[i].titleImg + '" width="250px" height="200px"> <br>'+
-							 '<p>'+ list[i].boardTitle +'</p>'+
-							 '</div>';
-				}
-				$("#thumbList").html(value);
-			},
-			error:function(){
-				console.log("ajax통신실패");
-			}
-		})	
-	}
-	
-	
-	</script>
-	<br><br>
-	<div align="center">
+<div align="center">
+	<b><%=loginUser.getUserName() %> 님 </b> 이 작성하신 리뷰 내역입니다.
 	
 	<% if(loginUser != null){ %>
 		<%-- <button onclick="location.href='<%=contextPath %>/insertFormReview.do'">작성하기</button> --%>

@@ -3,7 +3,7 @@
 <%@ page import = "com.uni.member.model.vo.Member" %>
 <%
 	Member loginUser = (Member)session.getAttribute("loginUser");
-
+	
 
 %>
 <!DOCTYPE html>
@@ -72,11 +72,11 @@
                         <li class="nav-item"><a class="nav-link" href="/HelloSmartWorld/productList.do">제품보기</a></li>
                         
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="/smartWorld/reviewList.do" role="button" data-bs-toggle="dropdown" aria-expanded="false">리뷰페이지</a>
+                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">리뷰페이지</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="/HelloSmartWorld/reviewList.do">전체리뷰</a></li>
-                                <li><a class="dropdown-item" href="#!">내가 쓴 리뷰</a></li>
-                                <li><a class="dropdown-item" href="#!">리뷰작성</a></li>                               
+                                <li><a class="dropdown-item" href="/HelloSmartWorld/myReviewList.do">내가 쓴 리뷰</a></li>
+                                <li><a class="dropdown-item" href="/HelloSmartWorld/enrollFormReview.do">리뷰작성</a></li>                               
                             </ul>
                         </li>
                         <li class="nav-item dropdown">

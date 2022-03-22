@@ -36,4 +36,16 @@ public class ReviewService {
 		return list;
 	}
 
+
+
+	public ArrayList<Review> myReviewList(ReviewPageInfo rpi, int rw) {
+		// TODO Auto-generated method stub
+		Connection conn = getConnection();
+		ArrayList<Review> list = new ReviewDao().myReviewList(conn, rpi, rw);
+		
+		close(conn);
+		
+		return list;
+	}
+
 }
