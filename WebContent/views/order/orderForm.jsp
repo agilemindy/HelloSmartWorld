@@ -6,7 +6,7 @@ String name = (String) request.getAttribute("name");
 String color = (String) request.getAttribute("color");
 String capacity = (String) request.getAttribute("capacity");
 String price = (String) request.getAttribute("price");
-String pId = (String) request.getAttribute("price");
+String pId = (String) request.getAttribute("pId");
 Member m = (Member) request.getSession().getAttribute("loginUser");
 int userNo = m.getUserNo();
 
@@ -48,7 +48,7 @@ int userNo = m.getUserNo();
 						<li class="list-group-item d-flex justify-content-between lh-sm">
 							<div>
 								<h6 class="my-0">Product name</h6>
-								<small class="text-muted"><%=brand + " " + name%></small>
+								<small class="text-muted"><%=pId%></small>
 							</div> <span class="text-muted"><%=price%>원</span>
 						</li>
 						<!-- <li class="list-group-item d-flex justify-content-between lh-sm">
@@ -66,11 +66,14 @@ int userNo = m.getUserNo();
 						<li class="list-group-item d-flex justify-content-between"><span>Total
 						</span> <strong><%=price%>원</strong></li>
 					</ul>
-					<button class="w-100 btn btn-primary btn-lg" type="submit">주문하기</button>
+					<!-- 버튼있던 자리 -->
 				</div>
 				<div class="col-md-7 col-lg-8">
 					<h4 class="mb-3">Billing address</h4>
-					<form class="needs-validation" novalidate action="<%= request.getContextPath() %>/orderProduct.do" method="post">
+					<form action="<%= request.getContextPath() %>/orderProduct.do" method="post">
+					<button class="w-100 btn btn-primary btn-lg" type="submit">주문하기</button>
+					<input type="hidden" value="<%= pId %>" name="pId">
+					<input type="hidden" value="<%= userNo %>" name="userNo">
 						<div class="row g-3">
 							<div class="col-sm-6">
 								<label for="firstName" class="form-label">보내시는 분 성함</label> <input
@@ -107,7 +110,7 @@ int userNo = m.getUserNo();
 								<div class="row">
 								<div class="col-9">
 								<input
-									type="text" class="form-control" id="shippingAddress" name="shippingAddress"
+									type="text" class="form-control" id="addrAddress" name="addrAddress"
 									placeholder="" required>
 								<div class="invalid-feedback">주소를 입력해주세요</div>
 								</div>
@@ -121,7 +124,7 @@ int userNo = m.getUserNo();
 							
 							<div class="col-12">
 								<label for="address2" class="form-label">상세주소 </label> <input
-									type="text" class="form-control" id="shippingAddressDet" name="shippingAddressDet"
+									type="text" class="form-control" id="addrAddressDet" name="addrAddressDet"
 									placeholder="" required>
 								<div class="invalid-feedback">상세주소를 입력해주세요</div>
 							</div>
@@ -135,7 +138,7 @@ int userNo = m.getUserNo();
 
 						<!--  <div class="form-check">
 							<input type="checkbox" class="form-check-input" id="same-address">
-							<label class="form-check-label" for="same-address">Shipping
+							<label class="form-check-label" for="same-address">addr
 								address is the same as my billing address</label>
 						</div>
 
@@ -153,7 +156,7 @@ int userNo = m.getUserNo();
 							<div class="row col-md-12">
 								<div class="form-check col-md-3 ">
 									<input id="credit" name="paymentMethod" type="radio"
-										class="form-check-input"  required checked> <label
+										class="form-check-input" value="101" required checked> <label
 										class="form-check-label" for="deposit" >무통장입금</label>
 
 								</div>
@@ -161,7 +164,7 @@ int userNo = m.getUserNo();
 							<div class="row col-md-12">
 								<div class="form-check">
 									<input id="debit" name="paymentMethod" type="radio"
-										class="form-check-input" required> <label
+										class="form-check-input" value="101" required> <label
 										class="form-check-label" for="credit">신용카드</label>
 								</div>
 							</div>
@@ -212,12 +215,13 @@ int userNo = m.getUserNo();
 						oncomplete : function(data) {
 
 							var roadAddr = data.roadAddress; // 도로명 주소 변수
-							document.getElementById("shippingAddress").value = roadAddr;
+							document.getElementById("addrAddress").value = roadAddr;
 						}
 					}).open();
 		}
 	</script>
-
+<script
+		src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<!-- Bootstrap core JS-->
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>

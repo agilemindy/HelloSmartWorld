@@ -14,21 +14,43 @@ public class Order {
 	private int amount; 
 	private String addrName;
 	private String addrPhone;
-	private String shippingAddress;
-	private String shippingAddressDet;
+	private String addrAddress;
+	private String addrAddressDet;
+	private String comment;
 	private Date orderDate;
-	private int parCode;
+	private int payCode;
 	private String orderStatus;
-
-	public Order(int userNo, String pId, int amount, String addrName, String addrPhone, String shippingAddress,
-			String shippingAddressDet, Date orderDate, int payCode) {
-		
-		
-		
-		
+	
+	public Order(int orderNo, int userNo, String pId, int amount, String addrName, String addrPhone, String addrAddress,
+			String addrAddressDet, String comment, Date orderDate, int payCode, String orderStatus) {
+		super();
+		this.orderNo = orderNo;
+		this.userNo = userNo;
+		this.pId = pId;
+		this.amount = amount;
+		this.addrName = addrName;
+		this.addrPhone = addrPhone;
+		this.addrAddress = addrAddress;
+		this.addrAddressDet = addrAddressDet;
+		this.comment = comment;
+		this.orderDate = orderDate;
+		this.payCode = payCode;
+		this.orderStatus = orderStatus;
 	}
 
-	
+	public Order(int userNo, String pId, int amount, String addrName, String addrPhone, String addrAddress,
+			String addrAddressDet, String comment, int payCode) {
+		super();
+		this.userNo = userNo;
+		this.pId = pId;
+		this.amount = amount;
+		this.addrName = addrName;
+		this.addrPhone = addrPhone;
+		this.addrAddress = addrAddress;
+		this.addrAddressDet = addrAddressDet;
+		this.comment = comment;
+		this.payCode = payCode;
+	}
 
 	public int getOrderNo() {
 		return orderNo;
@@ -78,28 +100,44 @@ public class Order {
 		this.addrPhone = addrPhone;
 	}
 
-	public String getShippingAddress() {
-		return shippingAddress;
+	public String getAddrAddress() {
+		return addrAddress;
 	}
 
-	public void setShippingAddress(String shippingAddress) {
-		this.shippingAddress = shippingAddress;
+	public void setAddrAddress(String addrAddress) {
+		this.addrAddress = addrAddress;
 	}
 
-	public String getShippingAddressDet() {
-		return shippingAddressDet;
+	public String getAddrAddressDet() {
+		return addrAddressDet;
 	}
 
-	public void setShippingAddressDet(String shippingAddressDet) {
-		this.shippingAddressDet = shippingAddressDet;
+	public void setAddrAddressDet(String addrAddressDet) {
+		this.addrAddressDet = addrAddressDet;
 	}
 
-	public int getParCode() {
-		return parCode;
+	public String getComment() {
+		return comment;
 	}
 
-	public void setParCode(int parCode) {
-		this.parCode = parCode;
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
+
+	public Date getOrderDate() {
+		return orderDate;
+	}
+
+	public void setOrderDate(Date orderDate) {
+		this.orderDate = orderDate;
+	}
+
+	public int getPayCode() {
+		return payCode;
+	}
+
+	public void setPayCode(int payCode) {
+		this.payCode = payCode;
 	}
 
 	public String getOrderStatus() {
@@ -113,10 +151,12 @@ public class Order {
 	@Override
 	public String toString() {
 		return "Order [orderNo=" + orderNo + ", userNo=" + userNo + ", pId=" + pId + ", amount=" + amount
-				+ ", addrName=" + addrName + ", addrPhone=" + addrPhone + ", shippingAddress=" + shippingAddress
-				+ ", shippingAddressDet=" + shippingAddressDet + ", parCode=" + parCode + ", orderStatus=" + orderStatus
-				+ "]";
+				+ ", addrName=" + addrName + ", addrPhone=" + addrPhone + ", addrAddress=" + addrAddress
+				+ ", addrAddressDet=" + addrAddressDet + ", comment=" + comment + ", orderDate=" + orderDate
+				+ ", payCode=" + payCode + ", orderStatus=" + orderStatus + "]";
 	}
 
+	
+	
 	
 }
