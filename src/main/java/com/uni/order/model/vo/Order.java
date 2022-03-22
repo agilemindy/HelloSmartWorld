@@ -51,6 +51,21 @@ public class Order {
 		this.comment = comment;
 		this.payCode = payCode;
 	}
+	
+	public Order(int orderNo, int userNo, String pId, int amount, String addrName, String addrPhone, String addrAddress,
+			String addrAddressDet, String comment, int payCode) {
+		super();
+		this.orderNo = orderNo;
+		this.userNo = userNo;
+		this.pId = pId;
+		this.amount = amount;
+		this.addrName = addrName;
+		this.addrPhone = addrPhone;
+		this.addrAddress = addrAddress;
+		this.addrAddressDet = addrAddressDet;
+		this.comment = comment;
+		this.payCode = payCode;
+	}
 
 	public int getOrderNo() {
 		return orderNo;

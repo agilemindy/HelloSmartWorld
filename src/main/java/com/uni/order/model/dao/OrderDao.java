@@ -7,10 +7,12 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 
 import com.uni.member.model.dao.MemberDao;
+import com.uni.member.model.vo.Member;
 import com.uni.order.model.vo.Order;
 
 public class OrderDao {
@@ -50,11 +52,6 @@ public class OrderDao {
 			pstmt.setString(8, order.getComment());
 			pstmt.setInt(9, order.getPayCode());
 			
-			System.out.println(order.getUserNo() + order.getpId() + order.getAmount() + order.getAddrAddress() + 
-					order.getAddrAddressDet() + order.getAddrName() + order.getAddrPhone() + order.getPayCode());
-			
-			
-			
 			result = pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
@@ -65,6 +62,42 @@ public class OrderDao {
 			
 		}	
 		return result;
+	}
+
+	public int orderNumCheck(Connection conn, Order order) {
+		
+		int orderNum = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("orderNumCheck");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, order.getUserNo());
+			pstmt.setString(2, order.getpId());
+			pstmt.setInt(3, order.getAmount());
+			pstmt.setString(4, order.getAddrName());
+			pstmt.setString(5, order.getAddrPhone());
+			pstmt.setString(6, order.getAddrAddress());
+			pstmt.setString(7, order.getAddrAddressDet());
+			pstmt.setString(8, order.getComment());
+			pstmt.setInt(9, order.getPayCode());
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				orderNum = rset.getInt("ORDER_NO");
+			}		
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return orderNum;
 	}
 
 }

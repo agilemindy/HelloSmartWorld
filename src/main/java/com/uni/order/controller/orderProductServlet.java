@@ -35,6 +35,7 @@ public class orderProductServlet extends HttpServlet {
 		
 		request.setCharacterEncoding("UTF-8");
 		
+		int orderNo = 0;
 		int userNo = Integer.parseInt(request.getParameter("userNo"));
 		String pId = request.getParameter("pId");
 		int amount = 1;
@@ -45,15 +46,18 @@ public class orderProductServlet extends HttpServlet {
 		String comment = request.getParameter("comment") != "" ? request.getParameter("comment") : "요청사항 없음";
 		int payCode = Integer.parseInt(request.getParameter("paymentMethod"));
 		
-		Order order = new Order(userNo, pId, amount, addrName, addrPhone, addrAddress, addrAddressDet, comment, payCode);
+		Order order = new Order(orderNo, userNo, pId, amount, addrName, addrPhone, addrAddress, addrAddressDet, comment, payCode);
 		System.out.println(order);
 		
 		int result = new OrderService().orderProduct(order);
 		
 		if(result > 0) {
-			HttpSession session = request.getSession();
-			session.setAttribute("msg", "주문이 완료되었습니다. 해당 주문내역은 마이페이지에서 확인가능합니다");
-			response.sendRedirect(request.getContextPath());
+
+			order.setOrderNo(new OrderService().orderNumCheck(order));
+			request.setAttribute("order", order);
+			
+			request.getRequestDispatcher("views/order/orderResult.jsp").forward(request, response);
+			
 		}else {
 			request.setAttribute("msg", "주문 실패");
 			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
