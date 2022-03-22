@@ -1,14 +1,16 @@
 package com.uni.order.controller;
 
 import java.io.IOException;
-import java.sql.Date;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.uni.order.model.service.OrderService;
 import com.uni.order.model.vo.Order;
 
 /**
@@ -31,17 +33,33 @@ public class orderProductServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		request.setCharacterEncoding("UTF-8");
+		
 		int userNo = Integer.parseInt(request.getParameter("userNo"));
 		String pId = request.getParameter("pId");
-		int amount = Integer.parseInt(request.getParameter("amount"));
+		int amount = 1;
 		String addrName = request.getParameter("addrName");
 		String addrPhone = request.getParameter("addrPhone");
-		String shippingAddress = request.getParameter("shippingAddress");
-		String shippingAddressDet = request.getParameter("shippingAddressDet");
-		Date orderDate = null;
-		int payCode = Integer.parseInt(request.getParameter("payCode"));
-
-		Order order = new Order(userNo, pId, amount, addrName, addrPhone, shippingAddress, shippingAddressDet, orderDate, payCode);		
+		String addrAddress = request.getParameter("addrAddress");
+		String addrAddressDet = request.getParameter("addrAddressDet");
+		String comment = request.getParameter("comment") != "" ? request.getParameter("comment") : "요청사항 없음";
+		int payCode = Integer.parseInt(request.getParameter("paymentMethod"));
+		
+		Order order = new Order(userNo, pId, amount, addrName, addrPhone, addrAddress, addrAddressDet, comment, payCode);
+		System.out.println(order);
+		
+		int result = new OrderService().orderProduct(order);
+		
+		if(result > 0) {
+			HttpSession session = request.getSession();
+			session.setAttribute("msg", "주문이 완료되었습니다. 해당 주문내역은 마이페이지에서 확인가능합니다");
+			response.sendRedirect(request.getContextPath());
+		}else {
+			request.setAttribute("msg", "주문 실패");
+			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
+			view.forward(request, response);
+		}
+		
 		
 	}
 
