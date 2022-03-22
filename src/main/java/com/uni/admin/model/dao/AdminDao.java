@@ -16,6 +16,7 @@ import com.uni.admin.model.vo.PageInfo;
 import com.uni.admin.model.vo.Pro_Attachment;
 import com.uni.admin.model.vo.Pro_Detail;
 import com.uni.admin.model.vo.Product;
+import com.uni.member.model.vo.Member;
 
 public class AdminDao {
 	
@@ -449,7 +450,7 @@ try {
 				pd.setCapacity(rset.getString("CAPACITY"));
 				pd.setPrice(rset.getInt("PRICE"));
 				pd.setStatus(rset.getString("STATUS"));
-				pd.setAmout(rset.getInt("AMOUNT"));
+				pd.setAmount(rset.getInt("AMOUNT"));
 				pd.setDetail_date(rset.getDate("DETAIL_DATE"));			
 				pd.setP_stock(rset.getInt("P_STOCK"));			
 				
@@ -475,6 +476,128 @@ try {
 		
 		return list;
 	}
+
+	public int insertInventoryList(Connection conn, Pro_Detail pd) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertInventory");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, pd.getP_id());
+			pstmt.setString(2, pd.getStatus());
+			pstmt.setInt(3, pd.getAmount());			
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public ArrayList<Member> selectMemberList(Connection conn, PageInfo pi) {
+		ArrayList<Member> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectMemberList");
+		
+		int startRow = (pi.getCurrentPage()-1) * pi.getBoardLimit() +1;
+		int endRow = startRow + pi.getBoardLimit() - 1;
+		
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);			
+									
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Member m = new Member();
+				m.setUserNo(rset.getInt("USER_NO"));
+				m.setUserId(rset.getString("USER_ID"));
+				m.setUserPwd(rset.getString("USER_PWD"));
+				m.setUserName(rset.getString("USER_NAME"));
+				m.setAddress(rset.getString("ADDRESS"));
+				m.setAddressDet(rset.getString("ADDRESS_DETAIL"));
+				m.setTel(rset.getString("TEL"));
+				m.setPhone(rset.getString("PHONE"));
+				m.setEmail(rset.getString("EMAIL"));				
+				m.setEnrollDate(rset.getDate("ENROLL_DATE"));				
+				m.setDelDate(rset.getDate("DEL_DATE"));				
+				m.setStatus(rset.getString("STATUS"));				
+				
+				list.add(m);
+				
+				
+			}
+						
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
+
+	public int getMemberCount(Connection conn) {
+		int ProCount = 0;
+		Statement stmt = null;
+		ResultSet rset = null;		
+		
+		String sql = prop.getProperty("getMemberCount");
+		
+		try {
+			stmt = conn.createStatement();
+			rset = stmt.executeQuery(sql);
+			
+			if(rset.next()) {
+				ProCount = rset.getInt(1);
+			}						
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(stmt);
+		}
+		
+		return ProCount;
+	}
+
+	public int deleteMember(Connection conn, String userNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("deleteMember");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			
+		}
+		
+		return result;
+	}
+	
+
+	
 
 	
 

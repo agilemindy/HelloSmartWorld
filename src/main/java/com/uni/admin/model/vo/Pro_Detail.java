@@ -10,7 +10,7 @@ public class Pro_Detail {
 	private String capacity;
 	private int price;
 	private String status;
-	private int amout;
+	private int amount;
 	private Date detail_date;
 	private int p_stock;
 	
@@ -19,7 +19,7 @@ public class Pro_Detail {
 	}
 
 	public Pro_Detail(String p_id, String p_name, String brand, String color, String capacity, int price, String status,
-			int amout, Date detail_date, int p_stock) {
+			int amount, Date detail_date, int p_stock) {
 		super();
 		this.p_id = p_id;
 		this.p_name = p_name;
@@ -28,7 +28,7 @@ public class Pro_Detail {
 		this.capacity = capacity;
 		this.price = price;
 		this.status = status;
-		this.amout = amout;
+		this.amount = amount;
 		this.detail_date = detail_date;
 		this.p_stock = p_stock;
 	}
@@ -89,12 +89,12 @@ public class Pro_Detail {
 		this.status = status;
 	}
 
-	public int getAmout() {
-		return amout;
+	public int getAmount() {
+		return amount;
 	}
 
-	public void setAmout(int amout) {
-		this.amout = amout;
+	public void setAmount(int amount) {
+		this.amount = amount;
 	}
 
 	public Date getDetail_date() {
@@ -116,7 +116,7 @@ public class Pro_Detail {
 	@Override
 	public String toString() {
 		return "Pro_Detail [p_id=" + p_id + ", p_name=" + p_name + ", brand=" + brand + ", color=" + color
-				+ ", capacity=" + capacity + ", price=" + price + ", status=" + status + ", amout=" + amout
+				+ ", capacity=" + capacity + ", price=" + price + ", status=" + status + ", amount=" + amount
 				+ ", detail_date=" + detail_date + ", p_stock=" + p_stock + "]";
 	}
 	

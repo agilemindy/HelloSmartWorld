@@ -1,0 +1,181 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" import="java.util.ArrayList, com.uni.admin.model.vo.*, com.uni.member.model.vo.*"%>
+<%
+	ArrayList<Member> list = (ArrayList<Member>)request.getAttribute("list");
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	
+	int proCount = pi.getproCount();
+	int currentPage = pi.getCurrentPage();
+	int maxPage = pi.getMaxPage();
+	int startPage = pi.getStartPage();
+	int endPage = pi.getEndPage();	
+			
+	
+	String contextPath = request.getContextPath();
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+		<!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="resources/assets/favicon1.ico"/>
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="resources/css/styles.css" rel="stylesheet"/>
+<style>
+	.outer{
+		width:100%;
+		height:auto;
+		background:black;
+		color:white;
+		margin:auto;
+		margin-top:50px;
+		margin-bottom: 50px;
+	}
+	.listArea{
+		border:1px solid white;
+		text-align:center;
+		width: 90%;		
+	}
+	
+	.listArea{
+		font-size: 15px;		
+	}
+	
+	tbody>tr>td{
+		font-size:13px;
+	}	
+	
+	#deleteButton{
+		border-radius: 15px;
+		border: 3px solid white;
+		background: black;
+		color: white;
+	}
+</style>
+</head>
+<body>
+	<%@ include file = "adminMenubar.jsp" %>
+	
+	<div class="outer">
+		<br>
+		
+		<h2 align="center">회원관리</h2>
+		<br>
+		
+		<div align="right" style="margin-right: 150px; margin-bottom: 20px" >
+			
+		</div>
+		<div align="right" style="margin-right: 150px; margin-bottom: 20px" >
+			<h4> 총 <%= proCount %> 명 </h4>
+		</div>
+		
+		
+		
+		<table class="listArea" align="center">
+			<thead>
+				<tr>
+					<th width="100">회원번호</th>
+					<th width="100">아이디</th>
+					<th width="100">비밀번호</th>
+					<th width="100">이름</th>
+					<th width="200">주소</th>
+					<th width="100">상세주소</th>
+					<th width="200">일반전화</th>
+                    <th width="200">휴대전화</th>
+                    <th width="200">이메일</th>
+                    <th width="200">가입일</th>
+                    <th width="200">탈퇴일</th>
+                    <th width="100">회원상태</th>
+                    <th width="100">회원삭제</th>
+                    
+
+				</tr>
+			<thead>
+			<tbody>
+				<%if(list.isEmpty()){ %>
+				<tr>
+					<td colspan="6">조회된 리스트가 없습니다.</td>
+				</tr>
+				<%}else{ %>
+					<% for(Member m : list){ %>
+					<tr>
+						
+						<td><%= m.getUserNo() %></td>
+						<td><%= m.getUserId()%></td>
+						<td><%= m.getUserPwd() %></td>
+						<td><%= m.getUserName() %></td>
+						<td><%= m.getAddress() %></td>
+						<td><%= m.getAddressDet() %></td>
+						<td><%= m.getTel() %></td>
+						<td><%= m.getPhone() %></td>						
+						<td><%= m.getEmail() %></td>						
+						<td><%= m.getEnrollDate() %></td>						
+						<td><%= m.getDelDate() %></td>						
+						<td><%= m.getStatus() %></td>
+						<td>
+							<button id="deleteButton" onclick="deleteMember();">삭제</button>
+						</td>						
+					</tr>
+					<%} %>
+				<%} %>
+			</tbody>
+		</table>
+		
+		<br><br>
+		
+		<!-- 페이징바 만들기 -->
+		<div class="pagingArea" align="center">
+			<!-- 맨 처음으로 (<<) -->
+			<button onclick="location.href='<%=contextPath%>/adminMemberListView.do?currentPage=1'"> &lt;&lt; </button>
+		
+			<!-- 이전페이지로(<) -->
+			<%if(currentPage == 1){ %>
+			<button disabled> &lt; </button>
+			<%}else{ %>
+			<button onclick="location.href='<%= contextPath %>/adminMemberListView.do?currentPage=<%= currentPage-1 %>'"> &lt; </button>
+			<%} %>
+			
+			<!-- 페이지 목록 -->
+			<%for(int p=startPage; p<=endPage; p++){ %>
+				
+				<%if(p == currentPage){ %>
+				<button disabled> <%= p %> </button>
+				<%}else{ %>
+				<button type= button onclick="location.href='<%=contextPath %>/adminMemberListView.do?currentPage=<%= p %>'"> <%= p %> </button>
+				<%} %>
+				
+			<%} %>
+			
+			<!-- 다음페이지로(>) -->
+			<%if(currentPage == maxPage){ %>
+			<button disabled> &gt; </button>
+			<%}else { %>
+			<button onclick="location.href='<%= contextPath %>/adminMemberListView.do?currentPage=<%= currentPage+1 %>'"> &gt; </button>
+			<%} %>
+		
+			<!-- 맨 끝으로 (>>) -->
+			<button onclick="location.href='<%=contextPath%>/adminMemberListView.do?currentPage=<%=maxPage%>'"> &gt;&gt; </button>
+		</div> 
+		<br><br>
+		
+		
+	</div>
+	<form action="" id="postForm" method="post">
+				<input type="hidden" name="userNo" value=<%= list.get(0).getUserNo() %>>
+	</form>
+	<script>		
+		function deleteMember(){
+			$("#postForm").attr("action", "<%=contextPath%>/deleteMember.do");
+			$("#postForm").submit();
+		}
+			
+		
+	</script>
+	
+	<%@ include file = "../../views/common/footer.jsp" %>
+</body>
+</html>

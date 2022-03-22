@@ -113,7 +113,7 @@
 						<td><%= pd.getCapacity() %></td>
 						<td><%= pd.getPrice() %></td>
 						<td><%= pd.getStatus() %></td>
-						<td><%= pd.getAmout() %></td>
+						<td><%= pd.getAmount()%></td>
 						<td><%= pd.getDetail_date() %></td>
 						<td><%= pd.getP_stock()%></td>
 						<td>

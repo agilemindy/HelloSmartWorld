@@ -13,6 +13,7 @@ import com.uni.admin.model.vo.PageInfo;
 import com.uni.admin.model.vo.Pro_Attachment;
 import com.uni.admin.model.vo.Pro_Detail;
 import com.uni.admin.model.vo.Product;
+import com.uni.member.model.vo.Member;
 
 public class AdminService {
 
@@ -140,6 +141,56 @@ public class AdminService {
 		close(conn);
 		return list;
 	}
+
+	public int insertInventory(Pro_Detail pd) {
+		Connection conn = getConnection();		
+		
+		int result = new AdminDao().insertInventoryList(conn, pd);		
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		return result;
+	}
+
+	public ArrayList<Member> selectMemberList(PageInfo pi) {
+		Connection conn = getConnection();
+		
+		ArrayList<Member> list = new AdminDao().selectMemberList(conn, pi);		
+		
+		close(conn);
+		return list;
+	}
+
+	public int getMemberCount() {
+		Connection conn = getConnection();
+		
+		int ProCount = new AdminDao().getMemberCount(conn);
+				
+		close(conn);
+		return ProCount;
+	}
+
+	public int deleteMember(String userNo) {
+		Connection conn = getConnection();
+		
+		int result = new AdminDao().deleteMember(conn, userNo); 		
+				
+		if(result > 0) {
+			commit(conn);
+			
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+
+	 
 
 	
 
