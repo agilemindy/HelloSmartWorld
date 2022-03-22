@@ -48,11 +48,7 @@
 	tbody>tr>td{
 		font-size:13px;
 	}
-	
-	.listArea>tbody>tr:hover{
-		background:darkgrey;		
-	}
-	
+		
 	#enrollButton{
 		border-radius: 15px;
 		border: 3px solid white;
@@ -78,7 +74,7 @@
 		<br>
 		
 		<div align="right" style="margin-right: 150px; margin-bottom: 20px" >
-			<button id="enrollButton" onclick="location.href = '/smartWorld/inventoryEnrollForm.do'">재고등록</button>
+			<button id="enrollButton" onclick="location.href = '/HelloSmartWorld/inventoryEnrollForm.do'">재고등록</button>
 		</div>
 		<div align="right" style="margin-right: 150px; margin-bottom: 20px" >
 			<h4> 총 <%= pi.getproCount() %> 건 </h4>
