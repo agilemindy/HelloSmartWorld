@@ -117,4 +117,57 @@ public class ReviewDao {
 		return list;
 	}
 
+	
+	public ArrayList<Review> myReviewList(Connection conn, ReviewPageInfo rpi, int rw) {
+		// TODO Auto-generated method stub
+		ArrayList<Review> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("myReviewList");
+		
+		int startRow = (rpi.getCurrentPage()-1) * rpi.getBoardLimit() +1;
+		int endRow = startRow + rpi.getBoardLimit() - 1;
+		
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			pstmt.setInt(3, rw);
+			
+									
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Review r = new Review();	
+
+				
+				r.setReviewNo(rset.getInt("REVIEW_NO"));
+				r.setReviewWriter(rset.getInt("REVIEW_WRITER"));
+				r.setProductId(rset.getString("PRODUCT_ID"));
+				r.setStar(rset.getInt("RV_POINT"));
+				r.setReviewTitle(rset.getString("RV_TITLE"));
+				r.setReviewContent(rset.getString("RV_CONTENT"));
+				r.setCreateDate(rset.getDate("RV_DATE"));
+				r.setLike(rset.getInt("RV_LIKE"));
+				r.setCount(rset.getInt("RV_VIEW"));
+				
+				r.setTitleImg(rset.getString("CHANGE_NAME"));	
+				list.add(r);	
+				
+
+			}
+						
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
+
 }
