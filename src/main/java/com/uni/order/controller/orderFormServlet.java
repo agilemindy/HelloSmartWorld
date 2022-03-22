@@ -1,11 +1,15 @@
-package com.uni.order;
+package com.uni.order.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.uni.admin.model.vo.Product;
 
 /**
  * Servlet implementation class orderFormServlet
@@ -26,6 +30,20 @@ public class orderFormServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		String brand = request.getParameter("brand");
+		String name = request.getParameter("name");
+		String color = request.getParameter("color");
+		String capacity = request.getParameter("capacity");
+		String price = request.getParameter("price");
+		String pId = request.getParameter("pId");
+		
+		request.setAttribute("brand", brand);
+		request.setAttribute("name", name);
+		request.setAttribute("color", color);
+		request.setAttribute("capacity", capacity);
+		request.setAttribute("price", price);
+		request.setAttribute("pId", pId);
 		
 		request.getRequestDispatcher("views/order/orderForm.jsp").forward(request, response);
 	}

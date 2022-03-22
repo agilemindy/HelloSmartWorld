@@ -8,7 +8,6 @@
 </head>
 <body>
 <%@ include file = "../../views/common/menubar.jsp" %>
-<a href="/HelloSmartWorld/orderForm.do">주문하기</a>
 	<section id="aa-product-category" >
 		<div class="container"   align="center">
 			<div class="row" >
