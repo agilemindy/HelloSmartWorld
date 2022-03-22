@@ -70,7 +70,7 @@
 					<tr>
 						<th width="100">제품아이디</th>
 						<td width="500">					
-							<select name = "P_ID" id = "P_ID" >
+							<select id = "P_ID" name = "P_ID">
 							<% for(Product p : list){ %>
 								<option value="<%= p.getP_id() %>"><%= p.getP_id() %></option>
 							<% } %>
@@ -90,6 +90,7 @@
 			<div class="btns" align="center">
 				<button type="reset" class="button" style="margin-right: 30px;" OnClick="javascript:history.back(-1)">취소하기</button>
 				<button type="submit" class="button">등록하기</button>
+				<button type="button" class="button"onclick="insertInven()">등록해보기해보기</button>
 			</div>
 		</form>
 	</div>
@@ -129,10 +130,12 @@
 						var $priceTd = $("<td>").text(value.price);
 						var $tr6 = $("<tr>");
 						var $th6 = $("<th>").text("입출고");
-						var $statusTd = $("<input required>").attr('name','amount');
+						var $statusTd = $("<select>").attr('id','status');										
+						var $optionTd1 = $("<option>").val("입고");									
+						var $optionTd2 = $("<option>").val("출고");											
 						var $tr7 = $("<tr>");
 						var $th7 = $("<th>").text("수량");
-						var $amountTd = $("<input required>").attr('name','amount');
+						var $amountTd = $("<input required>").attr('id','amount');
 												
 						$tr1.append($th1);
 						$tr1.append($nameTd);						
@@ -145,7 +148,11 @@
 						$tr5.append($th5);
 						$tr5.append($priceTd);
 						$tr6.append($th6);
-						$tr6.append($statusTd);
+						$tr6.append($statusTd);					
+						$statusTd.append($optionTd1);					
+						$statusTd.append($optionTd2);
+						$optionTd1.append("입고");
+						$optionTd2.append("출고");
 						$tr7.append($th7);
 						$tr7.append($amountTd);
 						
@@ -168,4 +175,16 @@
 		})
 	})
 	
+	
+	function insertInven(){
+		
+		<% Pro_Detail pd = new Pro_Detail(); %>
+		
+		var p_id = $("P_ID option:selected").val();
+		var status = $("status option:selected").val();
+		var amount = $("amount").text();
+		
+		
+		
+	}
 </script>
