@@ -47,7 +47,8 @@ public class OrderDao {
 			pstmt.setString(5, order.getAddrPhone());
 			pstmt.setString(6, order.getAddrAddress());
 			pstmt.setString(7, order.getAddrAddressDet());
-			pstmt.setInt(8, order.getPayCode());
+			pstmt.setString(8, order.getComment());
+			pstmt.setInt(9, order.getPayCode());
 			
 			System.out.println(order.getUserNo() + order.getpId() + order.getAmount() + order.getAddrAddress() + 
 					order.getAddrAddressDet() + order.getAddrName() + order.getAddrPhone() + order.getPayCode());

@@ -164,7 +164,7 @@ int userNo = m.getUserNo();
 							<div class="row col-md-12">
 								<div class="form-check">
 									<input id="debit" name="paymentMethod" type="radio"
-										class="form-check-input" value="101" required> <label
+										class="form-check-input" value="201" required> <label
 										class="form-check-label" for="credit">신용카드</label>
 								</div>
 							</div>
