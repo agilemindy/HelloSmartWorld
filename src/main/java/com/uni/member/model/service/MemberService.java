@@ -36,6 +36,8 @@ public class MemberService {
 		}else {
 			rollback(conn);
 		}
+		
+		close(conn);
 		return result;
 	}
 
@@ -53,6 +55,8 @@ public class MemberService {
 		}else {
 			rollback(conn);
 		}
+		
+		close(conn);
 		return member;
 	}
 
@@ -70,6 +74,11 @@ public class MemberService {
 		
 		int result = new MemberDao().insertMember(conn, mem);
 		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
 		close(conn);
 		return result;
 	}
