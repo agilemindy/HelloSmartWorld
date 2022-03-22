@@ -53,7 +53,7 @@ background-color: gray;
 
 
 <div align="center">
-	<b><%=loginUser.getUserName() %> 님 </b> 이 작성하신 리뷰 내역입니다.
+	<b><%=loginUser.getUserName() %></b>님이 작성하신 리뷰 내역입니다.
 	
 	<% if(loginUser != null){ %>
 		<%-- <button onclick="location.href='<%=contextPath %>/insertFormReview.do'">작성하기</button> --%>
@@ -93,22 +93,12 @@ background-color: gray;
                         </div>
                         
                     </div>
-     <%} %>  
-      
-
-                </div>
-           
-            </div>
-            
+     <%} %>
+                </div>           
+            </div>            
      </section>   
   	
-  	
-  	
-
-			  
-      
-        
-       <script>
+     <script>
 		
 			$(function(){
 				$(".py-5").click(function(){
@@ -116,54 +106,50 @@ background-color: gray;
 					location.href="<%=contextPath%>/detailThumb.do?bId=" + bId;
 				});
 			});
-		</script>
+	</script>
 	
-  <!-- Bootstrap core JS-->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-  <!-- Core theme JS-->
-  <script src="js/scripts.js"></script>
+  	<!-- Bootstrap core JS-->
+  	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+  	<!-- Core theme JS-->
+  	<script src="js/scripts.js"></script>
  
 
  
  
-        <!-- 페이징바 만들기 -->
-		<div class="pagingArea" align="center">
-			<!-- 맨 처음으로 (<<) -->
-			<button onclick="location.href='<%=contextPath%>/ReviewList.do.do?currentPage=1'"> &lt;&lt; </button>
+  	 <!-- 페이징바 만들기 -->
+	 <div class="pagingArea" align="center">
+	<!-- 맨 처음으로 (<<) -->
+	<button onclick="location.href='<%=contextPath%>/ReviewList.do.do?currentPage=1'"> &lt;&lt; </button>
 		
-			<!-- 이전페이지로(<) -->
-			<%if(currentPage == 1){ %>
-			<button disabled> &lt; </button>
-			<%}else{ %>
-			<button onclick="location.href='<%= contextPath %>/ReviewList.do?currentPage=<%= currentPage-1 %>'"> &lt; </button>
-			<%} %>
+	<!-- 이전페이지로(<) -->
+	<%if(currentPage == 1){ %>
+	<button disabled> &lt; </button>
+	<%}else{ %>
+	<button onclick="location.href='<%= contextPath %>/ReviewList.do?currentPage=<%= currentPage-1 %>'"> &lt; </button>
+	<%} %>
 			
-			<!-- 페이지 목록 -->
-			<%for(int p=startPage; p<=endPage; p++){ %>
+	<!-- 페이지 목록 -->
+	<%for(int p=startPage; p<=endPage; p++){ %>
 				
-				<%if(p == currentPage){ %>
-				<button disabled> <%= p %> </button>
-				<%}else{ %>
-				<button onclick="location.href='<%=contextPath %>/ReviewList.do?currentPage=<%= p %>'"> <%= p %> </button>
-				<%} %>
+		<%if(p == currentPage){ %>
+		<button disabled> <%= p %> </button>
+		<%}else{ %>
+		<button onclick="location.href='<%=contextPath %>/ReviewList.do?currentPage=<%= p %>'"> <%= p %> </button>
+		<%} %>
 				
-			<%} %>
+	<%} %>
 			
-			<!-- 다음페이지로(>) -->
-			<%if(currentPage == maxPage){ %>
-			<button disabled> &gt; </button>
-			<%}else { %>
-			<button onclick="location.href='<%= contextPath %>/ReviewList.do?currentPage=<%= currentPage+1 %>'"> &gt; </button>
-			<%} %>
+	<!-- 다음페이지로(>) -->
+	<%if(currentPage == maxPage){ %>
+		<button disabled> &gt; </button>
+	<%}else { %>
+		button onclick="location.href='<%= contextPath %>/ReviewList.do?currentPage=<%= currentPage+1 %>'"> &gt; </button>
+	<%} %>
 		
-			<!-- 맨 끝으로 (>>) -->
-			<button onclick="location.href='<%=contextPath%>/ReviewList.do?currentPage=<%=maxPage%>'"> &gt;&gt; </button>
-		</div> 
-		<br><br>
-		
-
-
- 
+	<!-- 맨 끝으로 (>>) -->
+	<button onclick="location.href='<%=contextPath%>/ReviewList.do?currentPage=<%=maxPage%>'"> &gt;&gt; </button>
+	</div> 
+	<br><br> 
  <%@ include file = "../../views/common/footer.jsp" %>	
 </body>
 </html>
