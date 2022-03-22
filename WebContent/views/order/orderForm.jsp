@@ -36,6 +36,7 @@ int userNo = m.getUserNo();
 	<%@ include file="../../views/common/menubar.jsp"%>
 	<div class="container col-md-6">
 		<main>
+		<form action="<%= request.getContextPath() %>/orderProduct.do" method="post">
 			<div class="py-5 text-center"></div>
 
 			<div class="row g-5">
@@ -66,12 +67,16 @@ int userNo = m.getUserNo();
 						<li class="list-group-item d-flex justify-content-between"><span>Total
 						</span> <strong><%=price%>원</strong></li>
 					</ul>
-					<!-- 버튼있던 자리 -->
+					<button class="w-100 btn btn-primary btn-lg" type="submit">주문하기</button>
+					<div class="form-check form-switch my-3">
+					  <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" onclick="memberInput();">
+					  <label class="form-check-label" for="flexSwitchCheckChecked">배송지정보가 회원정보와 동일함</label>
+					</div>
 				</div>
 				<div class="col-md-7 col-lg-8">
 					<h4 class="mb-3">Billing address</h4>
-					<form action="<%= request.getContextPath() %>/orderProduct.do" method="post">
-					<button class="w-100 btn btn-primary btn-lg" type="submit">주문하기</button>
+					
+					
 					<input type="hidden" value="<%= pId %>" name="pId">
 					<input type="hidden" value="<%= userNo %>" name="userNo">
 						<div class="row g-3">
@@ -100,8 +105,8 @@ int userNo = m.getUserNo();
 
 							<div class="col-sm-6">
 								<label for="lastName" class="form-label">받으시는 분 연락처</label> <input
-									type="tel" class="form-control" id="addrPhone" name="addrPhone" placeholder=""
-									value="" required>
+									type="tel" class="form-control" id="addrPhone" name="addrPhone" placeholder="010-1234-1234"
+									value="" pattern="[0-9]{3}-[0-9]{3,4}-[0-9]{4}" required>
 								<div class="invalid-feedback">연락처를 입력해주세요</div>
 							</div>
 
@@ -218,6 +223,33 @@ int userNo = m.getUserNo();
 							document.getElementById("addrAddress").value = roadAddr;
 						}
 					}).open();
+		}
+		
+		
+		function memberInput(){
+			
+			var check = document.getElementById('flexSwitchCheckChecked').checked
+			
+			console.log(check)
+			console.log(check.checked)
+			console.log(document.getElementById('flexSwitchCheckChecked').checked)
+
+			
+			if(check){				
+				
+				document.getElementById('addrName').value = "<%= m.getUserName()%>"
+				document.getElementById('addrPhone').value = "<%= m.getPhone()%>"
+				document.getElementById('addrAddress').value = "<%= m.getAddress()%>"
+				document.getElementById('addrAddressDet').value = "<%= m.getAddressDet()%>"
+			}else{
+				document.getElementById('addrName').value = ""
+				document.getElementById('addrPhone').value = ""
+				document.getElementById('addrAddress').value = ""
+				document.getElementById('addrAddressDet').value = ""
+			}
+			
+			
+			
 		}
 	</script>
 <script
