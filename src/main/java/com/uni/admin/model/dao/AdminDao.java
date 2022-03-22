@@ -113,6 +113,44 @@ public class AdminDao {
 		
 		return list;
 	}
+	
+	public ArrayList<Product> selectList(Connection conn) {
+		ArrayList<Product> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectList2");		
+		
+		try {
+			pstmt = conn.prepareStatement(sql);				
+									
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Product p = new Product();
+				p.setP_id(rset.getString("P_ID"));
+				p.setP_name(rset.getString("P_NAME"));
+				p.setBrand(rset.getString("BRAND"));
+				p.setColor(rset.getString("COLOR"));
+				p.setCapacity(rset.getString("CAPACITY"));
+				p.setPrice(rset.getInt("PRICE"));
+				p.setP_status(rset.getString("P_STATUS"));
+				p.setP_stock(rset.getInt("P_STOCK"));								
+				
+				list.add(p);
+								
+			}
+						
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
 
 	public int insertProductList(Connection conn, Product p) {
 		int result = 0;

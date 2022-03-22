@@ -32,6 +32,14 @@ public class AdminService {
 		close(conn);
 		return list;
 	}
+	
+	public ArrayList<Product> selectList() {
+		Connection conn = getConnection();
+		ArrayList<Product> list = new AdminDao().selectList(conn);		
+		
+		close(conn);
+		return list;
+	}
 
 	public int insertProduct(Product p, ArrayList<Pro_Attachment> fileList) {
 		Connection conn = getConnection();		
