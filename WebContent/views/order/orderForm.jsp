@@ -1,5 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" import="com.uni.member.model.vo.Member"%>
+<%
+String brand = (String) request.getAttribute("brand");
+String name = (String) request.getAttribute("name");
+String color = (String) request.getAttribute("color");
+String capacity = (String) request.getAttribute("capacity");
+String price = (String) request.getAttribute("price");
+String pId = (String) request.getAttribute("price");
+Member m = (Member) request.getSession().getAttribute("loginUser");
+int userNo = m.getUserNo();
+
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,16 +42,16 @@
 				<div class="col-md-5 col-lg-4 order-md-last">
 					<h4 class="d-flex justify-content-between align-items-center mb-3">
 						<span class="text-primary">Your cart</span> <span
-							class="badge bg-primary rounded-pill">0</span>
+							class="badge bg-primary rounded-pill">1</span>
 					</h4>
 					<ul class="list-group mb-3">
 						<li class="list-group-item d-flex justify-content-between lh-sm">
 							<div>
 								<h6 class="my-0">Product name</h6>
-								<small class="text-muted">Brief description</small>
-							</div> <span class="text-muted">$12</span>
+								<small class="text-muted"><%=brand + " " + name%></small>
+							</div> <span class="text-muted"><%=price%>원</span>
 						</li>
-						<li class="list-group-item d-flex justify-content-between lh-sm">
+						<!-- <li class="list-group-item d-flex justify-content-between lh-sm">
 							<div>
 								<h6 class="my-0">Second product</h6>
 								<small class="text-muted">Brief description</small>
@@ -51,27 +62,27 @@
 								<h6 class="my-0">Third item</h6>
 								<small class="text-muted">Brief description</small>
 							</div> <span class="text-muted">$5</span>
-						</li>
+						</li> -->
 						<li class="list-group-item d-flex justify-content-between"><span>Total
-						</span> <strong>$20</strong></li>
+						</span> <strong><%=price%>원</strong></li>
 					</ul>
 					<button class="w-100 btn btn-primary btn-lg" type="submit">주문하기</button>
 				</div>
 				<div class="col-md-7 col-lg-8">
 					<h4 class="mb-3">Billing address</h4>
-					<form class="needs-validation" novalidate action="" method="post">
+					<form class="needs-validation" novalidate action="<%= request.getContextPath() %>/orderProduct.do" method="post">
 						<div class="row g-3">
 							<div class="col-sm-6">
 								<label for="firstName" class="form-label">보내시는 분 성함</label> <input
-									type="text" class="form-control" id="orderName" placeholder=""
-									value="" required>
+									type="text" class="form-control" id="orderName" name="orderName" placeholder=""
+									value="<%=m.getUserName()%>" required>
 								<div class="invalid-feedback">성함을 입력해주세요</div>
 							</div>
 
 							<div class="col-sm-6">
 								<label for="lastName" class="form-label">보내시는 분 연락처</label> <input
-									type="tel" class="form-control" id="orderPhone" placeholder=""
-									value="" required>
+									type="tel" class="form-control" id="orderPhone" name="orderPhone" placeholder=""
+									value="<%=m.getPhone()%>" required>
 								<div class="invalid-feedback">연락처를 입력해주세요</div>
 							</div>
 
@@ -79,34 +90,44 @@
 
 							<div class="col-sm-6">
 								<label for="firstName" class="form-label">받으시는 분 성함</label> <input
-									type="text" class="form-control" id="addrName" placeholder=""
+									type="text" class="form-control" id="addrName" name="addrName" placeholder=""
 									value="" required>
 								<div class="invalid-feedback">성함을 입력해주세요</div>
 							</div>
 
 							<div class="col-sm-6">
 								<label for="lastName" class="form-label">받으시는 분 연락처</label> <input
-									type="tel" class="form-control" id="addrPhone" placeholder=""
+									type="tel" class="form-control" id="addrPhone" name="addrPhone" placeholder=""
 									value="" required>
 								<div class="invalid-feedback">연락처를 입력해주세요</div>
 							</div>
 
-							<div class="col-9">
-								<label for="email" class="form-label">받으시는 분 주소</label> <input
-									type="text" class="form-control" id="shippingAddress"
+							<div class="col-12">
+								<label for="email" class="form-label">받으시는 분 주소</label>
+								<div class="row">
+								<div class="col-9">
+								<input
+									type="text" class="form-control" id="shippingAddress" name="shippingAddress"
 									placeholder="" required>
 								<div class="invalid-feedback">주소를 입력해주세요</div>
+								</div>
+								
+								<div class="col-3">
+								<button type="button" onclick="addressCheck();"
+									class="btn btn-primary btn-m">주소검색</button>
 							</div>
-
+								</div>
+							</div>
+							
 							<div class="col-12">
 								<label for="address2" class="form-label">상세주소 </label> <input
-									type="text" class="form-control" id="shippingAddressDet"
+									type="text" class="form-control" id="shippingAddressDet" name="shippingAddressDet"
 									placeholder="" required>
 								<div class="invalid-feedback">상세주소를 입력해주세요</div>
 							</div>
 
 							<div class="col-12">
-								<input type="text" class="form-control" id="comment"
+								<input type="text" class="form-control" id="comment" name="comment"
 									placeholder="배송요청사항을 입력해주세요">
 							</div>
 						</div>
@@ -132,19 +153,9 @@
 							<div class="row col-md-12">
 								<div class="form-check col-md-3 ">
 									<input id="credit" name="paymentMethod" type="radio"
-										class="form-check-input" checked required> <label
-										class="form-check-label" for="deposit">무통장입금</label>
+										class="form-check-input"  required checked> <label
+										class="form-check-label" for="deposit" >무통장입금</label>
 
-								</div>
-								<div class="input-group-prepend col-md-4">
-									<button type="button"
-										class="btn btn-outline-secondary dropdown-toggle btn-sm"
-										data-toggle="dropdown">은행선택</button>
-									<div class="dropdown-menu">
-										<a class="dropdown-item" data-value="">국민은행 100-102-1234
-											(예금주:sw)</a> <a class="dropdown-item" data-value="2">신한은행
-											100-102-1234 (예금주:sw)</a>
-									</div>
 								</div>
 							</div>
 							<div class="row col-md-12">
@@ -156,7 +167,7 @@
 							</div>
 						</div>
 
-						<div class="row gy-3">
+						 <!--  <div class="row gy-3">
 							<div class="col-md-6">
 								<label for="cc-name" class="form-label">Name on card</label> <input
 									type="text" class="form-control" id="cc-name" placeholder=""
@@ -186,14 +197,26 @@
 									required>
 								<div class="invalid-feedback">Security code required</div>
 							</div>
-						</div>
+						</div> -->
 						<hr class="my-4">
 					</form>
 				</div>
 			</div>
 		</main>
 	</div>
+	<script>
+		function addressCheck() {
+			//https://postcode.map.daum.net/guide#usage
+			new daum.Postcode(
+					{
+						oncomplete : function(data) {
 
+							var roadAddr = data.roadAddress; // 도로명 주소 변수
+							document.getElementById("shippingAddress").value = roadAddr;
+						}
+					}).open();
+		}
+	</script>
 
 	<!-- Bootstrap core JS-->
 	<script

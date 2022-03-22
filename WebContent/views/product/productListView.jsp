@@ -10,7 +10,6 @@
 	int startPage = pi.getStartPage();
 	int endPage = pi.getEndPage();	
 			
-	
 	String contextPath = request.getContextPath();
 %>
 <!DOCTYPE html>
@@ -112,6 +111,8 @@
                             <img class="card-img-top" src="<%=contextPath %>/resources/product_upfiles/noImg.png" width="150px" height="300px" alt="..." />							
 							<% } %>
                             <!-- Product details-->
+                            <form action="<%=request.getContextPath()%>/orderForm.do" method="get">
+                            
                             <div class="card-body p-4">
                                 <div class="text-center">
                                 	<%= p.getBrand() %>
@@ -121,12 +122,21 @@
                                     <%= p.getCapacity() %> <br>
                                     <!-- Product price-->
                                     <%= p.getPrice() %> 원
+                                    
+                                    <input type="hidden" name="brand" value="<%= p.getBrand() %>">
+                                    <input type="hidden" name="name" value="<%= p.getP_name() %>">
+                                    <input type="hidden" name="color" value="<%= p.getColor() %>">
+                                    <input type="hidden" name="capacity" value="<%= p.getCapacity() %>">
+                                    <input type="hidden" name="price" value="<%= p.getPrice() %>">
+                                    <input type="hidden" name="pId" value="<%= p.getP_id()%>">
                                 </div>
                             </div>
                             <!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">주문하기</a></div>
+                                <div class="text-center"><button class="btn btn-dark btn-lg btn-block"
+						 type="submit" id="submitBtn">주문하기</button></div>
                             </div>
+                            </form>
                         </div>
                     </div>
                    
