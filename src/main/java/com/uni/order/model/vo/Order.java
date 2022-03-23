@@ -20,6 +20,7 @@ public class Order {
 	private Date orderDate;
 	private int payCode;
 	private String orderStatus;
+	private int price;
 	
 	public Order(int orderNo, int userNo, String pId, int amount, String addrName, String addrPhone, String addrAddress,
 			String addrAddressDet, String comment, Date orderDate, int payCode, String orderStatus) {
@@ -38,6 +39,8 @@ public class Order {
 		this.orderStatus = orderStatus;
 	}
 
+	
+
 	public Order(int userNo, String pId, int amount, String addrName, String addrPhone, String addrAddress,
 			String addrAddressDet, String comment, int payCode) {
 		super();
@@ -53,7 +56,7 @@ public class Order {
 	}
 	
 	public Order(int orderNo, int userNo, String pId, int amount, String addrName, String addrPhone, String addrAddress,
-			String addrAddressDet, String comment, int payCode) {
+			String addrAddressDet, String comment, int payCode, int price) {
 		super();
 		this.orderNo = orderNo;
 		this.userNo = userNo;
@@ -65,6 +68,7 @@ public class Order {
 		this.addrAddressDet = addrAddressDet;
 		this.comment = comment;
 		this.payCode = payCode;
+		this.price = price;
 	}
 
 	public int getOrderNo() {
@@ -162,14 +166,26 @@ public class Order {
 	public void setOrderStatus(String orderStatus) {
 		this.orderStatus = orderStatus;
 	}
+	
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
+
+
 
 	@Override
 	public String toString() {
 		return "Order [orderNo=" + orderNo + ", userNo=" + userNo + ", pId=" + pId + ", amount=" + amount
 				+ ", addrName=" + addrName + ", addrPhone=" + addrPhone + ", addrAddress=" + addrAddress
 				+ ", addrAddressDet=" + addrAddressDet + ", comment=" + comment + ", orderDate=" + orderDate
-				+ ", payCode=" + payCode + ", orderStatus=" + orderStatus + "]";
+				+ ", payCode=" + payCode + ", orderStatus=" + orderStatus + ", price=" + price + "]";
 	}
+
+	
 
 	
 	
