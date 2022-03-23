@@ -12,6 +12,7 @@
 			
 	
 	String contextPath = request.getContextPath();
+	String msg = (String)session.getAttribute("msg");
 %>
 <!DOCTYPE html>
 <html>
@@ -62,6 +63,18 @@
 	}
 </style>
 </head>
+<script>
+		var msg = "<%=msg%>";
+		console.log(msg);
+		
+		$(function(){
+			if(msg != "null"){
+				alert(msg);
+				<% session.removeAttribute("msg"); %>
+			}
+		})
+	
+</script>
 <body>
 	<%@ include file = "adminMenubar.jsp" %>
 	
