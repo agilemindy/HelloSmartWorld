@@ -798,6 +798,69 @@ try {
 		
 		return result;
 	}
+
+	public Pro_Detail selectInventory(Connection conn, String pNo) {
+		Pro_Detail pd = null;								   
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectInventory");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, pNo);
+			
+			rset = pstmt.executeQuery();			
+			
+			if(rset.next()) {
+				pd = new Pro_Detail();
+				pd.setP_no(rset.getInt("P_NO"));
+				pd.setP_id(rset.getString("P_ID"));
+				pd.setP_name(rset.getString("P_NAME"));
+				pd.setBrand(rset.getString("BRAND"));
+				pd.setColor(rset.getString("COLOR"));
+				pd.setCapacity(rset.getString("CAPACITY"));
+				pd.setPrice(rset.getInt("PRICE"));
+				pd.setStatus(rset.getString("STATUS"));
+				pd.setAmount(rset.getInt("AMOUNT"));
+				pd.setDetail_date(rset.getDate("DETAIL_DATE"));
+						
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+			
+		}
+		
+		return pd;
+	}
+
+	public int updateInventory(Connection conn, Pro_Detail pd) {
+		int result = 0;										
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updateInventory");
+		
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, pd.getAmount());
+			pstmt.setInt(2, pd.getP_no());
+					
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			
+		}
+		
+		return result;
+	}
 		
 	}
 

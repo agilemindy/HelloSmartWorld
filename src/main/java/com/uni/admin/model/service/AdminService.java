@@ -252,6 +252,40 @@ public class AdminService {
 		return result;
 	}
 
+	public Pro_Detail selectInventory(String pNo) {
+		Connection conn = getConnection();
+		
+		Pro_Detail pd = null;
+		
+		pd = new AdminDao().selectInventory(conn, pNo);
+		
+		if(pd == null) {
+			commit(conn);
+			
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);		
+		
+		return pd;
+	}
+
+	public int updateInventory(Pro_Detail pd) {
+		Connection conn = getConnection();
+		
+		int result = new AdminDao().updateInventory(conn, pd);
+				
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		return result;
+	}
+
 	 
 
 	
