@@ -85,7 +85,7 @@
 		<table class="listArea" align="center">
 			<thead>
 				<tr>				
-					<th width="300">재고번호</th>
+					<th width="150">재고번호</th>
 					<th width="300">제품아이디</th>
 					<th width="200">제품명</th>
 					<th width="150">제조사</th>
@@ -106,7 +106,8 @@
 				</tr>
 				<%}else{ %>
 					<% for(Pro_Detail pd : list){ %>
-					<tr>						
+					<tr>		
+						<td><%= pd.getP_no() %></td>				
 						<td><%= pd.getP_id() %></td>
 						<td><%= pd.getP_name() %></td>
 						<td><%= pd.getBrand() %></td>
