@@ -1,6 +1,7 @@
 package com.uni.member.model.dao;
 
-import static com.uni.common.JDBCTemplate.*;
+import static com.uni.common.JDBCTemplate.close;
+
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -8,9 +9,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Properties;
 
 import com.uni.member.model.vo.Member;
+import com.uni.order.model.vo.Order;
 
 public class MemberDao {
 	private Properties prop = new Properties();
@@ -221,6 +224,52 @@ public class MemberDao {
 			
 		}	
 		return result;
+	}
+
+	public ArrayList<Order> myOrderInfo(Connection conn, int userNo) {
+		
+		ArrayList<Order> order = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("myOrderInfo");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, userNo);
+			
+			rset = pstmt.executeQuery();
+
+			while(rset.next()) {
+				
+				Order o = new Order();
+				
+				o.setOrderNo(rset.getInt("ORDER_NO"));
+				o.setUserNo(rset.getInt("USER_NO"));
+				o.setpId(rset.getString("P_ID"));
+				o.setAmount(rset.getInt("AMOUNT"));
+				o.setAddrName(rset.getString("ORDER_NAME"));
+				o.setAddrPhone(rset.getString("ORDER_PHONE"));
+				o.setAddrAddress(rset.getString("ORDER_ADDRESS"));
+				o.setAddrAddressDet(rset.getString("ORDER_ADDRESS_DETAIL"));
+				o.setComment(rset.getString("ORDER_COMMENT"));
+				o.setOrderDate(rset.getDate("ORDER_DATE"));
+				o.setPayCode(rset.getInt("PAY_CODE"));
+				o.setOrderStatus(rset.getString("ORDER_STATUS"));
+				o.setPrice(rset.getInt("PRICE"));
+				
+				order.add(o);
+			}
+						
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		System.out.println("다오: " + order);
+		return order;
 	}
 	
 }

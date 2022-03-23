@@ -3,9 +3,11 @@ package com.uni.member.model.service;
 import static com.uni.common.JDBCTemplate.*;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 
 import com.uni.member.model.dao.MemberDao;
 import com.uni.member.model.vo.Member;
+import com.uni.order.model.vo.Order;
 
 public class MemberService {
 
@@ -82,5 +84,17 @@ public class MemberService {
 		close(conn);
 		return result;
 	}
+
+	public ArrayList<Order> myOrderInfo(int userNo) {
+		Connection conn = getConnection();
+		
+		ArrayList<Order> order = new MemberDao().myOrderInfo(conn, userNo);
+		
+		close(conn);
+		
+		return order;
+	}
+
+	
 	
 }
