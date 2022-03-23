@@ -4,6 +4,8 @@
 <%
 Member m = (Member) request.getSession().getAttribute("loginUser");
 ArrayList<Order> order = (ArrayList<Order>) request.getAttribute("order");
+String msg = (String)request.getSession().getAttribute("msg");
+
 %>
 
 <!DOCTYPE html>
@@ -21,6 +23,18 @@ ArrayList<Order> order = (ArrayList<Order>) request.getAttribute("order");
 
 </head>
 <body>
+<script>
+	var msg = "<%=msg%>";
+	console.log(msg);
+	
+	$(function(){
+		if(msg != "null"){
+			alert(msg);
+			<%session.removeAttribute("msg");%>
+		}
+	})
+
+</script>
 	<%@ include file="../../views/common/menubar.jsp"%>
 	<section id="aa-product-category">
 		<div class="container" align="center">
@@ -39,19 +53,27 @@ ArrayList<Order> order = (ArrayList<Order>) request.getAttribute("order");
 										<th>금액</th>
 										<th>결제방법</th>
 										<th>상세보기</th>
-
-										<!-- https://tracker.delivery/guide -->
-										<!-- http://info.sweettracker.co.kr/apidoc/ -->
+										<th>
+										<th>
+											<!-- https://tracker.delivery/guide --> <!-- http://info.sweettracker.co.kr/apidoc/ -->
 									</tr>
-
-									<%for (Order o : order) {%>
+									<%
+									if (order.isEmpty()) {
+									%>
+									<tr>
+										<td colspan="8" align="center">주문내역이 없습니다.</td>
+									</tr>
+									<%
+									} else {
+									for (Order o : order) {
+									%>
 
 									<tr class="add">
 										<td><%=o.getOrderNo()%></td>
 										<td><%=o.getOrderDate()%></td>
 										<td><%=o.getpId()%></td>
 										<td><%=o.getAmount()%></td>
-										<td><%=o.getPrice()+"원"%></td>
+										<td><%=o.getPrice() + "원"%></td>
 										<td><%=o.getPayCode() == 101 ? "무통장입금" : "신용카드"%></td>
 										<td>
 
@@ -96,11 +118,13 @@ ArrayList<Order> order = (ArrayList<Order>) request.getAttribute("order");
 												</div>
 											</div>
 										</td>
-
+										<td><button type="button"
+												class="btn btn-outline-secondary">주문취소</button></td>
 
 
 									</tr>
 									<%
+									}
 									}
 									%>
 
@@ -114,6 +138,20 @@ ArrayList<Order> order = (ArrayList<Order>) request.getAttribute("order");
 			</div>
 		</div>
 	</section>
+	<script>
+
+			$(".add>td>button").click(function(){
+				
+				var yn = confirm("주문을 취소하시겠습니까?")
+				
+				if(yn){
+					var orderNo = $(this).parentsUntil().eq(1).children().eq(0).text();
+					location.href = "<%=request.getContextPath()%>/orderCancel.do?orderNo="+ orderNo
+							
+							}
+
+						});
+	</script>
 	<%@ include file="../../views/common/footer.jsp"%>
 	<!-- Bootstrap core JS-->
 	<script

@@ -79,6 +79,7 @@ int userNo = m.getUserNo();
 					
 					<input type="hidden" value="<%= pId %>" name="pId">
 					<input type="hidden" value="<%= userNo %>" name="userNo">
+					<input type="hidden" value="<%= price %>" name="price">
 						<div class="row g-3">
 							<div class="col-sm-6">
 								<label for="firstName" class="form-label">보내시는 분 성함</label> <input

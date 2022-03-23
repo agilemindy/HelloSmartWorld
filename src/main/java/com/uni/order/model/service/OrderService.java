@@ -36,5 +36,19 @@ public class OrderService {
 		return orderNum;
 	}
 
+	public int orderCancel(int orderNo) {
+		
+		Connection conn = getConnection();
+		int result = new OrderDao().orderCancel(conn, orderNo);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+
 	
 }

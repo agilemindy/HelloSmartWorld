@@ -46,11 +46,11 @@
 						<li class="list-group-item d-flex justify-content-between lh-sm">
 							<div>
 								<h6 class="my-0"><%= order.getpId() %></h6>
-								
+								<h6 class="my-0"><%= order.getPrice()+"원" %></h6>
 							</div> 
 						</li>						
 					</ul>
-					<button class="w-100 btn btn-primary btn-lg" type="button">마이페이지 이동하기</button>
+					<button class="w-100 btn btn-primary btn-lg" type="button" onclick="myPage();">마이페이지 이동하기</button>
 					
 				</div>
 				<div class="col-md-7 col-lg-8">
@@ -123,7 +123,7 @@
 							<div class="row col-md-12">
 								<div class="form-check col-md-3 ">
 									<input id="credit" name="paymentMethod" type="radio"
-										class="form-check-input" value="101" readonly checked > <label
+										class="form-check-input" value="101" disabled checked > <label
 										class="form-check-label" for="deposit" >무통장입금</label>
 
 								</div>
@@ -131,7 +131,7 @@
 							<div class="row col-md-12">
 								<div class="form-check">
 									<input id="debit" name="paymentMethod" type="radio"
-										class="form-check-input" value="201" readonly > <label
+										class="form-check-input" value="201" disabled > <label
 										class="form-check-label" for="credit">신용카드</label>
 								</div>
 							</div>
@@ -142,7 +142,15 @@
 			</div>
 		</main>
 	</div>
+	<script>
 	
+		function myPage(){
+			
+			location.href = "<%=request.getContextPath() %>/orderInfo.do"
+			
+		}
+	
+	</script>
 <script
 		src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<!-- Bootstrap core JS-->
