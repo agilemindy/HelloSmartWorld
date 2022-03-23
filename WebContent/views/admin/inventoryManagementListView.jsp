@@ -12,6 +12,7 @@
 			
 	
 	String contextPath = request.getContextPath();
+	String msg = (String)session.getAttribute("msg");
 %>
 <!DOCTYPE html>
 <html>
@@ -25,6 +26,7 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="resources/css/styles.css" rel="stylesheet"/>
+
 <style>
 	.outer{
 		width:100%;
@@ -64,6 +66,18 @@
 	}
 </style>
 </head>
+<script>
+		var msg = "<%=msg%>";
+		console.log(msg);
+		
+		$(function(){
+			if(msg != "null"){
+				alert(msg);
+				<% session.removeAttribute("msg"); %>
+			}
+		})
+	
+</script>
 <body>
 	<%@ include file = "adminMenubar.jsp" %>
 	
