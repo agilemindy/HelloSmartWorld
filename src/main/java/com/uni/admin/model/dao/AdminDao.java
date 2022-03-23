@@ -18,6 +18,7 @@ import com.uni.admin.model.vo.Pro_Detail;
 import com.uni.admin.model.vo.Product;
 import com.uni.member.model.vo.Member;
 import com.uni.order.model.vo.Order;
+import com.uni.review.model.vo.Review;
 
 public class AdminDao {
 	
@@ -709,6 +710,98 @@ try {
 			
 			return list;
 		}
+
+	public int getReviewCount(Connection conn) {
+		int ProCount = 0;
+		Statement stmt = null;
+		ResultSet rset = null;		
+		
+		String sql = prop.getProperty("getReviewCount");
+		
+		try {
+			stmt = conn.createStatement();
+			rset = stmt.executeQuery(sql);
+			
+			if(rset.next()) {
+				ProCount = rset.getInt(1);
+			}						
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(stmt);
+		}
+		
+		return ProCount;
+	}
+
+	public ArrayList<Review> selectReviewList(Connection conn, PageInfo pi) {
+		ArrayList<Review> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectReviewList");
+		
+		int startRow = (pi.getCurrentPage()-1) * pi.getBoardLimit() +1;
+		int endRow = startRow + pi.getBoardLimit() - 1;
+		
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);			
+									
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Review r = new Review();
+				r.setReviewNo(rset.getInt("REVIEW_NO"));
+				r.setReviewWriter(rset.getInt("REVIEW_WRITER"));
+				r.setProductId(rset.getString("PRODUCT_ID"));
+				r.setStar(rset.getInt("RV_POINT"));
+				r.setReviewTitle(rset.getString("RV_TITLE"));
+				r.setReviewContent(rset.getString("RV_CONTENT"));
+				r.setCreateDate(rset.getDate("RV_DATE"));
+				r.setLike(rset.getInt("RV_LIKE"));
+				r.setCount(rset.getInt("RV_VIEW"));
+				
+				
+				list.add(r);
+			}
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally {
+				close(rset);
+				close(pstmt);
+			}
+			
+			return list;
+	}
+
+	public int deleteReview(Connection conn, int rNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("deleteReview");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, rNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			
+		}
+		
+		return result;
+	}
 		
 	}
 

@@ -65,7 +65,7 @@
                         <li class="nav-item"><a class="nav-link" href="/HelloSmartWorld/SalesListView.do">매출조회</a></li>
                         <li class="nav-item"><a class="nav-link" href="/HelloSmartWorld/inventoryManagementListView.do">재고관리</a></li>
                         <li class="nav-item"><a class="nav-link" href="/HelloSmartWorld/adminMemberListView.do">회원관리</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">리뷰관리</a></li>             
+                        <li class="nav-item"><a class="nav-link" href="/HelloSmartWorld/adminReviewList.do">리뷰관리</a></li>             
                         
                     </ul>                    
                 </div>
