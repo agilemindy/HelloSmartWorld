@@ -118,11 +118,9 @@
 						<td><%= pd.getAmount()%></td>
 						<td><%= pd.getDetail_date() %></td>
 						<td><%= pd.getP_stock()%></td>
-						<td>
-						<div class="btns" align="center">
-							<button type="button" onclick="updateForm();" class="button" style="margin-right: 5px;">수정</button>
-							<button type="button" onclick="deleteInven();" class="button">삭제</button>
-						</div>
+						<td>						
+							<button id="update" type="button" class="button" style="margin-right: 5px;">수정</button>
+							<button id="delete" type="button" class="button">삭제</button>
 						</td>							
 					</tr>
 					<%} %>
@@ -171,15 +169,17 @@
 	</div>
 	
 	<script>		
-		function updateForm(){
-			$("#postForm").attr("action", "<%=contextPath%>/updateFormProduct.do");
-			$("#postForm").submit();
-		}
+		$(".listArea>tbody>tr>td>#update").click(function(){
+			var pNo = $(this).parentsUntil().eq(1).children().eq(0).text();					
+			location.href="<%=contextPath%>/updateInvenForm.do?pNo="+pNo;		
+		});	
 		
-		function deleteInven(){
-			$("#postForm").attr("action", "<%=contextPath%>/deleteProduct.do");
-			$("#postForm").submit();
-		}
+		$(".listArea>tbody>tr>td>#delete").click(function(){
+			var pNo = $(this).parentsUntil().eq(1).children().eq(0).text();					
+			location.href="<%=contextPath%>/deleteInven.do?pNo="+pNo;		
+		});	
+			
+		
 			
 		
 	</script>
