@@ -34,20 +34,21 @@ public class InsertInventoryServlet extends HttpServlet {
 		
 		Pro_Detail pd = new Pro_Detail();
 		
-		String p_id = request.getParameter("pid");
-		String status = request.getParameter("status");
-		String amount = request.getParameter("amount");
+		String p_id = request.getParameter("P_ID");
+		String status = request.getParameter("STATUS");
+		int amount = Integer.parseInt(request.getParameter("AMOUNT"));
 		
 
 		
 		
 		System.out.println("servlet p_id : " + p_id);
+		System.out.println("servlet status : " + status);	
 		System.out.println("servlet amount : " + amount);
 		
 		
 		pd.setP_id(p_id);
 		pd.setStatus(status);
-		pd.setAmount(Integer.parseInt(amount));
+		pd.setAmount(amount);
 		
 		int result = new AdminService().insertInventory(pd);
 		

@@ -62,38 +62,39 @@
 		<h2 align="center">재고등록</h2>
 		<br>
 		
-		<form id="insertForm" action="<%= contextPath %>/insertInventory.do" method="post" enctype="multipart/form-data">
-			<table align="center" id="table">  	
-				<thead>		          
-					<tr>
-						<th width="100">제품아이디</th>
-						<td width="500">					
-							<select id = "P_ID" name = "P_ID">
+		<form id="insertForm" action="<%= contextPath %>/insertInventory.do" method="post">
+			<table align="center" id="table"> 
+			<thead>	 	
+				<tr>
+					<th width="100">제품아이디</th>
+					<td width="500">		
+						<select  id = "P_ID" name = "P_ID">
+							<option value=""></option>
 							<% for(Product p : list){ %>
-								<option value="<%= p.getP_id() %>"><%= p.getP_id() %></option>								
+							<option value=<%= p.getP_id() %>><%= p.getP_id() %></option>
 							<% } %>
-							</select>																	
-						</td>
-					</tr>						
+						</select>																								
+					</td>
+				</tr>	
 				</thead>
 				<tbody>							
 				</tbody>
-				<tfoot>
-					<tr>
-						<th>입출고</th>
-						<td>
-							<select id="inven" name="inven">
-								<option value="입고">입고</option>
-								<option value="출고">출고</option>
-							</select>
-						</td>
-					</tr>
-					<tr>
-						<th>수량</th>
-						<td><input type="text" name="AMOUNT" required></td>
-					</tr>
-				</tfoot>
-								
+				<tfoot>			
+				<tr>
+					<th>입출고</th>
+					<td>
+						<select id="STATUS" name="STATUS">
+							<option value=""></option>
+							<option value="입고">입고</option>
+							<option value="출고">출고</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<th>수량</th>
+					<td><input type="text" name="AMOUNT" required></td>
+				</tr>										
+			</tfoot>					
 			</table>            
 			
 			<br>
@@ -111,67 +112,67 @@
 </body>
 </html>
 <script>
-
-	$(function(){
-		$("#P_ID").change(function(){
-			var input = $("#P_ID").val();
-			$.ajax({
-				url : "inventorySelect.do",
-				data : {keyword:input},
-				type : "get",
-				success : function(map) {
-					
-					var $tableBody = $("#table tbody")
-					$tableBody.html("");
-					$.each(map["jArr"], function(index, value){
-						console.log(value)
-						
-						var $tr1 = $("<tr>");
-						var $th1 = $("<th>").text("제품명");
-						var $nameTd = $("<td>").text(value.p_name); // <td>1</td>
-						var $tr2 = $("<tr>");
-						var $th2 = $("<th>").text("제조사");
-						var $brandTd = $("<td>").text(value.brand);
-						var $tr3 = $("<tr>");
-						var $th3 = $("<th>").text("색상");
-						var $colorTd = $("<td>").text(value.color);
-						var $tr4 = $("<tr>");
-						var $th4 = $("<th>").text("용량");
-						var $capacityTd = $("<td>").text(value.capacity);
-						var $tr5 = $("<tr>");
-						var $th5 = $("<th>").text("가격");
-						var $priceTd = $("<td>").text(value.price);
-						
-												
-						$tr1.append($th1);
-						$tr1.append($nameTd);						
-						$tr2.append($th2);
-						$tr2.append($brandTd);
-						$tr3.append($th3);
-						$tr3.append($colorTd);
-						$tr4.append($th4);
-						$tr4.append($capacityTd);
-						$tr5.append($th5);
-						$tr5.append($priceTd);
-						
-						
-						$tableBody.append($tr1);
-						$tableBody.append($tr2);
-						$tableBody.append($tr3);
-						$tableBody.append($tr4);
-						$tableBody.append($tr5);
-												
-						
-						
-				})
+$(function(){
+	$("#P_ID").change(function(){
+		var input = $("#P_ID").val();
+		$.ajax({
+			url : "inventorySelect.do",
+			data : {keyword:input},
+			type : "get",
+			success : function(map) {
 				
-				},
-				error : function(){
-					console.log("ajax통신실패")
-				}
+				var $tableBody = $("#table tbody")
+				$tableBody.html("");
+				$.each(map["jArr"], function(index, value){
+					console.log(value)
+					
+					var $tr1 = $("<tr>");
+					var $th1 = $("<th>").text("제품명");
+					var $nameTd = $("<td>").text(value.p_name); // <td>1</td>
+					var $tr2 = $("<tr>");
+					var $th2 = $("<th>").text("제조사");
+					var $brandTd = $("<td>").text(value.brand);
+					var $tr3 = $("<tr>");
+					var $th3 = $("<th>").text("색상");
+					var $colorTd = $("<td>").text(value.color);
+					var $tr4 = $("<tr>");
+					var $th4 = $("<th>").text("용량");
+					var $capacityTd = $("<td>").text(value.capacity);
+					var $tr5 = $("<tr>");
+					var $th5 = $("<th>").text("가격");
+					var $priceTd = $("<td>").text(value.price);
+					
+											
+					$tr1.append($th1);
+					$tr1.append($nameTd);						
+					$tr2.append($th2);
+					$tr2.append($brandTd);
+					$tr3.append($th3);
+					$tr3.append($colorTd);
+					$tr4.append($th4);
+					$tr4.append($capacityTd);
+					$tr5.append($th5);
+					$tr5.append($priceTd);
+					
+					
+					$tableBody.append($tr1);
+					$tableBody.append($tr2);
+					$tableBody.append($tr3);
+					$tableBody.append($tr4);
+					$tableBody.append($tr5);
+											
+					
+					
 			})
+			
+			},
+			error : function(){
+				console.log("ajax통신실패")
+			}
 		})
 	})
+})
+
 	
 	
 	

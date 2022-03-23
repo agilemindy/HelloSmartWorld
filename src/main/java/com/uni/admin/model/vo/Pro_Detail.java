@@ -13,13 +13,14 @@ public class Pro_Detail {
 	private int amount;
 	private Date detail_date;
 	private int p_stock;
+	private int p_no;
 	
 	public Pro_Detail() {
 		// TODO Auto-generated constructor stub
 	}
 
 	public Pro_Detail(String p_id, String p_name, String brand, String color, String capacity, int price, String status,
-			int amount, Date detail_date, int p_stock) {
+			int amount, Date detail_date, int p_stock, int p_no) {
 		super();
 		this.p_id = p_id;
 		this.p_name = p_name;
@@ -31,6 +32,7 @@ public class Pro_Detail {
 		this.amount = amount;
 		this.detail_date = detail_date;
 		this.p_stock = p_stock;
+		this.p_no = p_no;
 	}
 
 	public String getP_id() {
@@ -113,12 +115,22 @@ public class Pro_Detail {
 		this.p_stock = p_stock;
 	}
 
+	public int getP_no() {
+		return p_no;
+	}
+
+	public void setP_no(int p_no) {
+		this.p_no = p_no;
+	}
+
 	@Override
 	public String toString() {
 		return "Pro_Detail [p_id=" + p_id + ", p_name=" + p_name + ", brand=" + brand + ", color=" + color
 				+ ", capacity=" + capacity + ", price=" + price + ", status=" + status + ", amount=" + amount
-				+ ", detail_date=" + detail_date + ", p_stock=" + p_stock + "]";
+				+ ", detail_date=" + detail_date + ", p_stock=" + p_stock + ", p_no=" + p_no + "]";
 	}
+
+	
 	
 	
 	
