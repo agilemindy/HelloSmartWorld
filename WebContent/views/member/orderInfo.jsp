@@ -117,7 +117,7 @@ String msg = (String)request.getSession().getAttribute("msg");
 											</div>
 										</td>
 										<td><button type="button"
-												class="btn btn-outline-secondary">주문취소</button></td>
+												class="btn btn-outline-secondary cancel">주문취소</button></td>
 
 
 									</tr>
@@ -138,7 +138,7 @@ String msg = (String)request.getSession().getAttribute("msg");
 	</section>
 	<script>
 
-			$(".add>td>button").eq(1).click(function(){
+			$(".cancel").click(function(){
 				
 				var yn = confirm("주문을 취소하시겠습니까?")
 				
