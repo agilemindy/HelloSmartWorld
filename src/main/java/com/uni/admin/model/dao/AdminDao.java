@@ -17,6 +17,7 @@ import com.uni.admin.model.vo.Pro_Attachment;
 import com.uni.admin.model.vo.Pro_Detail;
 import com.uni.admin.model.vo.Product;
 import com.uni.member.model.vo.Member;
+import com.uni.order.model.vo.Order;
 
 public class AdminDao {
 	
@@ -595,10 +596,124 @@ try {
 		
 		return result;
 	}
+
+	public int getSalesCount(Connection conn) {
+		int ProCount = 0;
+		Statement stmt = null;
+		ResultSet rset = null;		
+		
+		String sql = prop.getProperty("getSalesCount");
+		
+		try {
+			stmt = conn.createStatement();
+			rset = stmt.executeQuery(sql);
+			
+			if(rset.next()) {
+				ProCount = rset.getInt(1);
+			}						
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(stmt);
+		}
+		
+		return ProCount;
+		
+	}
 	
+
+	public ArrayList<Order> selectSalesList(Connection conn, PageInfo pi) {
+		ArrayList<Order> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectSalesList");
+		
+		int startRow = (pi.getCurrentPage()-1) * pi.getBoardLimit() +1;
+		int endRow = startRow + pi.getBoardLimit() - 1;
+		
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);			
+									
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Order o = new Order();
+				o.setOrderNo(rset.getInt("ORDER_NO"));
+				o.setUserNo(rset.getInt("USER_NO"));
+				o.setpId(rset.getString("P_ID"));
+				o.setAmount(rset.getInt("AMOUNT"));
+				o.setPrice(rset.getInt("PRICE"));
+				o.setOrderDate(rset.getDate("ORDER_DATE"));
+				
+				
+				list.add(o);
+			}
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally {
+				close(rset);
+				close(pstmt);
+			}
+			
+			return list;
+		}
+
+	public ArrayList<Order> selectSalesListSortAsc(Connection conn, PageInfo pi) {
+		ArrayList<Order> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectSalesListAsc");
+		
+		int startRow = (pi.getCurrentPage()-1) * pi.getBoardLimit() +1;
+		int endRow = startRow + pi.getBoardLimit() - 1;
+		
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);			
+									
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Order o = new Order();
+				o.setOrderNo(rset.getInt("ORDER_NO"));
+				o.setUserNo(rset.getInt("USER_NO"));
+				o.setpId(rset.getString("P_ID"));
+				o.setAmount(rset.getInt("AMOUNT"));
+				o.setPrice(rset.getInt("PRICE"));
+				o.setOrderDate(rset.getDate("ORDER_DATE"));
+				
+				
+				list.add(o);
+			}
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally {
+				close(rset);
+				close(pstmt);
+			}
+			
+			return list;
+		}
+		
+	}
 
 	
 
 	
 
-}
+		

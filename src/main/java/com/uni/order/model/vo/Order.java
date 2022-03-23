@@ -8,19 +8,19 @@ public class Order {
 		// TODO Auto-generated constructor stub
 	}
 	
-	private int orderNo; 
-	private int userNo;
-	private String pId;
-	private int amount; 
+	private int orderNo; // 주문번호
+	private int userNo; // 회원번호
+	private String pId; // 제품아이디
+	private int amount; // 수량
 	private String addrName;
 	private String addrPhone;
 	private String addrAddress;
 	private String addrAddressDet;
 	private String comment;
-	private Date orderDate;
+	private Date orderDate; // 주문날짜
 	private int payCode;
 	private String orderStatus;
-	private int price;
+	private int price; // 가격
 	
 	public Order(int orderNo, int userNo, String pId, int amount, String addrName, String addrPhone, String addrAddress,
 			String addrAddressDet, String comment, Date orderDate, int payCode, String orderStatus) {

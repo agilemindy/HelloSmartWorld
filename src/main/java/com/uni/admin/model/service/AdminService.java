@@ -14,6 +14,7 @@ import com.uni.admin.model.vo.Pro_Attachment;
 import com.uni.admin.model.vo.Pro_Detail;
 import com.uni.admin.model.vo.Product;
 import com.uni.member.model.vo.Member;
+import com.uni.order.model.vo.Order;
 
 public class AdminService {
 
@@ -188,6 +189,33 @@ public class AdminService {
 		}
 		close(conn);
 		return result;
+	}
+
+	public int getSalesListCount() {
+		Connection conn = getConnection();
+		
+		int ProCount = new AdminDao().getSalesCount(conn);
+				
+		close(conn);
+		return ProCount;
+	}
+
+	public ArrayList<Order> selectSalesList(PageInfo pi) {
+		Connection conn = getConnection();
+		
+		ArrayList<Order> list = new AdminDao().selectSalesList(conn, pi);		
+		
+		close(conn);
+		return list;
+	}
+
+	public ArrayList<Order> selectSalesListSortAsc(PageInfo pi) {
+		Connection conn = getConnection();
+		
+		ArrayList<Order> list = new AdminDao().selectSalesListSortAsc(conn, pi);		
+		
+		close(conn);
+		return list;
 	}
 
 	 
