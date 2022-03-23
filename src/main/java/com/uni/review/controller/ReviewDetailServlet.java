@@ -34,7 +34,8 @@ public class ReviewDetailServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		request.setCharacterEncoding("UTF-8");
-		
+		request.getRequestDispatcher("views/review/reviewDetailView.jsp").forward(request, response);
+		/*
 		int rId = Integer.parseInt(request.getParameter("rId"));
 		Review r = new ReviewService().selectReview(rId);
 		
@@ -47,7 +48,7 @@ public class ReviewDetailServlet extends HttpServlet {
 		}else {
 			request.setAttribute("msg", "사진 게시글 상세 조회에 실패했습니다.");
 			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
-		}
+		}*/
 	}
 
 	/**
