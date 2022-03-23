@@ -34,7 +34,7 @@ public class InsertInventoryServlet extends HttpServlet {
 		
 		Pro_Detail pd = new Pro_Detail();
 		
-		String p_id = request.getParameter("P_ID");
+		String p_id = request.getParameter("pid");
 		String status = request.getParameter("status");
 		String amount = request.getParameter("amount");
 		

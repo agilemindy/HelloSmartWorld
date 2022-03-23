@@ -33,16 +33,14 @@
 	#insertForm>table{
 		border:1px solid white;
 		text-align:center;
-		width:650px;
-		height:500px;
-		
-       
+		width:650px;       
 	}
 	
 	#insertForm>table input, #insertForm>table textarea{
 		width:90%;
 		box-sizing:border-box;
-	}
+	}	
+	
 	
 	.button{
 		border-radius: 15px;
@@ -72,15 +70,30 @@
 						<td width="500">					
 							<select id = "P_ID" name = "P_ID">
 							<% for(Product p : list){ %>
-								<option value="<%= p.getP_id() %>"><%= p.getP_id() %></option>
+								<option value="<%= p.getP_id() %>"><%= p.getP_id() %></option>								
 							<% } %>
-							</select>						
+							</select>																	
 						</td>
 					</tr>						
 				</thead>
-				<tbody>
-				
-				</tbody>				
+				<tbody>							
+				</tbody>
+				<tfoot>
+					<tr>
+						<th>입출고</th>
+						<td>
+							<select id="inven" name="inven">
+								<option value="입고">입고</option>
+								<option value="출고">출고</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<th>수량</th>
+						<td><input type="text" name="AMOUNT" required></td>
+					</tr>
+				</tfoot>
+								
 			</table>            
 			
 			<br>
@@ -89,8 +102,7 @@
 			
 			<div class="btns" align="center">
 				<button type="reset" class="button" style="margin-right: 30px;" OnClick="javascript:history.back(-1)">취소하기</button>
-				<button type="submit" class="button">등록하기</button>
-				<button type="button" class="button"onclick="insertInven()">등록해보기해보기</button>
+				<button type="submit" class="button">등록하기</button>				
 			</div>
 		</form>
 	</div>
@@ -99,6 +111,7 @@
 </body>
 </html>
 <script>
+
 	$(function(){
 		$("#P_ID").change(function(){
 			var input = $("#P_ID").val();
@@ -128,14 +141,7 @@
 						var $tr5 = $("<tr>");
 						var $th5 = $("<th>").text("가격");
 						var $priceTd = $("<td>").text(value.price);
-						var $tr6 = $("<tr>");
-						var $th6 = $("<th>").text("입출고");
-						var $statusTd = $("<select>").attr('id','status');										
-						var $optionTd1 = $("<option>").val("입고");									
-						var $optionTd2 = $("<option>").val("출고");											
-						var $tr7 = $("<tr>");
-						var $th7 = $("<th>").text("수량");
-						var $amountTd = $("<input required>").attr('id','amount');
+						
 												
 						$tr1.append($th1);
 						$tr1.append($nameTd);						
@@ -147,22 +153,14 @@
 						$tr4.append($capacityTd);
 						$tr5.append($th5);
 						$tr5.append($priceTd);
-						$tr6.append($th6);
-						$tr6.append($statusTd);					
-						$statusTd.append($optionTd1);					
-						$statusTd.append($optionTd2);
-						$optionTd1.append("입고");
-						$optionTd2.append("출고");
-						$tr7.append($th7);
-						$tr7.append($amountTd);
+						
 						
 						$tableBody.append($tr1);
 						$tableBody.append($tr2);
 						$tableBody.append($tr3);
 						$tableBody.append($tr4);
 						$tableBody.append($tr5);
-						$tableBody.append($tr6);
-						$tableBody.append($tr7);						
+												
 						
 						
 				})
@@ -176,15 +174,5 @@
 	})
 	
 	
-	function insertInven(){
-		
-		<% Pro_Detail pd = new Pro_Detail(); %>
-		
-		var p_id = $("P_ID option:selected").val();
-		var status = $("status option:selected").val();
-		var amount = $("amount").text();
-		
-		
-		
-	}
+	
 </script>
