@@ -3,9 +3,7 @@
 <%@ page import="java.io.PrintWriter" %>
 
 <%
-
 String contextPath = request.getContextPath();
-
 
 %>
 
@@ -29,7 +27,7 @@ String contextPath = request.getContextPath();
 <h4>리뷰작성</h4>
 
     <form id="insertForm" action="<%= contextPath %>/insertReview.do" method="post" enctype="multipart/form-data">
-      <input type="hidden" name="writer" value="<%= loginUser.getUserNo() %>">
+      <input type="hidden" id="writer" name="writer" value="<%= loginUser.getUserNo() %>">
       <div class="form-group">      
         <label for="subject">제목</label>
         <input type="text" class="form-control" id="subject" name="subject" placeholder="제목을 입력하세요.">
@@ -43,28 +41,32 @@ String contextPath = request.getContextPath();
       </div>
       
       --%>
-     
+      
+      <div class="form-group">      
+        <label for="product">제품명</label>
+        <input type="text" class="form-control" id="product" name="product" placeholder="제품명을 입력하세요.">
+      </div>
       
       <div class="form-group">
-      	<label for="star">별점</label>
-        <select class="form-select form-select-md mb-3" id="inputGroupSelect01">
-   			 <option selected>별점을 고르세요</option>
+      	<label for="starcontent">별점</label>
+        <select class="form-select form-select-md mb-3" id="star" name="star">
+   			 <option selected>별점을 고르세요</option>   			  
    			 <option value="1">&bigstar;</option>
     		 <option value="2">&bigstar;&bigstar;</option>
     	     <option value="3">&bigstar;&bigstar;&bigstar;</option>
     	     <option value="4">&bigstar;&bigstar;&bigstar;&bigstar;</option>
-    	     <option value="5">&bigstar;&bigstar;&bigstar;&bigstar;&bigstar;</option>
+    	     <option value="5">&bigstar;&bigstar;&bigstar;&bigstar;&bigstar;</option>    	
   		</select>
       </div>    
       
 
       <div class="form-group">
-        <label for=content">내용</label>
+        <label for="content">내용</label>
         <textarea class="form-control" id="content" name="content" rows="10"></textarea>
       </div>
       
       <div class="form-group">
-      <label for=content"><i class="bi bi-camera-fill"></i> 추가하기 </label><br>
+      <label for="content"><i class="bi bi-camera-fill"></i> 추가하기 </label><br>
       <img id="titleImg" width="150" height="120">
       </div>
       
@@ -73,6 +75,7 @@ String contextPath = request.getContextPath();
       </div>
       
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>  
+	
 	<script>
 	$(function(){
 		$("#fileArea").hide();
@@ -95,11 +98,7 @@ String contextPath = request.getContextPath();
 				}
 			}
 		}
-		
-
-	}
-	
-	
+	}	
 	</script>
 
       
@@ -109,17 +108,17 @@ String contextPath = request.getContextPath();
       
     </form>
     
- <!-- Bootstrap core JS-->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-  <!-- Core theme JS-->
-  <script src="js/scripts.js"></script>
+ 	<!-- Bootstrap core JS-->
+  	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+  	<!-- Core theme JS-->
+  	<script src="js/scripts.js"></script>
   
   
-</div>
-<br>
+	</div>
+	<br>
 
 
  
- <%@ include file = "../../views/common/footer.jsp" %>
+	<%@ include file = "../../views/common/footer.jsp" %>
 </body>
 </html>

@@ -14,7 +14,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Properties;
 
-
+import com.uni.admin.model.vo.Pro_Attachment;
+import com.uni.review.model.vo.Attachment;
 import com.uni.review.model.vo.Review;
 import com.uni.review.model.vo.ReviewPageInfo;
 
@@ -168,6 +169,65 @@ public class ReviewDao {
 		}
 		
 		return list;
+	}
+
+	public int insertReviewList(Connection conn, Review r) {
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertReview");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, r.getReviewWriter());
+			pstmt.setString(2, r.getProductId());
+			pstmt.setInt(3, r.getStar());
+			pstmt.setString(4, r.getReviewTitle());
+			pstmt.setString(5, r.getReviewContent());		
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int insertAttachment(Connection conn, ArrayList<Attachment> fileList) {
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("insertAttachment");
+		
+		try {
+			
+			for(int i = 0; i < fileList.size(); i++) {
+				Attachment at = fileList.get(i);
+				
+				pstmt = conn.prepareStatement(sql);			
+				pstmt.setInt(1, at.getReviewNo());
+				pstmt.setString(2, at.getOriginName());
+				pstmt.setString(3, at.getChangeName());
+				pstmt.setString(4, at.getFilePath());
+				
+				result += pstmt.executeUpdate();
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			
+		}
+		
+		return result;
 	}
 
 }
