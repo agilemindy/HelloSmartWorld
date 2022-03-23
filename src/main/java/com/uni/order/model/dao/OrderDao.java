@@ -100,4 +100,27 @@ public class OrderDao {
 		return orderNum;
 	}
 
+	public int orderCancel(Connection conn, int orderNo) {
+		System.out.println("다오" + orderNo);
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("orderCancel");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, orderNo);
+
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			
+		}	
+		return result;
+	}
+
 }

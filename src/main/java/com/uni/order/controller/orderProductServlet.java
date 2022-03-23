@@ -45,8 +45,9 @@ public class orderProductServlet extends HttpServlet {
 		String addrAddressDet = request.getParameter("addrAddressDet");
 		String comment = request.getParameter("comment") != "" ? request.getParameter("comment") : "요청사항 없음";
 		int payCode = Integer.parseInt(request.getParameter("paymentMethod"));
+		int price = Integer.parseInt(request.getParameter("price"));
 		
-		Order order = new Order(orderNo, userNo, pId, amount, addrName, addrPhone, addrAddress, addrAddressDet, comment, payCode);
+		Order order = new Order(orderNo, userNo, pId, amount, addrName, addrPhone, addrAddress, addrAddressDet, comment, payCode, price);
 		System.out.println(order);
 		
 		int result = new OrderService().orderProduct(order);
