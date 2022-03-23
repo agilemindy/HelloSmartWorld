@@ -230,4 +230,107 @@ public class ReviewDao {
 		return result;
 	}
 
+	public int increaseCount(Connection conn, int rId) {
+		// TODO Auto-generated method stub
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("increaseCount");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, rId);
+			result =pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+	
+		return result;
+	}
+
+	public Review selectReview(Connection conn, int rId) {
+		
+		Review r = null;
+		ResultSet rset = null;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("selectReview");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, rId);
+			
+			rset = pstmt.executeQuery();
+			
+			
+
+			if(rset.next()) {
+				r = new Review(rset.getInt("REVIEW_NO"),
+						rset.getInt("REVIEW_WRITER"),
+						rset.getString("PRODUCT_ID"),
+						rset.getInt("RV_POINT"),
+						rset.getString("RV_TITLE"),
+						rset.getString("RV_CONTENT"),
+						rset.getDate("RV_DATE"),
+						rset.getInt("RV_LIKE"),
+						rset.getInt("RV_VIEW"));				
+			
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(rset);
+		}
+		
+		
+		
+		return r;
+	}
+
+
+	public ArrayList<Attachment> selectAttachment(Connection conn, int rId) {
+		// TODO Auto-generated method stub
+		
+		ArrayList<Attachment> list = null;
+		PreparedStatement pstmt = null;
+	      ResultSet rset = null;
+	      String sql = prop.getProperty("selectAttachment");
+
+		   try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, rId);
+			
+			rset = pstmt.executeQuery();
+
+			list = new ArrayList<>();
+			
+		    while(rset.next()) {
+		    	
+		    Attachment at = new Attachment();
+		    	
+				at.setFileNo(rset.getString("FILE_NO"));
+				at.setOriginName(rset.getString("ORIGIN_NAME"));
+				at.setChangeName(rset.getString("CHANGE_NAME"));
+				
+				list.add(at);
+		       }
+		      
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally {
+				close(rset);
+				close(pstmt);
+			}
+	      
+		return list;
+	}
+
 }

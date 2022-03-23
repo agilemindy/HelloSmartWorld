@@ -71,4 +71,34 @@ public class ReviewService {
 		return result1 * result2;
 	}
 
+	public Review selectReview(int rId) {
+		
+		Connection conn = getConnection();
+		
+		int result = new ReviewDao().increaseCount(conn, rId);
+		
+		Review r = null;
+		if (result >0) {
+			commit(conn);
+			r = new ReviewDao().selectReview(conn, rId);
+			
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		
+		return r;
+	}
+
+	public ArrayList<Attachment> selectAttachment(int rId) {
+		
+		Connection conn = getConnection();
+		ArrayList<Attachment> list = new ReviewDao().selectAttachment(conn, rId);
+		close(conn);
+		return list;
+		
+	}
+
+
+
 }

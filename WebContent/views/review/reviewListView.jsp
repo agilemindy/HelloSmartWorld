@@ -132,7 +132,7 @@ background-color: gray;
                             </div>
                             <!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">자세히 보기</a></div>
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" id="reviewDetail" name="reviewDetail" onclick="detail_click();">자세히 보기</a></div>
                             </div>                            
                         </div>                        
                       </div>
@@ -141,14 +141,19 @@ background-color: gray;
             </div>            
      </section>   
   	
-        
-     <script>		
-			$(function(){
-				$(".py-5").click(function(){
-					var bId = $(this).children().eq(0).val();
-					location.href="<%=contextPath%>/detailThumb.do?bId=" + bId;
-				});
-			});
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>     
+	<script>
+	<%if(!list.isEmpty()){%>
+	
+		function detail_click(); {
+			$(".py-5").click(function(){
+				var rId =$(this).text();
+				 location.href="<%=contextPath%>/detailReview.do?rId="+rId;
+			})
+		}
+		
+	<%}%>
+	
 	</script>
 	
   	<!-- Bootstrap core JS-->
