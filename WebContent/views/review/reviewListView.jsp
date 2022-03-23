@@ -129,6 +129,7 @@ background-color: gray;
                                     for(int i=0; i<star; i++){ %>
                                     <i class="bi bi-star-fill"></i> <%}%> <br>
                                     <%=r.getReviewContent() %>
+                                    
                                 </div>
                             </div>
                             
@@ -143,7 +144,9 @@ background-color: gray;
                             <!-- Product actions
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                                 <div class="text-center"><a class="btn btn-outline-dark mt-auto" id="reviewDetail" name="reviewDetail" onclick="detail_click();">자세히 보기</a></div>
-                            </div>-->                            
+                            </div>--> 
+                            
+                                                       
                         </div>                        
                       </div>
      				<%} %>

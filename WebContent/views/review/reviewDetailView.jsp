@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%	
+String msg = (String)session.getAttribute("msg");
+String contextPath = request.getContextPath();
+
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,13 +12,6 @@
 <title>Review | HELLO SMART WORLD</title>
 <style type="text/css">
 
-body {
-
-	padding-top: 70px;
-
-	padding-bottom: 30px;
-
-}
 
 .board_title {
 
@@ -72,7 +70,7 @@ body {
 </style>
 </head>
 <body>
-
+	<%@ include file = "../../views/common/menubar.jsp" %>
 	<article>
 
 		<div class="container" role="main">
@@ -101,11 +99,9 @@ body {
 
 			<div style="margin-top : 20px">
 
-				<button type="button" class="btn btn-sm btn-primary" id="btnUpdate">수정</button>
-
-				<button type="button" class="btn btn-sm btn-primary" id="btnDelete">삭제</button>
-
-				<button type="button" class="btn btn-sm btn-primary" id="btnList">목록</button>
+				<button type="button" class="btn btn-sm btn-dark" id="btnUpdate">수정</button>
+				<button type="button" class="btn btn-sm btn-dark" id="btnDelete">삭제</button>
+				<button type="button" class="btn btn-sm btn-dark" id="btnList" onclick="location.href='<%=contextPath%>/reviewList.do'">목록</button>
 
 			</div>
 
@@ -114,8 +110,15 @@ body {
 		
 
 	</article>
+	<br>
+	
+	
+	<!-- Bootstrap core JS-->
+  	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+  	<!-- Core theme JS-->
+  	<script src="js/scripts.js"></script>
 
-
+	<%@ include file = "../../views/common/footer.jsp" %>
 
 </body>
 </html>
