@@ -15,6 +15,7 @@ import com.uni.admin.model.vo.Pro_Detail;
 import com.uni.admin.model.vo.Product;
 import com.uni.member.model.vo.Member;
 import com.uni.order.model.vo.Order;
+import com.uni.review.model.vo.Review;
 
 public class AdminService {
 
@@ -216,6 +217,39 @@ public class AdminService {
 		
 		close(conn);
 		return list;
+	}
+
+	public int getReviewListCount() {
+		Connection conn = getConnection();
+		
+		int ProCount = new AdminDao().getReviewCount(conn);
+				
+		close(conn);
+		return ProCount;
+	}
+
+	public ArrayList<Review> selectReviewList(PageInfo pi) {
+		Connection conn = getConnection();
+		
+		ArrayList<Review> list = new AdminDao().selectReviewList(conn, pi);		
+		
+		close(conn);
+		return list;
+	}
+
+	public int deleteReview(int rNo) {
+		Connection conn = getConnection();
+		
+		int result = new AdminDao().deleteReview(conn, rNo); 		
+				
+		if(result > 0) {
+			commit(conn);
+			
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
 	}
 
 	 
