@@ -29,14 +29,14 @@ public class DeleteMemberServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String userNo = request.getParameter("userNo");
+		int userNo = Integer.parseInt(request.getParameter("userNo"));
 		
 		int result = new AdminService().deleteMember(userNo);
 		
 		
 		if(result > 0) {
 			request.getSession().setAttribute("msg", "회원삭제완료!"); 
-			response.sendRedirect("adminMemberListView.do.do");			
+			response.sendRedirect("adminMemberListView.do");			
 		}else {
 			request.setAttribute("msg", "회원삭제실패!");
 			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);

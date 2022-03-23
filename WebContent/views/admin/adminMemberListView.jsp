@@ -17,7 +17,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>회원관리</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 		<!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="resources/assets/favicon1.ico"/>
@@ -54,6 +54,10 @@
 		border: 3px solid white;
 		background: black;
 		color: white;
+	}
+	
+	.listArea>tbody>tr:hover{
+		background:darkgrey;		
 	}
 </style>
 </head>
@@ -167,13 +171,11 @@
 	<form action="" id="postForm" method="post">
 				<input type="hidden" name="userNo" value=<%= list.get(0).getUserNo() %>>
 	</form>
-	<script>		
-		function deleteMember(){
-			$("#postForm").attr("action", "<%=contextPath%>/deleteMember.do");
-			$("#postForm").submit();
-		}
-			
-		
+	<script>
+		$(".listArea>tbody>tr>td>button").click(function(){
+			var userNo = $(this).parentsUntil().eq(1).children().eq(0).text();					
+			location.href="<%=contextPath%>/deleteMember.do?userNo="+userNo;		
+		});			
 	</script>
 	
 	<%@ include file = "../../views/common/footer.jsp" %>

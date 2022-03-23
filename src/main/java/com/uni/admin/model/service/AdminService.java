@@ -175,7 +175,7 @@ public class AdminService {
 		return ProCount;
 	}
 
-	public int deleteMember(String userNo) {
+	public int deleteMember(int userNo) {
 		Connection conn = getConnection();
 		
 		int result = new AdminDao().deleteMember(conn, userNo); 		

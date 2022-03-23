@@ -576,14 +576,14 @@ try {
 		return ProCount;
 	}
 
-	public int deleteMember(Connection conn, String userNo) {
+	public int deleteMember(Connection conn, int userNo) {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("deleteMember");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, userNo);
+			pstmt.setInt(1, userNo);
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
