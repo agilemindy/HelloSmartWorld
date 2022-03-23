@@ -102,14 +102,12 @@ String msg = (String)request.getSession().getAttribute("msg");
 															<h6>
 																상세주소 :
 																<%=o.getAddrAddressDet()%></h6>
-															<h6>운송장번호 :</h6>
+															<h6>운송장번호 : 운송장이 아직 등록되지 않았습니다.</h6>
 														</div>
 
 														<!-- Modal footer -->
 														<div class="modal-footer">
-															<a
-																href="https://tracker.delivery/#/:carrier_id/:track_id"
-																target="_blank">배송조회</a>
+															<a href="https://tracker.delivery/#/kr.epost/1111111111111" target="_blank">배송조회</a>
 															<button type="button" class="btn btn-danger"
 																data-dismiss="modal">Close</button>
 														</div>

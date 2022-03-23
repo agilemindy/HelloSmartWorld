@@ -60,8 +60,8 @@ public class orderProductServlet extends HttpServlet {
 			request.getRequestDispatcher("views/order/orderResult.jsp").forward(request, response);
 			
 		}else {
-			request.setAttribute("msg", "주문 실패");
-			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
+			request.setAttribute("msg", "죄송합니다. 재고가 없어 구매할 수 없습니다.");
+			RequestDispatcher view = request.getRequestDispatcher("views/product/productListView.jsp");
 			view.forward(request, response);
 		}
 		
