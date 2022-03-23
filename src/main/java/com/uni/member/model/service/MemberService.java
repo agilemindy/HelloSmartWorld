@@ -95,6 +95,16 @@ public class MemberService {
 		return order;
 	}
 
+	public ArrayList<Order> orderCanceledInfo(int userNo) {
+		Connection conn = getConnection();
+		
+		ArrayList<Order> order = new MemberDao().orderCanceledInfo(conn, userNo);
+		
+		close(conn);
+		
+		return order;
+	}
+
 	
 	
 }

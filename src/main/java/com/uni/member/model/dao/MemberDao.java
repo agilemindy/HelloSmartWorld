@@ -271,5 +271,50 @@ public class MemberDao {
 		System.out.println("다오: " + order);
 		return order;
 	}
+
+	public ArrayList<Order> orderCanceledInfo(Connection conn, int userNo) {
+		ArrayList<Order> order = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("orderCanceledInfo");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, userNo);
+			
+			rset = pstmt.executeQuery();
+
+			while(rset.next()) {
+				
+				Order o = new Order();
+				
+				o.setOrderNo(rset.getInt("ORDER_NO"));
+				o.setUserNo(rset.getInt("USER_NO"));
+				o.setpId(rset.getString("P_ID"));
+				o.setAmount(rset.getInt("AMOUNT"));
+				o.setAddrName(rset.getString("ORDER_NAME"));
+				o.setAddrPhone(rset.getString("ORDER_PHONE"));
+				o.setAddrAddress(rset.getString("ORDER_ADDRESS"));
+				o.setAddrAddressDet(rset.getString("ORDER_ADDRESS_DETAIL"));
+				o.setComment(rset.getString("ORDER_COMMENT"));
+				o.setOrderDate(rset.getDate("ORDER_DATE"));
+				o.setPayCode(rset.getInt("PAY_CODE"));
+				o.setOrderStatus(rset.getString("ORDER_STATUS"));
+				o.setPrice(rset.getInt("PRICE"));
+				
+				order.add(o);
+			}
+						
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		System.out.println("다오: " + order);
+		return order;
+	}
 	
 }

@@ -44,6 +44,7 @@ String msg = (String)request.getSession().getAttribute("msg");
 
 						<div class="aa-product-catg-body">
 							<div class="table-responsive">
+							<h5>주문내역</h5><br>
 								<table class="table table-striped">
 									<tr class="danger">
 										<th>주문번호</th>
@@ -53,8 +54,7 @@ String msg = (String)request.getSession().getAttribute("msg");
 										<th>금액</th>
 										<th>결제방법</th>
 										<th>상세보기</th>
-										<th>
-										<th>
+										<th></th>
 											<!-- https://tracker.delivery/guide --> <!-- http://info.sweettracker.co.kr/apidoc/ -->
 									</tr>
 									<%
@@ -140,7 +140,7 @@ String msg = (String)request.getSession().getAttribute("msg");
 	</section>
 	<script>
 
-			$(".add>td>button").click(function(){
+			$(".add>td>button").eq(1).click(function(){
 				
 				var yn = confirm("주문을 취소하시겠습니까?")
 				
