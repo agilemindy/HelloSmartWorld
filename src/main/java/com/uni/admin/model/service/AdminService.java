@@ -286,6 +286,21 @@ public class AdminService {
 		return result;
 	}
 
+	public int deleteInventory(int pNo) {
+		Connection conn = getConnection();
+		
+		int result = new AdminDao().deleteInventory(conn, pNo); 		
+				
+		if(result > 0) {
+			commit(conn);
+			
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+
 	 
 
 	
