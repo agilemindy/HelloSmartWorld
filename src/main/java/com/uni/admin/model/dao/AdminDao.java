@@ -445,6 +445,7 @@ try {
 			
 			while(rset.next()) {
 				Pro_Detail pd = new Pro_Detail();
+				pd.setP_no(rset.getInt("P_NO"));
 				pd.setP_id(rset.getString("P_ID"));
 				pd.setP_name(rset.getString("P_NAME"));
 				pd.setBrand(rset.getString("BRAND"));
@@ -458,14 +459,7 @@ try {
 				
 				list.add(pd);
 				
-				/*list.add(new Product(rset.getString("P_ID"),
-								   rset.getString("P_NAME"),
-								   rset.getString("BRAND"),
-								   rset.getString("COLOR"),
-								   rset.getString("CAPACITY"),
-								   rset.getInt("PRICE"),
-								   rset.getString("P_STATUS"),
-								   rset.getInt("P_STOCK")));*/
+				
 			}
 						
 		} catch (SQLException e) {
@@ -489,7 +483,9 @@ try {
 			
 			pstmt.setString(1, pd.getP_id());
 			pstmt.setString(2, pd.getStatus());
-			pstmt.setInt(3, pd.getAmount());			
+			pstmt.setInt(3, pd.getAmount());	
+			
+			System.out.println("dao amount : " + pd.getAmount());
 			
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {

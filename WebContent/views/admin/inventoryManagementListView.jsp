@@ -84,7 +84,8 @@
 		
 		<table class="listArea" align="center">
 			<thead>
-				<tr>					
+				<tr>				
+					<th width="300">재고번호</th>
 					<th width="300">제품아이디</th>
 					<th width="200">제품명</th>
 					<th width="150">제조사</th>
