@@ -61,7 +61,7 @@ public class orderProductServlet extends HttpServlet {
 			
 		}else {
 			request.setAttribute("msg", "죄송합니다. 재고가 없어 구매할 수 없습니다.");
-			RequestDispatcher view = request.getRequestDispatcher("views/product/productListView.jsp");
+			RequestDispatcher view = request.getRequestDispatcher("/productList.do");
 			view.forward(request, response);
 		}
 		
