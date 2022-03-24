@@ -36,7 +36,7 @@ int userNo = m.getUserNo();
 	<%@ include file="../../views/common/menubar.jsp"%>
 	<div class="container col-md-6">
 		<main>
-		<form action="<%= request.getContextPath() %>/orderProduct.do" method="post">
+		<form action="<%=request.getContextPath()%>/orderPay.do" method="post">
 			<div class="py-5 text-center"></div>
 
 			<div class="row g-5">
@@ -163,17 +163,17 @@ int userNo = m.getUserNo();
 								<div class="form-check col-md-3 ">
 									<input id="credit" name="paymentMethod" type="radio"
 										class="form-check-input" value="101" required checked> <label
-										class="form-check-label" for="deposit" >무통장입금</label>
+										class="form-check-label" for="deposit" >KG이니시스</label>
 
 								</div>
 							</div>
-							<div class="row col-md-12">
+							 <!-- <div class="row col-md-12">
 								<div class="form-check">
 									<input id="debit" name="paymentMethod" type="radio"
 										class="form-check-input" value="201" required> <label
 										class="form-check-label" for="credit">신용카드</label>
 								</div>
-							</div>
+							</div>-->
 						</div>
 
 						 <!--  <div class="row gy-3">

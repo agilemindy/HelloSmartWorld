@@ -3,7 +3,7 @@
 <%
 	Member m = (Member) request.getSession().getAttribute("loginUser");
 	
-	Order order = (Order)request.getAttribute("order");
+	Order order = (Order)request.getSession().getAttribute("order");
 
 %>
 <!DOCTYPE html>
@@ -33,7 +33,7 @@
 	<div class="container col-md-6">
 		<main>
 		<div class="py-5 text-center">
-      <h2>주문번호 <%= order.getOrderNo() %></h2>
+       <h2>주문번호 <%= order.getOrderNo() %></h2> 
       <p class="lead"><%= order.getpId() %> 제품 주문이 완료되었습니다. <br> 해당 주문내역은 마이페이지에서 확인 가능합니다.</p>
     </div>
 			<div class="row g-5">
@@ -124,17 +124,17 @@
 								<div class="form-check col-md-3 ">
 									<input id="credit" name="paymentMethod" type="radio"
 										class="form-check-input" value="101" disabled checked > <label
-										class="form-check-label" for="deposit" >무통장입금</label>
+										class="form-check-label" for="deposit" >KG이니시스</label>
 
 								</div>
 							</div>
-							<div class="row col-md-12">
+							<!-- <div class="row col-md-12">
 								<div class="form-check">
 									<input id="debit" name="paymentMethod" type="radio"
 										class="form-check-input" value="201" disabled > <label
 										class="form-check-label" for="credit">신용카드</label>
 								</div>
-							</div>
+							</div> -->
 						</div>
 						<hr class="my-4">
 					
