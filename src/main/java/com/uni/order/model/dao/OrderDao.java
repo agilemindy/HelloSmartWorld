@@ -123,4 +123,27 @@ public class OrderDao {
 		return result;
 	}
 
+	public int afterOrderPro_Detail(Connection conn, Order order) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("afterOrderPro_Detail");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, order.getpId());
+			pstmt.setInt(2, order.getAmount());
+
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			
+		}	
+		return result;
+	}
+
 }

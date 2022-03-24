@@ -50,5 +50,18 @@ public class OrderService {
 		return result;
 	}
 
+	public int afterOrderPro_Detail(Order order) {
+		Connection conn = getConnection();
+		int result = new OrderDao().afterOrderPro_Detail(conn, order);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+
 	
 }

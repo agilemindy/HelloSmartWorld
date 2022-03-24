@@ -64,6 +64,11 @@
 		background: black;
 		color: white;
 	}
+	
+	.listArea>tbody>tr:hover{
+		background:darkgrey;
+		
+	}
 </style>
 </head>
 <script>
