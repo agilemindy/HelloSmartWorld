@@ -15,6 +15,32 @@ public class Pro_Detail {
 	private int p_stock;
 	private int p_no;
 	
+	private String date;
+	
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
+	}
+
+	public Pro_Detail(String p_id, String p_name, String brand, String color, String capacity, int price, String status,
+			int amount, int p_stock, int p_no, String date) {
+		super();
+		this.p_id = p_id;
+		this.p_name = p_name;
+		this.brand = brand;
+		this.color = color;
+		this.capacity = capacity;
+		this.price = price;
+		this.status = status;
+		this.amount = amount;
+		this.p_stock = p_stock;
+		this.p_no = p_no;
+		this.date = date;
+	}
+
 	public Pro_Detail() {
 		// TODO Auto-generated constructor stub
 	}
@@ -127,7 +153,7 @@ public class Pro_Detail {
 	public String toString() {
 		return "Pro_Detail [p_id=" + p_id + ", p_name=" + p_name + ", brand=" + brand + ", color=" + color
 				+ ", capacity=" + capacity + ", price=" + price + ", status=" + status + ", amount=" + amount
-				+ ", detail_date=" + detail_date + ", p_stock=" + p_stock + ", p_no=" + p_no + "]";
+				+ ", detail_date=" + detail_date + ", p_stock=" + p_stock + ", p_no=" + p_no + ", date=" + date + "]";
 	}
 
 	

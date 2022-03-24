@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.util.ArrayList, com.uni.admin.model.vo.*"%>
 <%
@@ -136,7 +137,7 @@
 						<td><%= pd.getPrice() %></td>
 						<td><%= pd.getStatus() %></td>
 						<td><%= pd.getAmount()%></td>
-						<td><%= pd.getDetail_date() %></td>
+						<td><%= pd.getDate()%></td>
 						<td><%= pd.getP_stock()%></td>
 						<td>						
 							<button id="update" type="button" class="button" style="margin-right: 5px;">수정</button>
