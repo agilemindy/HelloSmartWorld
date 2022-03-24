@@ -72,8 +72,8 @@
                         <!--가로--> 
                         <img class="d-block w-100" src="https://images.samsung.com/kdp/cms_contents/146827/4d06950b-f191-4041-aa8a-cb01b4f148b9.jpg?$ORIGIN_JPG$" alt="First slide"> 
                         <div class="carousel-caption d-none d-md-block"> 
-                            <h5>TEST</h5> 
-                            <p>testtesttest</p> 
+                            <h5>Is "good" good enough?</h5> 
+                            <p>Galaxy</p> 
                             </div> 
                         </div> 
                         <div class="carousel-item"> 
