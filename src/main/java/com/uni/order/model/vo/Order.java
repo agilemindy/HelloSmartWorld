@@ -22,6 +22,8 @@ public class Order {
 	private String orderStatus;
 	private int price; // 가격
 	
+	private String date; // 날짜 띄우기용
+	
 	public Order(int orderNo, int userNo, String pId, int amount, String addrName, String addrPhone, String addrAddress,
 			String addrAddressDet, String comment, Date orderDate, int payCode, String orderStatus) {
 		super();
@@ -70,6 +72,28 @@ public class Order {
 		this.payCode = payCode;
 		this.price = price;
 	}
+	
+	
+
+	public Order(int orderNo, int userNo, String pId, int amount, String addrName, String addrPhone, String addrAddress,
+			String addrAddressDet, String comment, int payCode, String orderStatus, int price, String date) {
+		super();
+		this.orderNo = orderNo;
+		this.userNo = userNo;
+		this.pId = pId;
+		this.amount = amount;
+		this.addrName = addrName;
+		this.addrPhone = addrPhone;
+		this.addrAddress = addrAddress;
+		this.addrAddressDet = addrAddressDet;
+		this.comment = comment;
+		this.payCode = payCode;
+		this.orderStatus = orderStatus;
+		this.price = price;
+		this.date = date;
+	}
+
+
 
 	public int getOrderNo() {
 		return orderNo;
@@ -173,6 +197,18 @@ public class Order {
 
 	public void setPrice(int price) {
 		this.price = price;
+	}
+
+	
+
+	public String getDate() {
+		return date;
+	}
+
+
+
+	public void setDate(String date) {
+		this.date = date;
 	}
 
 

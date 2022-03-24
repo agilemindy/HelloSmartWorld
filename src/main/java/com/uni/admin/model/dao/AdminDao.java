@@ -454,7 +454,7 @@ try {
 				pd.setPrice(rset.getInt("PRICE"));
 				pd.setStatus(rset.getString("STATUS"));
 				pd.setAmount(rset.getInt("AMOUNT"));
-				pd.setDetail_date(rset.getDate("DETAIL_DATE"));			
+				pd.setDate(rset.getString("DETAIL_DATE"));			
 				pd.setP_stock(rset.getInt("P_STOCK"));			
 				
 				list.add(pd);
@@ -648,7 +648,7 @@ try {
 				o.setpId(rset.getString("P_ID"));
 				o.setAmount(rset.getInt("AMOUNT"));
 				o.setPrice(rset.getInt("PRICE"));
-				o.setOrderDate(rset.getDate("ORDER_DATE"));
+				o.setDate(rset.getString("ORDER_DATE"));
 				
 				
 				list.add(o);
@@ -690,7 +690,7 @@ try {
 				o.setpId(rset.getString("P_ID"));
 				o.setAmount(rset.getInt("AMOUNT"));
 				o.setPrice(rset.getInt("PRICE"));
-				o.setOrderDate(rset.getDate("ORDER_DATE"));
+				o.setDate(rset.getString("ORDER_DATE"));
 				
 				
 				list.add(o);
