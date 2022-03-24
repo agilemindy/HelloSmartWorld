@@ -174,7 +174,7 @@
       
          <!-- 이전페이지로(<) -->
          <%if(currentPage == 1){ %>
-         <button class="pageButton" disabled> &lt; </button>
+         <button class="pageButton" disabled>  <i class="bi bi-chevron-left"></i> </button>
          <%}else{ %>
          <button class="pageButton" onclick="location.href='<%= contextPath %>/productList.do?currentPage=<%= currentPage-1 %>'"> <i class="bi bi-chevron-left"></i> </button>
          <%} %>
@@ -192,7 +192,7 @@
          
          <!-- 다음페이지로(>) -->
          <%if(currentPage == maxPage){ %>
-         <button class="pageButton" disabled> &gt; </button>
+         <button class="pageButton" disabled> <i class="bi bi-chevron-right"></i> </button>
          <%}else { %>
          <button class="pageButton" onclick="location.href='<%= contextPath %>/productList.do?currentPage=<%= currentPage+1 %>'"> <i class="bi bi-chevron-right"></i> </button>
          <%} %>
