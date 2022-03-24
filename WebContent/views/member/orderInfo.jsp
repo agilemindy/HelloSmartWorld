@@ -21,7 +21,13 @@ int endPage = pi.getEndPage();
 <head>
 <meta charset="UTF-8">
 <title>주문내역조회 | HELLO SMART WORLD</title>
+<style>
+.pageButton{
+      background: black;
+      color:white;
+   }
 
+</style>
 <script
 	src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
 <script
@@ -147,35 +153,35 @@ int endPage = pi.getEndPage();
 		<!-- 페이징바 만들기 -->
 		<div class="pagingArea my-2" align="center">
 			<!-- 맨 처음으로 (<<) -->
-			<button onclick="location.href='<%=contextPath%>/orderInfo.do?currentPage=1'"> &lt;&lt; </button>
+			<button class="pageButton" onclick="location.href='<%=contextPath%>/orderInfo.do?currentPage=1'"><i class="bi bi-chevron-double-left"></i> </button>
 		
 			<!-- 이전페이지로(<) -->
 			<%if(currentPage == 1){ %>
-			<button disabled> &lt; </button>
+			<button class="pageButton" disabled> <i class="bi bi-chevron-left"></i>  </button>
 			<%}else{ %>
-			<button onclick="location.href='<%= contextPath %>/orderInfo.do?currentPage=<%= currentPage-1 %>'"> &lt; </button>
+			<button class="pageButton" onclick="location.href='<%= contextPath %>/orderInfo.do?currentPage=<%= currentPage-1 %>'"> <i class="bi bi-chevron-left"></i> </button>
 			<%} %>
 			
 			<!-- 페이지 목록 -->
 			<%for(int p=startPage; p<=endPage; p++){ %>
 				
 				<%if(p == currentPage){ %>
-				<button disabled> <%= p %> </button>
+				<button class="pageButton" disabled> <%= p %> </button>
 				<%}else{ %>
-				<button onclick="location.href='<%=contextPath %>/orderInfo.do?currentPage=<%= p %>'"> <%= p %> </button>
+				<button class="pageButton" onclick="location.href='<%=contextPath %>/orderInfo.do?currentPage=<%= p %>'"> <%= p %> </button>
 				<%} %>
 				
 			<%} %>
 			
 			<!-- 다음페이지로(>) -->
 			<%if(currentPage == maxPage){ %>
-			<button disabled> &gt; </button>
+			<button class="pageButton" disabled> <i class="bi bi-chevron-right"></i> </button>
 			<%}else { %>
-			<button onclick="location.href='<%= contextPath %>/orderInfo.do?currentPage=<%= currentPage+1 %>'"> &gt; </button>
+			<button class="pageButton" onclick="location.href='<%= contextPath %>/orderInfo.do?currentPage=<%= currentPage+1 %>'"> <i class="bi bi-chevron-right"></i> </button>
 			<%} %>
 		
 			<!-- 맨 끝으로 (>>) -->
-			<button onclick="location.href='<%=contextPath%>/orderInfo.do?currentPage=<%=maxPage%>'"> &gt;&gt; </button>
+			<button class="pageButton" onclick="location.href='<%=contextPath%>/orderInfo.do?currentPage=<%=maxPage%>'"> <i class="bi bi-chevron-double-right"></i> </button>
 		</div> 
 	</section>
 	<script>
