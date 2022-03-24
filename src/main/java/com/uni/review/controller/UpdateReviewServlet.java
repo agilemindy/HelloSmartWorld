@@ -2,8 +2,6 @@ package com.uni.review.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,16 +17,16 @@ import com.uni.review.model.vo.Attachment;
 import com.uni.review.model.vo.Review;
 
 /**
- * Servlet implementation class insertReviewServlet
+ * Servlet implementation class UpdateReviewServlet
  */
-@WebServlet("/insertReview.do")
-public class insertReviewServlet extends HttpServlet {
+@WebServlet("/updateReview.do")
+public class UpdateReviewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public insertReviewServlet() {
+    public UpdateReviewServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,7 +35,6 @@ public class insertReviewServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		
 		if(ServletFileUpload.isMultipartContent(request)) {
 			
@@ -51,7 +48,11 @@ public class insertReviewServlet extends HttpServlet {
 			//DefaultFileRenamePolicy : cos.jar에서 제공하는 메소드. 우리는 따로 클래스 만들어서 사용 : MyFileRenamePolicy
 			MultipartRequest multiRequest = new MultipartRequest(request, savePath, maxSize, "UTF-8", new MyFileRenamePolicy());
 			
-			Review r = new Review();			
+			int rId = Integer.parseInt(multiRequest.getParameter("rId"));
+			
+			Review r = new Review();
+			
+			
 			int writer = Integer.parseInt(multiRequest.getParameter("writer"));
 			String subject = multiRequest.getParameter("subject");
 			String product = multiRequest.getParameter("product");
@@ -62,43 +63,42 @@ public class insertReviewServlet extends HttpServlet {
 			r.setReviewTitle(subject);
 			r.setProductId(product);			
 			r.setReviewContent(content);
-			r.setStar(star);
+			r.setStar(star);		
+
 			
-			ArrayList<Attachment> fileList = new ArrayList<>();
+			Attachment at = null; //있을 수도 있고 없을 수도 있어서 null로 선언
+			if(multiRequest.getOriginalFileName("upFile") != null) {
+				String originName = multiRequest.getOriginalFileName("upFile");
+				String changeName = multiRequest.getFilesystemName("upFile");
 			
-			
-			
-			
-			for(int i = 1; i <= 1; i++) { //파일의 최대 개수 1개인데..
-				String name = "file"+i;
-				if(multiRequest.getOriginalFileName(name) != null) {
-					String originName = multiRequest.getOriginalFileName(name);
-					String changeName = multiRequest.getFilesystemName(name);
+				System.out.println(originName);
+				System.out.println(changeName);
+				
+				at = new Attachment();
+				at.setFilePath(savePath);
+				at.setOriginName(originName);
+				at.setChangeName(changeName);
+				
+				//기존에 있던 파일은 삭제하기
+				if(multiRequest.getParameter("originFile") != null) {
+					File deleteFile = new File(savePath + multiRequest.getParameter("originFile"));
+					System.out.println("deleteFile : " + deleteFile);
+					System.out.println("deleteFile savePath : " + savePath + multiRequest.getParameter("originFile"));
+					deleteFile.delete();
 					
-					System.out.println("originName : " + originName);
-					System.out.println("changeName : " + changeName);
-					
-					Attachment at = new Attachment();
-					
-					at.setFilePath(savePath);
-					at.setOriginName(originName);
-					at.setChangeName(changeName);
-					
-					fileList.add(at);
+					at.setFileNo(Integer.parseInt(multiRequest.getParameter("originFileNo")));
+				}else {
+					at.setReviewNo(rId);
 				}
 			}
-			
-			int result = new ReviewService().insertReview(r, fileList);
-			
+
+			int result = new ReviewService().updateReview(r,at);
 			if(result > 0) {
-				response.sendRedirect("reviewList.do");
-			}else {
-				for(int i = 0; i < fileList.size(); i++) {
-					File failedFile = new File(savePath + fileList.get(i).getChangeName());
-					failedFile.delete();
-				}
 				
-				request.setAttribute("msg", "리뷰 게시물 등록 실패");
+				response.sendRedirect("detailReview.do?rId=" + rId);
+				
+			}else {
+				request.setAttribute("msg", "게시글 수정에 실패했습니다.");
 				request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
 			}
 			

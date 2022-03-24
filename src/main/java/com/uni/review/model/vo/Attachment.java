@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class Attachment {
 	
-	private String fileNo;			// 파일 고유 번호
+	private int fileNo;			// 파일 고유 번호		// 파일 고유 번호
 	private int reviewNo;		// 참조하고 있는 게시글 번호
 	private String originName;	// 파일 원본명
 	private String changeName;	// 파일 수정명
@@ -15,7 +15,7 @@ public class Attachment {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Attachment(String fileNo, int reviewNo, String originName, String changeName, Date uploadDate,
+	public Attachment(int fileNo, int reviewNo, String originName, String changeName, Date uploadDate,
 			String filePath) {
 		super();
 		this.fileNo = fileNo;
@@ -26,11 +26,11 @@ public class Attachment {
 		this.filePath = filePath;
 	}
 
-	public String getFileNo() {
+	public int getFileNo() {
 		return fileNo;
 	}
 
-	public void setFileNo(String fileNo) {
+	public void setFileNo(int fileNo) {
 		this.fileNo = fileNo;
 	}
 
