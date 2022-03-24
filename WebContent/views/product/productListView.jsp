@@ -53,6 +53,13 @@
 	})
 
 </script>
+<style>
+		
+	.pageButton{
+		background: black;
+		color:white;
+	}
+</style>
         <!-- Section-->
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" 
@@ -161,37 +168,37 @@
         </section>
         
         <!-- 페이징바 만들기 -->
-		<div class="pagingArea" align="center">
-			<!-- 맨 처음으로 (<<) -->
-			<button onclick="location.href='<%=contextPath%>/productList.do.do?currentPage=1'"> &lt;&lt; </button>
-		
-			<!-- 이전페이지로(<) -->
-			<%if(currentPage == 1){ %>
-			<button disabled> &lt; </button>
-			<%}else{ %>
-			<button onclick="location.href='<%= contextPath %>/productList.do?currentPage=<%= currentPage-1 %>'"> &lt; </button>
-			<%} %>
-			
-			<!-- 페이지 목록 -->
-			<%for(int p=startPage; p<=endPage; p++){ %>
-				
-				<%if(p == currentPage){ %>
-				<button disabled> <%= p %> </button>
-				<%}else{ %>
-				<button onclick="location.href='<%=contextPath %>/productList.do?currentPage=<%= p %>'"> <%= p %> </button>
-				<%} %>
-				
-			<%} %>
-			
-			<!-- 다음페이지로(>) -->
-			<%if(currentPage == maxPage){ %>
-			<button disabled> &gt; </button>
-			<%}else { %>
-			<button onclick="location.href='<%= contextPath %>/productList.do?currentPage=<%= currentPage+1 %>'"> &gt; </button>
-			<%} %>
-		
-			<!-- 맨 끝으로 (>>) -->
-			<button onclick="location.href='<%=contextPath%>/productList.do?currentPage=<%=maxPage%>'"> &gt;&gt; </button>
+      <div class="pagingArea my-2" align="center">
+         <!-- 맨 처음으로 (<<) -->
+         <button class="pageButton" onclick="location.href='<%=contextPath%>/productList.do?currentPage=1'"><i class="bi bi-chevron-double-left"></i> </button>
+      
+         <!-- 이전페이지로(<) -->
+         <%if(currentPage == 1){ %>
+         <button class="pageButton" disabled> &lt; </button>
+         <%}else{ %>
+         <button class="pageButton" onclick="location.href='<%= contextPath %>/productList.do?currentPage=<%= currentPage-1 %>'"> <i class="bi bi-chevron-left"></i> </button>
+         <%} %>
+         
+         <!-- 페이지 목록 -->
+         <%for(int p=startPage; p<=endPage; p++){ %>
+            
+            <%if(p == currentPage){ %>
+            <button class="pageButton" disabled> <%= p %> </button>
+            <%}else{ %>
+            <button class="pageButton" onclick="location.href='<%=contextPath %>/productList.do?currentPage=<%= p %>'"> <%= p %> </button>
+            <%} %>
+            
+         <%} %>
+         
+         <!-- 다음페이지로(>) -->
+         <%if(currentPage == maxPage){ %>
+         <button class="pageButton" disabled> &gt; </button>
+         <%}else { %>
+         <button class="pageButton" onclick="location.href='<%= contextPath %>/productList.do?currentPage=<%= currentPage+1 %>'"> <i class="bi bi-chevron-right"></i> </button>
+         <%} %>
+      
+         <!-- 맨 끝으로 (>>) -->
+         <button class="pageButton" onclick="location.href='<%=contextPath%>/productList.do?currentPage=<%=maxPage%>'"> <i class="bi bi-chevron-double-right"></i> </button>
 		</div> 
 		<br><br>
 		
