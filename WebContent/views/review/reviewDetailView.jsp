@@ -95,19 +95,29 @@ ArrayList<Attachment> fileList = (ArrayList<Attachment>)request.getAttribute("fi
 
 			<div style="margin-top : 20px">
 
-				<button type="button" class="btn btn-sm btn-dark" id="btnUpdate">수정</button>
-				<button type="button" class="btn btn-sm btn-dark" id="btnDelete">삭제</button>
+				
+				<button type="button" onclick="updateForm();" class="btn btn-sm btn-dark" id="btnUpdate">수정</button>
+				<button type="button" onclick="deleteBoard();" class="btn btn-sm btn-dark" id="btnDelete">삭제</button>
+				
+				
 				<button type="button" class="btn btn-sm btn-dark" id="btnList" onclick="location.href='<%=contextPath%>/reviewList.do'">목록</button>
 
 			</div>
-
-		</div>
-
-		
-
+		</div>			
 	</article>
 	<br>
+	<form action="" id="postForm" method="post">
+			<input type="hidden" name="rNo" value="<%=r.getReviewNo()%>">
+	</form>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script type="text/javascript">
 	
+	function deleteBoard(){
+		$("#postForm").attr("action", "<%=contextPath%>/deleteReviewUser.do");
+		$("#postForm").submit();
+	}
+	
+	</script>
 	
 	<!-- Bootstrap core JS-->
   	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
