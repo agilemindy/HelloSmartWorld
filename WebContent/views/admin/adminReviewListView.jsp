@@ -29,7 +29,7 @@
 <style>
 	.outer{
 		width:100%;
-		height:2000px;
+		height:1000px;
 		background:black;
 		color:white;
 		margin:auto;
@@ -90,7 +90,7 @@
 		<h2 align="center">리뷰관리</h2>
 		<br>
 				
-		<div align="right" style="margin-right: 150px; margin-bottom: 20px" >
+		<div align="right" style="margin-right: 180px; margin-bottom: 20px" >
 			<h4> 총 <%= proCount %> 건 </h4>
 		</div>
 		
