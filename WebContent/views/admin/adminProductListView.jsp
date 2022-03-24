@@ -92,7 +92,7 @@
 		<br>
 		
 		<div align="right" style="margin-right: 180px; margin-bottom: 20px" >
-			<button id="enrollButton" onclick="location.href = '/HelloSmartWorld/productEnrollForm.do'">제품등록</button>
+			<button id="enrollButton" onclick="location.href = '/HelloSmartWorld/productEnrollForm.do'"><i class="bi bi-phone"></i>제품등록</button>
 		</div>
 		<div align="right" style="margin-right: 180px; margin-bottom: 20px" >
 			<h4> 총 <%= proCount %> 개 </h4>
