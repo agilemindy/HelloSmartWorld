@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>ERROR | HELLO SMART WORLD</title>
 </head>
 <body>
 	<h1 align="center"><%= message %></h1>

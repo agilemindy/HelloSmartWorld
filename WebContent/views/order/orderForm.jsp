@@ -42,7 +42,7 @@ int userNo = m.getUserNo();
 			<div class="row g-5">
 				<div class="col-md-5 col-lg-4 order-md-last">
 					<h4 class="d-flex justify-content-between align-items-center mb-3">
-						<span class="text-primary">Your cart</span> <span
+						<span class="text-primary">Your cart <i class="bi bi-cart-check"></i></span> <span
 							class="badge bg-primary rounded-pill">1</span>
 					</h4>
 					<ul class="list-group mb-3">
@@ -74,7 +74,7 @@ int userNo = m.getUserNo();
 					</div>
 				</div>
 				<div class="col-md-7 col-lg-8">
-					<h4 class="mb-3">Billing address</h4>
+					<h4 class="mb-3">Billing address <i class="bi bi-receipt-cutoff"></i></h4>
 					
 					
 					<input type="hidden" value="<%= pId %>" name="pId">
