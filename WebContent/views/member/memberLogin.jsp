@@ -162,8 +162,8 @@ String msg = (String)request.getAttribute("msg");
 					url: "insertMember.do",
 					type: "post",
 					data:{
-						userId : "google_" + profile.getName(),
-						userPwd : "google_" + profile.getName(),
+						userId : profile.getName(),
+						userPwd : profile.getName(),
 						userName : profile.getName(),
 						tel : "",
 						phone : "010-0000-0000",
@@ -173,8 +173,8 @@ String msg = (String)request.getAttribute("msg");
 					},
 					success:function(){
 						
-						alert("헬로우! 스마트월드에 오신 것을 환영합니다. 구글 회원가입시 아이디와 비밀번호는 'google_ + 프로필이름'입니다.")
-						
+						alert("헬로우! 스마트월드에 오신 것을 환영합니다. \n	구글 회원가입시 아이디와 비밀번호는 구글에서의 '프로필이름'입니다. \n 로그인 후 비밀번호를 꼭 변경해주세요.")
+							
 					},
 					error:function(){
 						console.log("서버통신실패")
@@ -186,7 +186,7 @@ String msg = (String)request.getAttribute("msg");
 			})
 		}
 		function onSignInFailure(t){		
-			console.log(t);
+			alert("동일한 아이디로 이미 회원가입되어있습니다.")
 		}
 	</script>
 	<script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
