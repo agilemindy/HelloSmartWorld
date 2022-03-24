@@ -74,7 +74,7 @@ String msg = (String)request.getSession().getAttribute("msg");
 										<td><%=o.getpId()%></td>
 										<td><%=o.getAmount()%></td>
 										<td><%=o.getPrice() + "원"%></td>
-										<td><%=o.getPayCode() == 101 ? "무통장입금" : "신용카드"%></td>
+										<td>KG이니시스</td>
 										<td>
 
 											<button type="button" class="btn btn-dark"
