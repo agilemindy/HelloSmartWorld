@@ -84,7 +84,7 @@
                                 <li><a class="dropdown-item" href="/HelloSmartWorld/memberInfo.do">내정보보기</a></li>
                                 <li><a class="dropdown-item" href="/HelloSmartWorld/orderInfo.do">주문내역보기</a></li>
                                 <!-- <li><a class="dropdown-item" href="/HelloSmartWorld/shipmentInfo.do">배송 조회</a></li> -->
-                                <li><a class="dropdown-item" href="/HelloSmartWorld/canceledOrderInfo.do">취소/반품내역보기</a></li>
+                                <li><a class="dropdown-item" href="/HelloSmartWorld/canceledOrderInfo.do">취소내역보기</a></li>
                                 <%if(loginUser != null && loginUser.getUserId().equals("admin")) {%>
                                 <li><a class="dropdown-item" href="/HelloSmartWorld/adminMain.do">관리자메뉴</a></li>
                             <% } %>
