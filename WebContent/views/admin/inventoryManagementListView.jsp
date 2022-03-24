@@ -12,7 +12,8 @@
 			
 	
 	String contextPath = request.getContextPath();
-	String msg = (String)session.getAttribute("msg");
+	String msg = (String)session.getAttribute("msg");	
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -30,7 +31,7 @@
 <style>
 	.outer{
 		width:100%;
-		height:2000px;
+		height:auto;
 		background:black;
 		color:white;
 		margin:auto;
@@ -92,10 +93,10 @@
 		<h2 align="center">재고관리</h2>
 		<br>
 		
-		<div align="right" style="margin-right: 150px; margin-bottom: 20px" >
+		<div align="right" style="margin-right: 180px; margin-bottom: 20px" >
 			<button id="enrollButton" onclick="location.href = '/HelloSmartWorld/inventoryEnrollForm.do'">재고등록</button>
 		</div>
-		<div align="right" style="margin-right: 150px; margin-bottom: 20px" >
+		<div align="right" style="margin-right: 180px; margin-bottom: 20px" >
 			<h4> 총 <%= pi.getproCount() %> 건 </h4>
 		</div>
 		
