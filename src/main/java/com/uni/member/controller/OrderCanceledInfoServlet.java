@@ -19,38 +19,47 @@ import com.uni.order.model.vo.Order;
 @WebServlet("/canceledOrderInfo.do")
 public class OrderCanceledInfoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public OrderCanceledInfoServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		Member m = (Member)request.getSession().getAttribute("loginUser");
-		
-		int userNo = m.getUserNo();
-		
-		System.out.println(userNo);
-		
-		ArrayList<Order> order = new MemberService().orderCanceledInfo(userNo);	
-		
-		request.setAttribute("order", order);
-		
-		request.getRequestDispatcher("views/member/orderCanceledInfo.jsp").forward(request, response);
-		
+	public OrderCanceledInfoServlet() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		Member m = (Member) request.getSession().getAttribute("loginUser");
+
+		if (m != null) {
+			int userNo = m.getUserNo();
+
+			System.out.println(userNo);
+
+			ArrayList<Order> order = new MemberService().orderCanceledInfo(userNo);
+
+			request.setAttribute("order", order);
+
+			request.getRequestDispatcher("views/member/orderCanceledInfo.jsp").forward(request, response);
+		} else {
+			request.setAttribute("msg", "로그인 후에 이용해주세요.");
+			request.getRequestDispatcher("views/member/memberLogin.jsp").forward(request, response);
+		}
+
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
