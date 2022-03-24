@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="EUC-KR"%>
+    pageEncoding="UTF-8"%>
 <%@ page import = "com.uni.member.model.vo.Member" %>
 <%
 	Member loginUser = (Member)session.getAttribute("loginUser");
@@ -67,31 +67,31 @@
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="/HelloSmartWorld">HOME</a></li>
 						<% if(loginUser == null){ %>
-						<li class="nav-item"><a class="nav-link" href="/HelloSmartWorld/login.do">·Î±×ÀÎ</a></li>
+						<li class="nav-item"><a class="nav-link" href="/HelloSmartWorld/login.do">ë¡œê·¸ì¸</a></li>
 						<% } %>
-                        <li class="nav-item"><a class="nav-link" href="/HelloSmartWorld/productList.do">Á¦Ç°º¸±â</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/HelloSmartWorld/productList.do">ì œí’ˆë³´ê¸°</a></li>
                         
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">¸®ºäÆäÀÌÁö</a>
+                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">ë¦¬ë·°íŽ˜ì´ì§€</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="/HelloSmartWorld/reviewList.do">ÀüÃ¼¸®ºä</a></li>
-                                <li><a class="dropdown-item" href="/HelloSmartWorld/myReviewList.do">³»°¡ ¾´ ¸®ºä</a></li>
-                                <li><a class="dropdown-item" href="/HelloSmartWorld/enrollFormReview.do">¸®ºäÀÛ¼º</a></li>                               
+                                <li><a class="dropdown-item" href="/HelloSmartWorld/reviewList.do">ì „ì²´ë¦¬ë·°</a></li>
+                                <li><a class="dropdown-item" href="/HelloSmartWorld/myReviewList.do">ë‚´ê°€ ì“´ ë¦¬ë·°</a></li>
+                                <li><a class="dropdown-item" href="/HelloSmartWorld/enrollFormReview.do">ë¦¬ë·°ìž‘ì„±</a></li>                               
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">¸¶ÀÌÆäÀÌÁö</a>
+                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">ë§ˆì´íŽ˜ì´ì§€</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="/HelloSmartWorld/memberInfo.do">³»Á¤º¸º¸±â</a></li>
-                                <li><a class="dropdown-item" href="/HelloSmartWorld/orderInfo.do">ÁÖ¹®³»¿ªº¸±â</a></li>
-                                <li><a class="dropdown-item" href="/HelloSmartWorld/shipmentInfo.do">¹è¼Û Á¶È¸</a></li>
-                                <li><a class="dropdown-item" href="/HelloSmartWorld/canceledOrderInfo.do">Ãë¼Ò/¹ÝÇ°³»¿ªº¸±â</a></li>
-                                <li><a class="dropdown-item" href="/HelloSmartWorld/adminMain.do">°ü¸®ÀÚ¸Þ´º</a></li>
+                                <li><a class="dropdown-item" href="/HelloSmartWorld/memberInfo.do">ë‚´ì •ë³´ë³´ê¸°</a></li>
+                                <li><a class="dropdown-item" href="/HelloSmartWorld/orderInfo.do">ì£¼ë¬¸ë‚´ì—­ë³´ê¸°</a></li>
+                                <li><a class="dropdown-item" href="/HelloSmartWorld/shipmentInfo.do">ë°°ì†¡ ì¡°íšŒ</a></li>
+                                <li><a class="dropdown-item" href="/HelloSmartWorld/canceledOrderInfo.do">ì·¨ì†Œ/ë°˜í’ˆë‚´ì—­ë³´ê¸°</a></li>
+                                <li><a class="dropdown-item" href="/HelloSmartWorld/adminMain.do">ê´€ë¦¬ìžë©”ë‰´</a></li>
                             </ul>
                         </li>
                         <%if(loginUser != null) {%>
-                        <li class="nav-item"><a class="nav-link"><b><%=loginUser.getUserName() %> ´Ô </b> ÀÇ ¹æ¹®À» È¯¿µÇÕ´Ï´Ù.</a></li>
-						<li class="nav-item"><a class="nav-link" href="/HelloSmartWorld/logoutMember.do">·Î±×¾Æ¿ô</a></li>
+                        <li class="nav-item"><a class="nav-link"><b><%=loginUser.getUserName() %> ë‹˜ </b> ì˜ ë°©ë¬¸ì„ í™˜ì˜í•©ë‹ˆë‹¤.</a></li>
+						<li class="nav-item"><a class="nav-link" href="/HelloSmartWorld/logoutMember.do">ë¡œê·¸ì•„ì›ƒ</a></li>
 						<% } %>
                     </ul>
                     <form class="d-flex">

@@ -34,6 +34,12 @@ int endPage = rpi.getEndPage();
 background-color: gray;
 }
 
+.starC{
+
+color: rgb(255, 212, 0);
+font-weight : bold;
+}
+
 </style>
 
 <title>Review | HELLO SMART WORLD</title>
@@ -108,7 +114,8 @@ background-color: gray;
                     <%for(Review r : list){ %>
                       <div class="col mb-5">                    
                         <div class="card h-100">
-                        <input type="hidden" value="<%=r.getReviewNo()%>">
+                        <form action="<%=request.getContextPath()%>/detailReview.do" method="get">
+                        <input type="hidden" class="rId" id="rId" name="rId" value="<%=r.getReviewNo()%>">
                             <!-- Review image-->
                            <% if(r.getTitleImg() != null){ %>
                             <img class="card-img-top" src="<%=contextPath%>/resources/review_upfiles/<%=r.getTitleImg()%>" alt="리뷰보러가기" />
@@ -117,17 +124,16 @@ background-color: gray;
                             <% } %>                  
      
                             <%-- <img class="card-img-top" src="https://img.insight.co.kr/static/2021/05/07/700/img_20210507093529_8hq8orse.webp" alt="리뷰보러가기" />--%>
-                            <!-- Product details-->
-                            <form action="<%=request.getContextPath()%>/detailReview.do" method="get">
+                            <!-- Product details-->                            
                             <div class="card-body p-4">
                                 <div class="text-center">
                                     <!-- Product name-->
                                     <h5 class="fw-bolder"> <%=r.getReviewTitle()%> </h5>
-                                    <!-- Product price-->
                                     
+                                    <div class="starC">
                                     <% int star = r.getStar();
                                     for(int i=0; i<star; i++){ %>
-                                    <i class="bi bi-star-fill"></i> <%}%> <br>
+                                    <i class="bi bi-star-fill"></i> <%}%></div>
                                     <%=r.getReviewContent() %>
                                     
                                 </div>
@@ -156,16 +162,18 @@ background-color: gray;
   	
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>     
 	<script>
+	
 	<%if(!list.isEmpty()){%>
 	
 		function detail_click() {
 			$(".py-5").click(function(){
-				var rId =$(".reviewDetail").val();
+				var rId =$(".rId").val();
 				 location.href="<%=contextPath%>/detailReview.do?rId="+rId;
 			})
 		}
 		
-	<%}%>
+	<%}%>	
+	
 	
 	</script>
 	
