@@ -159,7 +159,7 @@ String msg = (String)request.getAttribute("msg");
 				var profile = googleUser.getBasicProfile();
 				
 				$.ajax({
-					url: "insertMember.do",
+					url: "insertMembergoogle.do",
 					type: "post",
 					data:{
 						userId : profile.getName(),
@@ -171,22 +171,25 @@ String msg = (String)request.getAttribute("msg");
 						addressDet : "상세 주소",
 						email : profile.getEmail()
 					},
-					success:function(){
+					success:function(result){
 						
-						alert("헬로우! 스마트월드에 오신 것을 환영합니다. \n	구글 회원가입시 아이디와 비밀번호는 구글에서의 '프로필이름'입니다. \n 로그인 후 비밀번호를 꼭 변경해주세요.")
-							
+						if(result == "success"){
+							alert("헬로우! 스마트월드에 오신 것을 환영합니다. \n	구글 회원가입시 아이디와 비밀번호는 구글에서의 '프로필이름'입니다. \n 로그인 후 비밀번호를 꼭 변경해주세요.")
+						}else{
+							alert("동일한 아이디로 이미 회원가입되어있습니다.")
+						}	
 					},
-					error:function(){
-						console.log("서버통신실패")
+					error:function(error){
+						alert(error + "동일한 아이디로 이미 회원가입되어있습니다.")
 					}
 				})
 			})
 			.fail(function(e){
-				alert("동일한 아이디로 이미 회원가입되어있습니다.")
+				alert("동일한 아이디")
 			})
 		}
 		function onSignInFailure(t){		
-			alert("동일한 아이디로 이미 회원가입되어있습니다.")
+			alert("구글 회원가입을 중단하셨습니다.") //도중에 창 끄면 나오는 문구
 		}
 	</script>
 	<script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
