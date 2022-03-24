@@ -118,9 +118,9 @@ font-weight : bold;
                         <input type="hidden" class="rId" id="rId" name="rId" value="<%=r.getReviewNo()%>">
                             <!-- Review image-->
                            <% if(r.getTitleImg() != null){ %>
-                            <img class="card-img-top" src="<%=contextPath%>/resources/review_upfiles/<%=r.getTitleImg()%>" alt="리뷰보러가기" />
+                            <img class="card-img-top" width="140px" height="300px" src="<%=contextPath%>/resources/review_upfiles/<%=r.getTitleImg()%>" alt="리뷰보러가기" />
                             <% }else{ %>
-                            <img class="card-img-top" src="https://www.ulsannamgu.go.kr/images/common/noimg.png" alt="등록된 리뷰사진이 없습니다." />	
+                            <img class="card-img-top" width="140px" height="300px" src="https://www.ulsannamgu.go.kr/images/common/noimg.png" alt="등록된 리뷰사진이 없습니다." />	
                             <% } %>                  
      
                             <%-- <img class="card-img-top" src="https://img.insight.co.kr/static/2021/05/07/700/img_20210507093529_8hq8orse.webp" alt="리뷰보러가기" />--%>
@@ -134,7 +134,7 @@ font-weight : bold;
                                     <% int star = r.getStar();
                                     for(int i=0; i<star; i++){ %>
                                     <i class="bi bi-star-fill"></i> <%}%></div>
-                                    <%=r.getReviewContent() %>
+                                    
                                     
                                 </div>
                             </div>

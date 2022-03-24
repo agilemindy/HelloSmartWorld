@@ -1,17 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    import = "java.util.ArrayList, com.uni.review.model.vo.*" pageEncoding="UTF-8"%>
 <%@ page import="java.io.PrintWriter" %>
 
 <%
 String contextPath = request.getContextPath();
-
+Review r = (Review)request.getAttribute("r");
 %>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Review | HELLO SMART WORLD</title>
+<title>Review 작성 | HELLO SMART WORLD</title>
 
 <meta http-equiv="Content-Type" content="text/html"; charset="UTF-8">
 <meta name="viewport" content="width=device-width", initial-scale"="1">
@@ -19,15 +19,17 @@ String contextPath = request.getContextPath();
 
 </head>
 <body>
- <%@ include file = "../../views/common/menubar.jsp" %>
- 
+
+<%@ include file = "../../views/common/menubar.jsp" %>
  
  
 <div class="container">
+
 <h4>리뷰작성</h4>
 
     <form id="insertForm" action="<%= contextPath %>/insertReview.do" method="post" enctype="multipart/form-data">
       <input type="hidden" id="writer" name="writer" value="<%= loginUser.getUserNo() %>">
+    
       <div class="form-group">      
         <label for="subject">제목</label>
         <input type="text" class="form-control" id="subject" name="subject" placeholder="제목을 입력하세요.">

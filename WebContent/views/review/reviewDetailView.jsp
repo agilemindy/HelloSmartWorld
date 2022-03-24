@@ -96,7 +96,7 @@ ArrayList<Attachment> fileList = (ArrayList<Attachment>)request.getAttribute("fi
 			<div style="margin-top : 20px">
 
 				
-				<button type="button" onclick="updateForm();" class="btn btn-sm btn-dark" id="btnUpdate">수정</button>
+				<button type="button" onclick="updateFormReview();" class="btn btn-sm btn-dark" id="btnUpdate">수정</button>
 				<button type="button" onclick="deleteBoard();" class="btn btn-sm btn-dark" id="btnDelete">삭제</button>
 				
 				
@@ -114,6 +114,12 @@ ArrayList<Attachment> fileList = (ArrayList<Attachment>)request.getAttribute("fi
 	
 	function deleteBoard(){
 		$("#postForm").attr("action", "<%=contextPath%>/deleteReviewUser.do");
+		$("#postForm").submit();
+	}
+	
+	
+	function updateFormReview(){
+		$("#postForm").attr("action", "<%=contextPath%>/updateFormReview.do");
 		$("#postForm").submit();
 	}
 	

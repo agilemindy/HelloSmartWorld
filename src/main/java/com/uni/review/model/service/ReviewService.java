@@ -8,7 +8,6 @@ import static com.uni.common.JDBCTemplate.rollback;
 import java.sql.Connection;
 import java.util.ArrayList;
 
-
 import com.uni.review.model.dao.ReviewDao;
 import com.uni.review.model.vo.Attachment;
 import com.uni.review.model.vo.Review;
@@ -113,6 +112,31 @@ public class ReviewService {
 		}
 		close(conn);
 		return result;
+	}
+
+	public int updateReview(Review r, Attachment at) {
+		
+	Connection conn = getConnection();
+		
+		int result1 = new ReviewDao().updateReview(conn, r);
+		
+		int result2 = 1;
+		if(at != null) {
+			if(at.getFileNo() != 0) {
+				result2 = new ReviewDao().updateAttachment(conn, at);
+			}else {
+				result2 = new ReviewDao().insertNewAttachment(conn, at , r);
+			}
+		}
+		
+		if(result1 * result2 > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		return result1 * result2;
 	}
 
 
