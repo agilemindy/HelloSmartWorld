@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ page import = "com.uni.member.model.vo.Member" %>
+<%
+	Member loginUser = (Member)session.getAttribute("loginUser");
+	
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -66,8 +70,14 @@
                         <li class="nav-item"><a class="nav-link" href="/HelloSmartWorld/inventoryManagementListView.do">재고관리</a></li>
                         <li class="nav-item"><a class="nav-link" href="/HelloSmartWorld/adminMemberListView.do">회원관리</a></li>
                         <li class="nav-item"><a class="nav-link" href="/HelloSmartWorld/adminReviewList.do">리뷰관리</a></li>             
-                        
-                    </ul>                    
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                     
+                     <%if(loginUser != null) {%>
+                        <li class="nav-item"><a class="nav-link"><b><%=loginUser.getUserName() %> 님 </b> 의 방문을 환영합니다.</a></li>
+						<li class="nav-item"><a class="nav-link" href="/HelloSmartWorld/logoutMember.do">로그아웃</a></li>
+					<% } %>  
+                    </ul>
+                                      
                 </div>
             </div>
         </nav>
