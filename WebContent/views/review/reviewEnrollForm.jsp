@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    import = "java.util.ArrayList, com.uni.review.model.vo.*" pageEncoding="UTF-8"%>
+    import = "java.util.ArrayList, com.uni.review.model.vo.*, com.uni.admin.model.vo.*" pageEncoding="UTF-8"%>
 <%@ page import="java.io.PrintWriter" %>
 
 <%
 String contextPath = request.getContextPath();
 Review r = (Review)request.getAttribute("r");
+
 %>
 
 <!DOCTYPE html>
@@ -46,8 +47,12 @@ Review r = (Review)request.getAttribute("r");
       
       <div class="form-group">      
         <label for="product">제품명</label>
-        <input type="text" class="form-control" id="product" name="product" placeholder="제품명을 입력하세요.">
+        <input type="text" class="form-control" id="product1" name="product1" placeholder="제품명을 입력하세요.">
+      
       </div>
+      
+      
+      
       
       <div class="form-group">
       	<label for="starcontent">별점</label>

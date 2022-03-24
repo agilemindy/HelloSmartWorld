@@ -40,6 +40,11 @@ color: rgb(255, 212, 0);
 font-weight : bold;
 }
 
+.productId{
+
+font-size: 8pt;
+
+}
 </style>
 
 <title>Review | HELLO SMART WORLD</title>
@@ -118,9 +123,9 @@ font-weight : bold;
                         <input type="hidden" class="rId" id="rId" name="rId" value="<%=r.getReviewNo()%>">
                             <!-- Review image-->
                            <% if(r.getTitleImg() != null){ %>
-                            <img class="card-img-top" width="140px" height="300px" src="<%=contextPath%>/resources/review_upfiles/<%=r.getTitleImg()%>" alt="리뷰보러가기" />
+                            <img class="card-img-top" width="100px" height="250px" src="<%=contextPath%>/resources/review_upfiles/<%=r.getTitleImg()%>" alt="리뷰보러가기" />
                             <% }else{ %>
-                            <img class="card-img-top" width="140px" height="300px" src="https://www.ulsannamgu.go.kr/images/common/noimg.png" alt="등록된 리뷰사진이 없습니다." />	
+                            <img class="card-img-top" width="100px" height="250px" src="https://www.ulsannamgu.go.kr/images/common/noimg.png" alt="등록된 리뷰사진이 없습니다." />	
                             <% } %>                  
      
                             <%-- <img class="card-img-top" src="https://img.insight.co.kr/static/2021/05/07/700/img_20210507093529_8hq8orse.webp" alt="리뷰보러가기" />--%>
@@ -130,19 +135,24 @@ font-weight : bold;
                                     <!-- Product name-->
                                     <h5 class="fw-bolder"> <%=r.getReviewTitle()%> </h5>
                                     
+                               
+                                    
                                     <div class="starC">
                                     <% int star = r.getStar();
                                     for(int i=0; i<star; i++){ %>
                                     <i class="bi bi-star-fill"></i> <%}%></div>
                                     
                                     
+                                    <div class="productId">
+                                    <%=r.getProductId() %>                                    
+                                    </div>                                    
+                                    
                                 </div>
                             </div>
                             
                             <!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                            <div class="text-center"><button class="btn btn-dark btn-lg btn-block"
-						 type="submit" id="submitBtn">자세히보기</button></div>
+                            <div class="text-center"><button class="btn btn-dark btn-lg btn-block" type="submit" id="submitBtn">리뷰보기</button></div>
                             </div>
                             </form>
                             

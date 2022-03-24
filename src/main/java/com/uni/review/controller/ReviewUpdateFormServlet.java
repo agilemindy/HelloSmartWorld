@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.uni.admin.model.service.AdminService;
+import com.uni.admin.model.vo.Product;
 import com.uni.review.model.service.ReviewService;
 import com.uni.review.model.vo.Attachment;
 import com.uni.review.model.vo.Review;
@@ -34,7 +36,6 @@ public class ReviewUpdateFormServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		
-
 		int rNo = Integer.parseInt(request.getParameter("rNo"));
 		Review r = new ReviewService().selectReview(rNo);		
 		ArrayList<Attachment> at = new ReviewService().selectAttachment(rNo);
