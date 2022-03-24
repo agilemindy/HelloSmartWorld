@@ -1,10 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"
-	import="java.util.ArrayList, com.uni.order.model.vo.Order"%>
+	import="java.util.ArrayList, com.uni.order.model.vo.Order, com.uni.member.model.vo.*"%>
 <%
 Member m = (Member) request.getSession().getAttribute("loginUser");
 ArrayList<Order> order = (ArrayList<Order>) request.getAttribute("order");
 String msg = (String)request.getSession().getAttribute("msg");
+String contextPath = request.getContextPath();
+PageInfo pi = (PageInfo)request.getAttribute("pi");
+
+int listCount = pi.getListCount();
+int currentPage = pi.getCurrentPage();
+int maxPage = pi.getMaxPage();
+int startPage = pi.getStartPage();
+int endPage = pi.getEndPage();
 
 %>
 
@@ -135,6 +143,40 @@ String msg = (String)request.getSession().getAttribute("msg");
 				</div>
 			</div>
 		</div>
+		
+		<!-- 페이징바 만들기 -->
+		<div class="pagingArea my-2" align="center">
+			<!-- 맨 처음으로 (<<) -->
+			<button onclick="location.href='<%=contextPath%>/orderInfo.do?currentPage=1'"> &lt;&lt; </button>
+		
+			<!-- 이전페이지로(<) -->
+			<%if(currentPage == 1){ %>
+			<button disabled> &lt; </button>
+			<%}else{ %>
+			<button onclick="location.href='<%= contextPath %>/orderInfo.do?currentPage=<%= currentPage-1 %>'"> &lt; </button>
+			<%} %>
+			
+			<!-- 페이지 목록 -->
+			<%for(int p=startPage; p<=endPage; p++){ %>
+				
+				<%if(p == currentPage){ %>
+				<button disabled> <%= p %> </button>
+				<%}else{ %>
+				<button onclick="location.href='<%=contextPath %>/orderInfo.do?currentPage=<%= p %>'"> <%= p %> </button>
+				<%} %>
+				
+			<%} %>
+			
+			<!-- 다음페이지로(>) -->
+			<%if(currentPage == maxPage){ %>
+			<button disabled> &gt; </button>
+			<%}else { %>
+			<button onclick="location.href='<%= contextPath %>/orderInfo.do?currentPage=<%= currentPage+1 %>'"> &gt; </button>
+			<%} %>
+		
+			<!-- 맨 끝으로 (>>) -->
+			<button onclick="location.href='<%=contextPath%>/orderInfo.do?currentPage=<%=maxPage%>'"> &gt;&gt; </button>
+		</div> 
 	</section>
 	<script>
 
