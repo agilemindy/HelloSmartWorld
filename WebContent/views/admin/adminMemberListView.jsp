@@ -142,7 +142,7 @@
 						<td><%= m.getDelDate() %></td>						
 						<td><%= m.getStatus() %></td>
 						<td>
-							<button id="deleteButton" onclick="deleteMember();">삭제</button>
+							<button id="deleteButton" onclick="deleteMember();"><i class="bi bi-trash"></i></button>
 						</td>						
 					</tr>
 					<%} %>
