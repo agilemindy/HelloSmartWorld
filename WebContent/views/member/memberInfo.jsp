@@ -38,7 +38,7 @@ String originUserPwd = m.getUserPwd();
 	<div class="container">
 		<div class="input-form-backgroud row">
 			<div class="input-form col-md-6 mx-auto mt-3">
-				<h4 class="mb-3"><%=userName%>님의 회원정보
+				<h4 class="mb-3"><%=userName%>님의 회원정보 <i class="bi bi-person"></i>
 				</h4>
 				<form id="memberInfo" class="validation-form"
 					action="<%=request.getContextPath()%>/updateMember.do"
@@ -124,11 +124,11 @@ String originUserPwd = m.getUserPwd();
 					<div class="row mb-3">
 						<div class="col-md-6 text-center">
 							<button type="submit" class="btn btn-dark btn-m btn-block">회원정보
-								수정</button>
+								수정 <i class="bi bi-pencil"></i></button>
 						</div>
 						<div class="col-md-6 text-center">
 							<button type="button" onclick="deleteMem();"
-								class="btn btn-dark btn-m btn-block">회원탈퇴</button>
+								class="btn btn-dark btn-m btn-block">회원탈퇴 <i class="bi bi-eraser"></i></button>
 						</div>
 
 					</div>
