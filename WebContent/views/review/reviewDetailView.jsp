@@ -6,7 +6,9 @@ String contextPath = request.getContextPath();
 Member m = (Member)request.getAttribute("m");
 Review r = (Review)request.getAttribute("r");
 ArrayList<Attachment> fileList = (ArrayList<Attachment>)request.getAttribute("fileList");
-//Attachment titleImg = fileList.get(0);
+Attachment titleImg = fileList.get(0);
+
+Attachment at = (Attachment)request.getAttribute("at");
 
 
 %>
@@ -76,16 +78,23 @@ ArrayList<Attachment> fileList = (ArrayList<Attachment>)request.getAttribute("fi
 				<span class="board_product">제품명 : <%=r.getProductId() %> </span>
 				</div>
 				
-				<%-- 사진기능 막아놓기
-				<div id="titleImgArea" align="center" class="board_pic">
-				<img width="500px" height="300px" id="titleImg" src="<%= contextPath %>/resources/board_upfiles/<%= titleImg.getChangeName() %>">
-				</div>--%>
+				 
+				<div id="titleImgArea" class="board_pic">	
+			   
+			   <% if(titleImg.getChangeName() != null){ %>
+                	<img width="500px" height="300px" src="<%=contextPath%>/resources/review_upfiles/<%=titleImg.getChangeName()%>" />
+               <% }else{ %>
+                    <img width="500px" height="300px" src="https://www.ulsannamgu.go.kr/images/common/noimg.png" alt="등록된 리뷰사진이 없습니다."/>	
+               <% } %> 					
+			
 				
+				</div>			
 
 				<div class="board_content"><%=r.getReviewContent() %></div>
 
+				
 				<div class="board_star">
-					<b> <% int star = r.getStar();
+					별점 : <b> <% int star = r.getStar();
                           for(int i=0; i<star; i++){ %>
                       <i class="bi bi-star-fill"></i> <%}%></b></div>
 
