@@ -20,7 +20,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>재고관리 | HELLO SMART WORLD</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 		<!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="resources/assets/favicon1.ico"/>
@@ -33,7 +33,7 @@
 	.outer{
 		font-family: 'MaruBuri';
 		width:100%;
-		height:1000px;
+		height:2000px;
 		background:black;
 		color:white;
 		margin:auto;
