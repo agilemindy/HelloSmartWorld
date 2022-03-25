@@ -48,15 +48,19 @@ public class UpdateReviewServlet extends HttpServlet {
 			//DefaultFileRenamePolicy : cos.jar에서 제공하는 메소드. 우리는 따로 클래스 만들어서 사용 : MyFileRenamePolicy
 			MultipartRequest multiRequest = new MultipartRequest(request, savePath, maxSize, "UTF-8", new MyFileRenamePolicy());
 			
+			
+			
+			
 			int rId = Integer.parseInt(multiRequest.getParameter("rId"));			
 			Review r = new Review();			
-			//int writer = Integer.parseInt(multiRequest.getParameter("writer"));
+			int writer = Integer.parseInt(multiRequest.getParameter("writer"));
 			String subject = multiRequest.getParameter("subject");
 			String product = multiRequest.getParameter("product");
 			String content = multiRequest.getParameter("content");
 			int star = Integer.parseInt(multiRequest.getParameter("star"));
+		
 			
-			//r.setReviewWriter(writer);
+			r.setReviewWriter(writer);
 			r.setReviewTitle(subject);
 			r.setProductId(product);			
 			r.setReviewContent(content);
