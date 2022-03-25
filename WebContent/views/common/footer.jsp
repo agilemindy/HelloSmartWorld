@@ -55,7 +55,15 @@
 
         <!-- Footer-->
         <footer class="py-5 bg-dark">
-            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2021</p></div>
+            <div class="container">
+            <p class="m-0 text-center text-white">Copyright &copy; HELLO SMART WORLD</p>
+            <p class="m-0 text-center text-white">김민지 김민보 한채영</p>
+            <p class="m-0 text-center text-white"><i class="bi bi-clock"></i> MON-FRI AM9:00 - PM15:30 | <i class="bi bi-envelope"></i> java_job@kh.ac.kr</p>
+            <br>
+            <p class="m-0 text-center text-white">사업자번호 | 901-84-271542</p>
+            <p class="m-0 text-center text-white">통신판매업번호 | 2022-서울KH-0012호</p>
+            
+            </div>
         </footer>
         
         <!-- Bootstrap core JS-->
