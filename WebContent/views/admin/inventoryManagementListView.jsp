@@ -28,9 +28,10 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="resources/css/styles.css" rel="stylesheet"/>
-
+		<link href="https://hangeul.pstatic.net/hangeul_static/css/maru-buri.css" rel="stylesheet">
 <style>
 	.outer{
+		font-family: 'MaruBuri';
 		width:100%;
 		height:1000px;
 		background:black;
