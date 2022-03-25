@@ -8,6 +8,14 @@
 <head>
 <meta charset="UTF-8">
 <title>ERROR | HELLO SMART WORLD</title>
+<link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square.css" rel="stylesheet">
+<link href="https://hangeul.pstatic.net/hangeul_static/css/NanumBarunGothicYetHangul.css" rel="stylesheet">
+<link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-gothic.css" rel="stylesheet">
+<style type="text/css">
+        
+        body{
+font-family: 'NanumBarunGothicYetHangul';}
+</style>
 </head>
 <body>
 	<h1 align="center"><%= message %></h1>
