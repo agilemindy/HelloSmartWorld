@@ -78,7 +78,9 @@ String email = m.getEmail();
 						success : 
 							location.href = "<%= request.getContextPath()%>/orderResult.do"
 							,
-						error : function(a,b,c){}
+						error : function(a,b,c){
+							console.log("ajax 통신 실패")
+						}
 					});
 				} else {
 					var msg = '재고부족으로 결제에 실패하였습니다.';

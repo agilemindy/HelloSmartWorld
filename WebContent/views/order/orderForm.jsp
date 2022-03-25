@@ -84,14 +84,14 @@ int userNo = m.getUserNo();
 							<div class="col-sm-6">
 								<label for="firstName" class="form-label">보내시는 분 성함</label> <input
 									type="text" class="form-control" id="orderName" name="orderName" placeholder=""
-									value="<%=m.getUserName()%>" required>
+									value="<%=m.getUserName()%>" required readonly>
 								<div class="invalid-feedback">성함을 입력해주세요</div>
 							</div>
 
 							<div class="col-sm-6">
 								<label for="lastName" class="form-label">보내시는 분 연락처</label> <input
 									type="tel" class="form-control" id="orderPhone" name="orderPhone" placeholder=""
-									value="<%=m.getPhone()%>" required>
+									value="<%=m.getPhone()%>" required readonly>
 								<div class="invalid-feedback">연락처를 입력해주세요</div>
 							</div>
 

@@ -38,14 +38,15 @@ public class orderCancelServlet extends HttpServlet {
 	
 		if(result > 0) {
 
-			request.getSession().setAttribute("msg", "주문이 정상적으로 취소되었습니다. 취소내역은 마이페이지에서 확인가능합니다.");
+			request.getSession().setAttribute("msg", "주문이 정상적으로 취소되었습니다. \n취소내역은 마이페이지에서 확인가능합니다.");
 			
 			response.sendRedirect("orderInfo.do");
 			
 		}else {
-			request.getSession().setAttribute("msg", "주문이 정상적으로 취소되었습니다. 취소내역은 마이페이지에서 확인가능합니다.");
 			
-			response.sendRedirect("orderInfo.do");
+			request.setAttribute("msg", "죄송합니다. 재고가 없어 구매할 수 없습니다.");
+			RequestDispatcher view = request.getRequestDispatcher("/orderInfo.do");
+			view.forward(request, response);
 			
 		}
 	}
