@@ -392,6 +392,9 @@ public class ReviewDao {
 		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("updateAttachment");
 		
+		System.out.println(at.getChangeName());
+		System.out.println(at.getOriginName());
+		
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, at.getChangeName());
@@ -410,15 +413,16 @@ public class ReviewDao {
 		return result;
 	}
 
-	public int insertNewAttachment(Connection conn, Attachment at) {
-		
+
+	public int insertNewAttachment(Connection conn, Attachment at, Review r) {
+		// TODO Auto-generated method stub
 		int result = 0;
 		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("insertNewAttachment");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, at.getReviewNo());
+			pstmt.setInt(1, r.getReviewNo());
 			pstmt.setString(2, at.getOriginName());
 			pstmt.setString(3, at.getChangeName());
 			pstmt.setString(4, at.getFilePath());

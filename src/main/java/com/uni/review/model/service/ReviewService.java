@@ -123,13 +123,9 @@ public class ReviewService {
 		int result2 = 1;
 		
 		
-		if(at != null) {
-			if(at.getReviewNo() != 0) {
-				result2 = new ReviewDao().updateAttachment(conn, at);
-			}else {
-				result2 = new ReviewDao().insertNewAttachment(conn, at);
-			}
-		}
+		
+		result2 = new ReviewDao().updateAttachment(conn, at);
+	
 		
 		if(result1 * result2 > 0) {
 			commit(conn);
@@ -140,6 +136,7 @@ public class ReviewService {
 		close(conn);
 		return result1 * result2;
 	}
+
 
 
 

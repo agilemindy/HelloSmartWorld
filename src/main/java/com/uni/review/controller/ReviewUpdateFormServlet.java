@@ -37,12 +37,13 @@ public class ReviewUpdateFormServlet extends HttpServlet {
 		
 		
 		int rNo = Integer.parseInt(request.getParameter("rNo"));
-		Review r = new ReviewService().selectReview(rNo);		
-		ArrayList<Attachment> at = new ReviewService().selectAttachment(rNo);
+		Review r = new ReviewService().selectReview(rNo);
+		//Attachment at = new ReviewService().selectAttachmentat(rNo);		
+		ArrayList<Attachment> fileList = new ReviewService().selectAttachment(rNo);
 		
 		if(r != null) {
 			request.setAttribute("r", r);
-			request.setAttribute("at", at);
+			request.setAttribute("fileList", fileList);
 			request.getRequestDispatcher("views/review/reviewUpdateForm.jsp").forward(request, response);
 		}else {
 			request.setAttribute("msg", "수정할 게시글을 불러오는 데 실패했습니다.");
