@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.uni.admin.model.service.AdminService;
 import com.uni.admin.model.vo.PageInfo;
 import com.uni.admin.model.vo.Product;
+import com.uni.product.model.service.ProductService;
 
 /**
  * Servlet implementation class ProductListServlet
@@ -45,7 +46,7 @@ public class ProductListServlet extends HttpServlet {
 		int boardLimit; 	// 한페이지에 보여질 게시글 최대갯수
 		
 		//총게시글 갯수
-		proCount = new AdminService().getListCount();
+		proCount = new ProductService().getListCount();
 						
 		//현재페이지
 		currentPage = 1;
@@ -111,7 +112,7 @@ public class ProductListServlet extends HttpServlet {
 		
 		PageInfo pi = new PageInfo(proCount, currentPage, startPage, endPage, maxPage, pageLimit, boardLimit);
 		
-		ArrayList<Product> list = new AdminService().selectList(pi);
+		ArrayList<Product> list = new ProductService().selectList(pi);
 		
 		request.setAttribute("list", list);
 		request.setAttribute("pi", pi);
