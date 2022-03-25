@@ -1,18 +1,32 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"
-	import="java.util.ArrayList, com.uni.order.model.vo.Order"%>
+	import="java.util.ArrayList, com.uni.order.model.vo.Order, com.uni.member.model.vo.*"%>
 <%
 Member m = (Member) request.getSession().getAttribute("loginUser");
 ArrayList<Order> order = (ArrayList<Order>) request.getAttribute("order");
 String msg = (String)request.getSession().getAttribute("msg");
+String contextPath = request.getContextPath();
 
+PageInfo pi = (PageInfo) request.getAttribute("pi");
+
+int listCount = pi.getListCount();
+int currentPage = pi.getCurrentPage();
+int maxPage = pi.getMaxPage();
+int startPage = pi.getStartPage();
+int endPage = pi.getEndPage();
 %>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>주문내역조회 | HELLO SMART WORLD</title>
+<title>취소내역조회 | HELLO SMART WORLD</title>
+<style>
+.pageButton {
+	background: black;
+	color: white;
+}
+</style>
 
 <script
 	src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
@@ -52,15 +66,13 @@ String msg = (String)request.getSession().getAttribute("msg");
 										<th>상품명</th>
 										<th>수량</th>
 										<th>금액</th>
-										<th>결제방법</th>
-										<th>상세보기</th>
-										
+										<th>배송지 정보</th>										
 									</tr>
 									<%
 									if (order.isEmpty()) {
 									%>
 									<tr>
-										<td colspan="7" align="center">취소내역이 없습니다.</td>
+										<td colspan="6" align="center">취소내역이 없습니다.</td>
 									</tr>
 									<%
 									} else {
@@ -73,50 +85,24 @@ String msg = (String)request.getSession().getAttribute("msg");
 										<td><%=o.getpId()%></td>
 										<td><%=o.getAmount()%></td>
 										<td><%=o.getPrice() + "원"%></td>
-										<td><%=o.getPayCode() == 101 ? "무통장입금" : "신용카드"%></td>
 										<td>
-
-											<button type="button" class="btn btn-dark"
-												data-toggle="modal" data-target="#myModal">상세보기</button> <!-- The Modal -->
-											<div class="modal" id="myModal">
-												<div class="modal-dialog">
-													<div class="modal-content">
-
-														<!-- Modal Header -->
-														<div class="modal-header">
-															<h5 class="modal-title">배송상세보기</h5>
-														</div>
-
-														<!-- Modal body -->
-														<div class="modal-body">
-															<h6>
-																수취인 :
-																<%=o.getAddrName()%></h6>
-															<h6>
-																연락처 :
-																<%=o.getAddrPhone()%></h6>
-															<h6>
-																배송지 :
-																<%=o.getAddrAddress()%></h6>
-															<h6>
-																상세주소 :
-																<%=o.getAddrAddressDet()%></h6>
-															<h6>운송장번호 :</h6>
-														</div>
-
-														<!-- Modal footer -->
-														<div class="modal-footer">											
-															<button type="button" class="btn btn-danger"
-																data-dismiss="modal">Close</button>
-														</div>
-
-													</div>
-												</div>
-											</div>
+											<h6>
+												수취인 :
+												<%=o.getAddrName()%></h6>
+											<h6>
+												연락처 :
+												<%=o.getAddrPhone()%></h6>
+											<h6>
+												배송지 :
+												<%=o.getAddrAddress()%></h6>
+											<h6>
+												상세주소 :
+												<%=o.getAddrAddressDet()%></h6>
+											<h6>
+												배송요청사항 :
+												<%=o.getComment()%></h6>
+											<h6>운송장번호 : 운송장이 아직 등록되지 않았습니다.</h6>
 										</td>
-										
-
-
 									</tr>
 									<%
 									}
@@ -131,6 +117,83 @@ String msg = (String)request.getSession().getAttribute("msg");
 					</div>
 				</div>
 			</div>
+		</div>
+		
+		<!-- 페이징바 만들기 -->
+		<div class="pagingArea my-2" align="center">
+			<!-- 맨 처음으로 (<<) -->
+			<button class="pageButton"
+				onclick="location.href='<%=contextPath%>/orderInfo.do?currentPage=1'">
+				<i class="bi bi-chevron-double-left"></i>
+			</button>
+
+			<!-- 이전페이지로(<) -->
+			<%
+			if (currentPage == 1) {
+			%>
+			<button class="pageButton" disabled>
+				<i class="bi bi-chevron-left"></i>
+			</button>
+			<%
+			} else {
+			%>
+			<button class="pageButton"
+				onclick="location.href='<%=contextPath%>/orderInfo.do?currentPage=<%=currentPage - 1%>'">
+				<i class="bi bi-chevron-left"></i>
+			</button>
+			<%
+			}
+			%>
+
+			<!-- 페이지 목록 -->
+			<%
+			for (int p = startPage; p <= endPage; p++) {
+			%>
+
+			<%
+			if (p == currentPage) {
+			%>
+			<button class="pageButton" disabled>
+				<%=p%>
+			</button>
+			<%
+			} else {
+			%>
+			<button class="pageButton"
+				onclick="location.href='<%=contextPath%>/orderInfo.do?currentPage=<%=p%>'">
+				<%=p%>
+			</button>
+			<%
+			}
+			%>
+
+			<%
+			}
+			%>
+
+			<!-- 다음페이지로(>) -->
+			<%
+			if (currentPage == maxPage) {
+			%>
+			<button class="pageButton" disabled>
+				<i class="bi bi-chevron-right"></i>
+			</button>
+			<%
+			} else {
+			%>
+			<button class="pageButton"
+				onclick="location.href='<%=contextPath%>/orderInfo.do?currentPage=<%=currentPage + 1%>'">
+				<i class="bi bi-chevron-right"></i>
+			</button>
+			<%
+			}
+			%>
+
+			<!-- 맨 끝으로 (>>) -->
+			<button class="pageButton"
+				onclick="location.href='<%=contextPath%>/orderInfo.do?currentPage=<%=maxPage%>'">
+				<i class="bi bi-chevron-double-right"></i>
+			</button>
 		</div>
 	</section>
 	

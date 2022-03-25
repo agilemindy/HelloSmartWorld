@@ -49,7 +49,7 @@ public class orderPayServlet extends HttpServlet {
 		request.setAttribute(price, price);
 		request.setAttribute(userNo, userNo);
 	
-		request.getRequestDispatcher("views/order/ordertest.jsp").forward(request, response);
+		request.getRequestDispatcher("views/order/orderPay.jsp").forward(request, response);
 	}
 
 	/**
