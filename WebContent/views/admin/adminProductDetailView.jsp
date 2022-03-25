@@ -121,8 +121,8 @@
 			<br>			
 			
 			<div class="btns" align="center">
-				<button type="button" onclick="updateForm();" class="button" style="margin-right: 30px;">수정하기</button>
-				<button type="button" onclick="deleteProduct();" class="button">삭제하기</button>
+				<button type="button" onclick="updateForm();" class="button">수정하기</button>
+				<!--  <button type="button" onclick="deleteProduct();" class="button">삭제하기</button> -->
 			</div>
 		</form>
 		
