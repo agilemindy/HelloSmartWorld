@@ -15,6 +15,7 @@ import java.util.Properties;
 import com.uni.member.model.vo.Member;
 import com.uni.order.model.vo.Order;
 
+
 public class MemberDao {
 	private Properties prop = new Properties();
 
@@ -231,7 +232,7 @@ public class MemberDao {
 		ArrayList<Order> order = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		
+		System.out.println("마이오더인포 다오 " + userNo);
 		String sql = prop.getProperty("myOrderInfo");
 		
 		try {
@@ -257,7 +258,6 @@ public class MemberDao {
 				o.setPayCode(rset.getInt("PAY_CODE"));
 				o.setOrderStatus(rset.getString("ORDER_STATUS"));
 				o.setPrice(rset.getInt("PRICE"));
-				
 				order.add(o);
 			}
 						
