@@ -26,8 +26,11 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="resources/css/styles.css" rel="stylesheet"/>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://hangeul.pstatic.net/hangeul_static/css/maru-buri.css" rel="stylesheet">
 <style>
 	.outer{
+		font-family: 'MaruBuri';
 		width:100%;
 		height:auto;
 		background:black;
@@ -47,7 +50,7 @@
 	}
 	
 	tbody>tr>td{
-		font-size:13px;
+		font-size: 13px;
 	}
 	
 	.listArea>tbody>tr:hover{
