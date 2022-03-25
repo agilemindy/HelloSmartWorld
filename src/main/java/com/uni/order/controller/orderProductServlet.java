@@ -51,6 +51,8 @@ public class orderProductServlet extends HttpServlet {
 		
 		int result = new OrderService().orderProduct(order);
 		order.setOrderNo(new OrderService().orderNumCheck(order)); //오더번호 가져오기
+		System.out.println(order.getOrderNo());
+		
 		request.getSession().setAttribute("order", order);
 		
 		// 주문완료시 재고테이블에 출고로 삽입

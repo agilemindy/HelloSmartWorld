@@ -28,7 +28,6 @@ String email = m.getEmail();
 </head>
 <body>
 	 
-	 
 	 <script>
 
 	 
@@ -83,9 +82,10 @@ String email = m.getEmail();
 						}
 					});
 				} else {
-					var msg = '재고부족으로 결제에 실패하였습니다.';
-					msg += '에러내용 : ' + rsp.error_msg;
+					var msg = '결제에 실패하였습니다. \n';
+					msg += rsp.error_msg;
 					alert(msg);
+					location.href = "<%= request.getContextPath()%>/productList.do"
 				}
 			
 			});
@@ -99,6 +99,6 @@ String email = m.getEmail();
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 	<!-- Core theme JS-->
 	<script src="js/scripts.js"></script>
-	<%@ include file="../../views/common/footer.jsp"%>
+	
 </body>
 </html>

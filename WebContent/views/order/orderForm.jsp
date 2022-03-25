@@ -50,7 +50,7 @@ int userNo = m.getUserNo();
 							<div>
 								<h6 class="my-0">Product name</h6>
 								<small class="text-muted"><%=pId%></small>
-							</div> <span class="text-muted"><%=price%>원</span>
+						</div> 
 						</li>
 						<!-- <li class="list-group-item d-flex justify-content-between lh-sm">
 							<div>
