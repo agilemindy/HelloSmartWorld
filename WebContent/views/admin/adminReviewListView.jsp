@@ -18,7 +18,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>리뷰관리</title>
+<title>리뷰관리 | HELLO SMART WORLD</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 		<!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="resources/assets/favicon1.ico"/>

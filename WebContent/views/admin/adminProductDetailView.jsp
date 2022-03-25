@@ -12,7 +12,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>제품관리 | HELLO SMART WORLD</title>
 		<!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="resources/assets/favicon1.ico"/>
         <!-- Bootstrap icons-->
@@ -25,12 +25,11 @@
 	.outer{
 		font-family: 'MaruBuri';
 		width:100%;
-		height:800px;
+		height:1000px;
 		background:black;
 		color:white;
 		margin:auto;
-		margin-top:50px;
-		margin-bottom: 50px;
+		
 	}
 	
 	#insertForm>table{
