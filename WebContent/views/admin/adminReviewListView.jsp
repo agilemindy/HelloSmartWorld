@@ -35,8 +35,7 @@
 		background:black;
 		color:white;
 		margin:auto;
-		margin-top:50px;
-		margin-bottom: 50px;
+		
 	}
 	.listArea{
 		border:1px solid white;
@@ -150,13 +149,13 @@
 		<!-- 페이징바 만들기 -->
       <div class="pagingArea my-2" align="center">
          <!-- 맨 처음으로 (<<) -->
-         <button class="pageButton" onclick="location.href='<%=contextPath%>/adminProductListView.do?currentPage=1'"><i class="bi bi-chevron-double-left"></i> </button>
+         <button class="pageButton" onclick="location.href='<%=contextPath%>/adminReviewList.do?currentPage=1'"><i class="bi bi-chevron-double-left"></i> </button>
       
          <!-- 이전페이지로(<) -->
          <%if(currentPage == 1){ %>
          <button class="pageButton" disabled> &lt; </button>
          <%}else{ %>
-         <button class="pageButton" onclick="location.href='<%= contextPath %>/adminProductListView.do?currentPage=<%= currentPage-1 %>'"> <i class="bi bi-chevron-left"></i> </button>
+         <button class="pageButton" onclick="location.href='<%= contextPath %>/adminReviewList.do?currentPage=<%= currentPage-1 %>'"> <i class="bi bi-chevron-left"></i> </button>
          <%} %>
          
          <!-- 페이지 목록 -->
@@ -165,7 +164,7 @@
             <%if(p == currentPage){ %>
             <button class="pageButton" disabled> <%= p %> </button>
             <%}else{ %>
-            <button class="pageButton" onclick="location.href='<%=contextPath %>/adminProductListView.do?currentPage=<%= p %>'"> <%= p %> </button>
+            <button class="pageButton" onclick="location.href='<%=contextPath %>/adminReviewList.do?currentPage=<%= p %>'"> <%= p %> </button>
             <%} %>
             
          <%} %>
@@ -174,16 +173,16 @@
          <%if(currentPage == maxPage){ %>
          <button class="pageButton" disabled> &gt; </button>
          <%}else { %>
-         <button class="pageButton" onclick="location.href='<%= contextPath %>/adminProductListView.do?currentPage=<%= currentPage+1 %>'"> <i class="bi bi-chevron-right"></i> </button>
+         <button class="pageButton" onclick="location.href='<%= contextPath %>/adminReviewList.do?currentPage=<%= currentPage+1 %>'"> <i class="bi bi-chevron-right"></i> </button>
          <%} %>
       
          <!-- 맨 끝으로 (>>) -->
-         <button class="pageButton" onclick="location.href='<%=contextPath%>/adminProductListView.do?currentPage=<%=maxPage%>'"> <i class="bi bi-chevron-double-right"></i> </button>
+         <button class="pageButton" onclick="location.href='<%=contextPath%>/adminReviewList.do?currentPage=<%=maxPage%>'"> <i class="bi bi-chevron-double-right"></i> </button>
 		</div> 
 		<br><br>
 		
 		
-	</div>adminProductListView.do
+	</div>
 	
 	<script>		
 		$(".listArea>tbody>tr>td>button").click(function(){

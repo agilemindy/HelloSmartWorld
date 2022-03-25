@@ -30,6 +30,8 @@
         <link href="resources/css/styles.css" rel="stylesheet"/>
         <link href="https://hangeul.pstatic.net/hangeul_static/css/maru-buri.css" rel="stylesheet">
 <style>
+	
+	
 	.outer{
 		font-family: 'MaruBuri';
 		width:100%;
@@ -37,8 +39,7 @@
 		background:black;
 		color:white;
 		margin:auto;
-		margin-top:50px;
-		margin-bottom: 50px;
+		
 	}
 	.listArea{
 		border:1px solid white;
@@ -177,8 +178,10 @@
 		})
 	})
 			
-	</script>
+	</script>	
 	
-	<%@ include file = "../../views/common/footer.jsp" %>
 </body>
+<foot>
+<%@ include file = "../../views/common/footer.jsp" %>
+</foot>
 </html>
