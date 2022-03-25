@@ -37,8 +37,7 @@
 		background:black;
 		color:white;
 		margin:auto;
-		margin-top:50px;
-		margin-bottom: 50px;
+		
 	}
 	.listArea{
 		border:1px solid white;

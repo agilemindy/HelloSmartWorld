@@ -34,9 +34,8 @@
 		height:1000px;
 		background:black;
 		color:white;
-		margin:auto;
-		margin-top:50px;
-		margin-bottom: 50px;
+		margin:auto;		
+		
 	}
 	.listArea{
 		border:1px solid white;

@@ -20,12 +20,11 @@
 	.outer{
 		font-family: 'MaruBuri';
 		width:100%;
-		height:800px;
+		height:1000px;
 		background:black;
 		color:white;
 		margin:auto;
-		margin-top:50px;
-		margin-bottom: 50px;
+		padding-bottom: 20px;
 	}
 	
 	#insertForm>table{
