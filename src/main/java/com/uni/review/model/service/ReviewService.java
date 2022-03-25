@@ -116,16 +116,18 @@ public class ReviewService {
 
 	public int updateReview(Review r, Attachment at) {
 		
-	Connection conn = getConnection();
+		Connection conn = getConnection();
 		
 		int result1 = new ReviewDao().updateReview(conn, r);
 		
 		int result2 = 1;
+		
+		
 		if(at != null) {
-			if(at.getFileNo() != 0) {
+			if(at.getReviewNo() != 0) {
 				result2 = new ReviewDao().updateAttachment(conn, at);
 			}else {
-				result2 = new ReviewDao().insertNewAttachment(conn, at , r);
+				result2 = new ReviewDao().insertNewAttachment(conn, at);
 			}
 		}
 		
