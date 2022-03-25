@@ -74,16 +74,7 @@ public class OrderDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, order.getUserNo());
-			pstmt.setString(2, order.getpId());
-			pstmt.setInt(3, order.getAmount());
-			pstmt.setString(4, order.getAddrName());
-			pstmt.setString(5, order.getAddrPhone());
-			pstmt.setString(6, order.getAddrAddress());
-			pstmt.setString(7, order.getAddrAddressDet());
-			pstmt.setString(8, order.getComment());
-			pstmt.setInt(9, order.getPayCode());
-			
+						
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {

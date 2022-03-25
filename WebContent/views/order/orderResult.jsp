@@ -33,7 +33,7 @@
 	<div class="container col-md-6">
 		<main>
 		<div class="py-5 text-center">
-       <h2>주문번호 <%= order.getOrderNo() %></h2> 
+       <h2> 주문번호 <%= order.getOrderNo() %> </h2> 
       <p class="lead"><%= order.getpId() %> 제품 주문이 완료되었습니다. <br> 해당 주문내역은 마이페이지에서 확인 가능합니다.</p>
     </div>
 			<div class="row g-5">
