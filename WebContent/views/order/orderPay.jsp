@@ -68,9 +68,15 @@ String email = m.getEmail();
 						type : "post",
 						data : purchaseVo,
 						dataType : "text",
-						success : 
-							location.href = "<%= request.getContextPath()%>/orderResult.do"
-							,
+						success : function(result){
+							
+							if(result == "success"){
+								location.href = "<%= request.getContextPath()%>/orderResult.do"
+							}else{
+								alert("결제에 실패하였습니다.")
+								location.href = "<%= request.getContextPath()%>/productList.do"
+							}	
+						},
 						error : function(a,b,c){
 							console.log("ajax 통신 실패")
 						}
