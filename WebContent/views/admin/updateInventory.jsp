@@ -4,6 +4,7 @@
 	String contextPath = request.getContextPath();
 
 	Pro_Detail pd = (Pro_Detail)request.getAttribute("pd");
+	String msg = (String)session.getAttribute("msg");
 
 %>
 <!DOCTYPE html>
@@ -54,6 +55,18 @@
 	
 	
 </style>
+<script>
+		var msg = "<%= msg %>";
+		console.log(msg);
+		
+		$(function(){
+			if(msg != "null"){
+				alert(msg);
+				<% session.removeAttribute("msg"); %>
+			}
+		})
+	
+</script>
 </head>
 <body>
 
