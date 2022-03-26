@@ -28,7 +28,7 @@ public class AdminService {
 		return ProCount;
 	}
 
-	public ArrayList<Product> selectList(PageInfo pi) { // 제품관리에 필요한 제품들 나열
+	public ArrayList<Product> selectList(PageInfo pi) { // 제품관리에서 제품나열을 위해 제품 가져오기
 		Connection conn = getConnection();
 		ArrayList<Product> list = new AdminDao().selectList(conn, pi);		
 		
@@ -36,7 +36,7 @@ public class AdminService {
 		return list;
 	}
 	
-	public ArrayList<Product> selectList() {
+	public ArrayList<Product> selectList() { // 재고관리에서 사용할 제품정보 가져오기
 		Connection conn = getConnection();
 		ArrayList<Product> list = new AdminDao().selectList(conn);		
 		
@@ -44,7 +44,7 @@ public class AdminService {
 		return list;
 	}
 
-	public int insertProduct(Product p, ArrayList<Pro_Attachment> fileList) {
+	public int insertProduct(Product p, ArrayList<Pro_Attachment> fileList) { // 제품등록 사진첨부하기
 		Connection conn = getConnection();		
 		
 		int result1 = new AdminDao().insertProductList(conn, p); // 글 등록
@@ -86,16 +86,16 @@ public class AdminService {
 		return list;
 	}
 
-	public int updateProduct(Product p, Pro_Attachment at) {
+	public int updateProduct(Product p, Pro_Attachment at) { // 제품수정
 		Connection conn = getConnection();
 		
-		int result1 = new AdminDao().updateProduct(conn, p);
+		int result1 = new AdminDao().updateProduct(conn, p); // 제품 글만 수정
 		
 		int result2 = 1;
 		if(at != null) {
-			if(at.getP_id() != null) {
+			if(at.getP_id() != null) {// 기존 사진이 있을 경우, 사진첨부
 				result2 = new AdminDao().updatePro_Attachment(conn, at);
-			}else {
+			}else { // 기존 사진이 없을 경우, 사진 첨부
 				result2 = new AdminDao().insertNewPro_Attachment(conn, at , p);
 			}
 		}
@@ -136,7 +136,7 @@ public class AdminService {
 		return InvenCount;
 	}
 
-	public ArrayList<Pro_Detail> selectInvenList(PageInfo pi) {
+	public ArrayList<Pro_Detail> selectInvenList(PageInfo pi) { // 재고관리 - 입출고 내역 정보
 		Connection conn = getConnection();
 		ArrayList<Pro_Detail> list = new AdminDao().selectInvenList(conn, pi);		
 		
@@ -144,7 +144,7 @@ public class AdminService {
 		return list;
 	}
 
-	public int insertInventory(Pro_Detail pd) {
+	public int insertInventory(Pro_Detail pd) { // 입출고 등록
 		Connection conn = getConnection();		
 		
 		int result = new AdminDao().insertInventoryList(conn, pd);		
@@ -159,7 +159,7 @@ public class AdminService {
 		return result;
 	}
 
-	public ArrayList<Member> selectMemberList(PageInfo pi) {
+	public ArrayList<Member> selectMemberList(PageInfo pi) { // 회원정보 불러오기
 		Connection conn = getConnection();
 		
 		ArrayList<Member> list = new AdminDao().selectMemberList(conn, pi);		
@@ -177,7 +177,7 @@ public class AdminService {
 		return ProCount;
 	}
 
-	public int deleteMember(int userNo) {
+	public int deleteMember(int userNo) { // 회원삭제
 		Connection conn = getConnection();
 		
 		int result = new AdminDao().deleteMember(conn, userNo); 		
@@ -192,7 +192,7 @@ public class AdminService {
 		return result;
 	}
 
-	public int getSalesListCount() {
+	public int getSalesListCount() { // 결제건수 구하기
 		Connection conn = getConnection();
 		
 		int ProCount = new AdminDao().getSalesCount(conn);
@@ -201,7 +201,7 @@ public class AdminService {
 		return ProCount;
 	}
 
-	public ArrayList<Order> selectSalesList(PageInfo pi) {
+	public ArrayList<Order> selectSalesList(PageInfo pi) { // 결제내역 구하기
 		Connection conn = getConnection();
 		
 		ArrayList<Order> list = new AdminDao().selectSalesList(conn, pi);		
@@ -210,7 +210,7 @@ public class AdminService {
 		return list;
 	}
 
-	public ArrayList<Order> selectSalesListSortAsc(PageInfo pi) {
+	public ArrayList<Order> selectSalesListSortAsc(PageInfo pi) { // 매출관리 결제내역 오래된순으로 구하기
 		Connection conn = getConnection();
 		
 		ArrayList<Order> list = new AdminDao().selectSalesListSortAsc(conn, pi);		
@@ -228,7 +228,7 @@ public class AdminService {
 		return ProCount;
 	}
 
-	public ArrayList<Review> selectReviewList(PageInfo pi) {
+	public ArrayList<Review> selectReviewList(PageInfo pi) { // 등록된 리뷰 불러오기
 		Connection conn = getConnection();
 		
 		ArrayList<Review> list = new AdminDao().selectReviewList(conn, pi);		
@@ -237,7 +237,7 @@ public class AdminService {
 		return list;
 	}
 
-	public int deleteReview(int rNo) {
+	public int deleteReview(int rNo) { // 리뷰삭제
 		Connection conn = getConnection();
 		
 		int result = new AdminDao().deleteReview(conn, rNo); 		
@@ -252,7 +252,7 @@ public class AdminService {
 		return result;
 	}
 
-	public Pro_Detail selectInventory(String pNo) {
+	public Pro_Detail selectInventory(String pNo) { // 재고상세내역
 		Connection conn = getConnection();
 		
 		Pro_Detail pd = null;
@@ -271,7 +271,7 @@ public class AdminService {
 		return pd;
 	}
 
-	public int updateInventory(Pro_Detail pd) {
+	public int updateInventory(Pro_Detail pd) { // 재고관리 수량 수정
 		Connection conn = getConnection();
 		
 		int result = new AdminDao().updateInventory(conn, pd);
@@ -286,7 +286,7 @@ public class AdminService {
 		return result;
 	}
 
-	public int deleteInventory(int pNo) {
+	public int deleteInventory(int pNo) { // 재고삭제
 		Connection conn = getConnection();
 		
 		int result = new AdminDao().deleteInventory(conn, pNo); 		

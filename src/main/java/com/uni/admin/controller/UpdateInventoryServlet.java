@@ -37,7 +37,7 @@ public class UpdateInventoryServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");		
 		
-		int pNo = Integer.parseInt(request.getParameter("pNo"));
+		int pNo = Integer.parseInt(request.getParameter("pNo")); // 재고관리 번호
 				
 		
 		Pro_Detail pd = new Pro_Detail();

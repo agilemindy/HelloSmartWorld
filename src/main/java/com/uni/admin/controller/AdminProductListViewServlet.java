@@ -111,7 +111,7 @@ public class AdminProductListViewServlet extends HttpServlet {
 				
 				PageInfo pi = new PageInfo(proCount, currentPage, startPage, endPage, maxPage, pageLimit, boardLimit);
 				
-				ArrayList<Product> list = new AdminService().selectList(pi);
+				ArrayList<Product> list = new AdminService().selectList(pi); // 제품관리에 출력할 제품정보들 가져오기
 				
 				request.setAttribute("list", list);
 				request.setAttribute("pi", pi);

@@ -67,13 +67,17 @@
 		<form id="updateForm" action="<%= contextPath %>/updateProduct.do" method="post" enctype="multipart/form-data">
 			<table align="center">
                 <tr>
+                	<!-- 제품이미지 -->
 					<th>제품대표<br>이미지</th>
 					<td colspan="3">
 						<% if(fileList.size() != 0){ %>
+							<!-- 제품사진의 원래 이름 -->
 							<%= fileList.get(0).getOrigin_name() %>
 							<input type='hidden' name='originFile' value='<%=fileList.get(0).getChange_name()%>'>
 							<input type='hidden' name='originFileId' value='<%=fileList.get(0).getP_id()%>'>
+							<!-- 제품사진 불러오기 (changename으로) -->
 							<img id="titleImg" width="150" height="120" src="<%= contextPath %>/resources/product_upfiles/<%= fileList.get(0).getChange_name() %>">
+	                        <!-- 파일선택기 -->
 	                        <div id="fileArea">
 	                            <input type="file" name="file1" id="file1" onchange="loadImg(this, 1);" >	                            	
 	                        </div>
@@ -114,13 +118,13 @@
                 <tr>
 					<th>판매상태</th>
 					<td>					
-					<% if(p.getP_status().equals("Y")){ %>			
+					<% if(p.getP_status().equals("Y")){ %><!-- 판매중일경우 -->		
                         <select name="P_STATUS">
                             <option value="Y" selected>판매중</option>
                             <option value="N">판매중지</option>                            
                         </select>   
                     <% } else {%>
-                    	<select name="P_STATUS">
+                    	<select name="P_STATUS"><!-- 판매중지일경우 -->
                             <option value="Y">판매중</option>
                             <option value="N" selected>판매중지</option>                            
                         </select>
@@ -138,7 +142,9 @@
 			<br>
 			
 			<div class="btns" align="center">
+				<!-- 취소하기 : 뒤로 한페이지 -->
 				<button type="reset" class="button" style="margin-right: 30px" OnClick="javascript:history.back(-1)">취소하기</button>
+				<!-- 수정하기 : form 전송 -->
 				<button type="submit" class="button">수정하기</button>
 			</div>
 		</form>

@@ -28,9 +28,9 @@ public class DeleteInventoryServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int pNo = Integer.parseInt(request.getParameter("pNo"));
+		int pNo = Integer.parseInt(request.getParameter("pNo")); // 재고관리의 재고번호
 		
-		int result = new AdminService().deleteInventory(pNo);
+		int result = new AdminService().deleteInventory(pNo); // 삭제하기
 		
 		
 		if(result > 0) {

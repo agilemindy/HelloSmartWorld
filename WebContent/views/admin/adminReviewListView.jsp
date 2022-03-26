@@ -98,6 +98,7 @@
 		<br>
 				
 		<div align="right" style="margin-right: 180px; margin-bottom: 20px" >
+			<!-- 리뷰 개수 -->
 			<h4> 총 <%= proCount %> 건 </h4>
 		</div>
 		
@@ -119,12 +120,12 @@
 				</tr>
 			<thead>
 			<tbody>
-				<%if(list.isEmpty()){ %>
+				<%if(list.isEmpty()){ %><!-- 리뷰가 없을 경우 -->
 				<tr>
 					<td colspan="6">조회된 리스트가 없습니다.</td>
 				</tr>
-				<%}else{ %>
-					<% for(Review r : list){ %>
+				<%}else{ %><!-- 리뷰가 있을 경우 -->
+					<% for(Review r : list){ %><!-- for-each문 사용 -->
 					<tr>						
 						<td><%= r.getReviewNo() %></td>
 						<td><%= r.getReviewWriter() %></td>
@@ -136,6 +137,7 @@
 						<td><%= r.getLike() %></td>						
 						<td><%= r.getCount() %></td>	
 						<td>
+						<!-- 리뷰삭제 -->
 						<button id="deleteButton" onclick="deleteMember();"><i class="bi bi-trash"></i></button>
 						</td>					
 					</tr>
@@ -185,8 +187,8 @@
 	</div>
 	
 	<script>		
-		$(".listArea>tbody>tr>td>button").click(function(){
-			var rNo = $(this).parentsUntil().eq(1).children().eq(0).text();					
+		$(".listArea>tbody>tr>td>button").click(function(){ // 각 행의 삭제버튼 선택
+			var rNo = $(this).parentsUntil().eq(1).children().eq(0).text();	// 선택한 행의 리뷰번호	
 			location.href="<%=contextPath%>/deleteReview.do?rNo="+rNo;		
 		});		
 			

@@ -43,7 +43,7 @@ public class SalesListSortAscServlet extends HttpServlet {
 				int pageLimit;		// 한페이지 하단에 보여질 페이지 최대갯수
 				int boardLimit; 	// 한페이지에 보여질 게시글 최대갯수
 				
-				//총게시글 갯수
+				//총 결제 갯수
 				proCount = new AdminService().getSalesListCount();
 								
 				//현재페이지

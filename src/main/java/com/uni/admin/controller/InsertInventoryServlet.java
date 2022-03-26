@@ -37,14 +37,7 @@ public class InsertInventoryServlet extends HttpServlet {
 		String p_id = request.getParameter("P_ID");
 		String status = request.getParameter("STATUS");
 		int amount = Integer.parseInt(request.getParameter("AMOUNT"));
-		
-
-		
-		
-		System.out.println("servlet p_id : " + p_id);
-		System.out.println("servlet status : " + status);	
-		System.out.println("servlet amount : " + amount);
-		
+				
 		
 		pd.setP_id(p_id);
 		pd.setStatus(status);

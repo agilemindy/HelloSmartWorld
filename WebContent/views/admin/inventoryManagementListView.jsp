@@ -101,9 +101,11 @@
 		<br>
 		
 		<div align="right" style="margin-right: 180px; margin-bottom: 20px" >
+			<!-- 재고등록하기 -->
 			<button id="enrollButton" onclick="location.href = '/HelloSmartWorld/inventoryEnrollForm.do'">재고등록</button>
 		</div>
 		<div align="right" style="margin-right: 180px; margin-bottom: 20px" >
+			<!-- 현재 입출고 건수 -->
 			<h4> 총 <%= pi.getproCount() %> 건 </h4>
 		</div>
 		
@@ -123,16 +125,16 @@
 					<th width="150">수량</th>               
 					<th width="150">재고등록일</th>               
                     <th width="150">현재수량</th>
-                    <th width="150">관리</th>
+                    <th width="200">관리</th>
   				</tr>
 			<thead>
 			<tbody>
-				<%if(list.isEmpty()){ %>
+				<%if(list.isEmpty()){ %><!-- 입출고 건수가 없을 경우 -->
 				<tr>
 					<td colspan="6">조회된 리스트가 없습니다.</td>
 				</tr>
-				<%}else{ %>
-					<% for(Pro_Detail pd : list){ %>
+				<%}else{ %><!-- 입출고 건수가 있을 경우 -->
+					<% for(Pro_Detail pd : list){ %><!-- for-each문 사용 -->
 					<tr>		
 						<td><%= pd.getP_no() %></td>				
 						<td><%= pd.getP_id() %></td>
@@ -146,7 +148,9 @@
 						<td><%= pd.getDate()%></td>
 						<td><%= pd.getP_stock()%></td>
 						<td>						
+							<!-- 수정하기 -->
 							<button id="update" type="button" class="button" style="margin-right: 5px;">수정</button>
+							<!-- 삭제하기 -->
 							<button id="delete" type="button" class="button">삭제</button>
 						</td>							
 					</tr>
@@ -196,13 +200,13 @@
 	</div>
 	
 	<script>		
-		$(".listArea>tbody>tr>td>#update").click(function(){
-			var pNo = $(this).parentsUntil().eq(1).children().eq(0).text();					
+		$(".listArea>tbody>tr>td>#update").click(function(){ // 각 행에서 수정버튼
+			var pNo = $(this).parentsUntil().eq(1).children().eq(0).text();	// 수정버튼 누른 행의 재고번호				
 			location.href="<%=contextPath%>/updateInvenForm.do?pNo="+pNo;		
 		});	
 		
-		$(".listArea>tbody>tr>td>#delete").click(function(){
-			var pNo = $(this).parentsUntil().eq(1).children().eq(0).text();					
+		$(".listArea>tbody>tr>td>#delete").click(function(){ // 각 행에서 삭제버튼
+			var pNo = $(this).parentsUntil().eq(1).children().eq(0).text();	// 삭제버튼 누른 행의 재고번호				
 			location.href="<%=contextPath%>/deleteInven.do?pNo="+pNo;		
 		});	
 			

@@ -94,6 +94,7 @@
 		<br>
 		
 		<div align="right" style="margin-right: 180px; margin-bottom: 20px" >
+			<!-- 제품등록 -->
 			<button id="enrollButton" onclick="location.href = '/HelloSmartWorld/productEnrollForm.do'"><i class="bi bi-phone"></i>제품등록</button>
 		</div>
 		<div align="right" style="margin-right: 180px; margin-bottom: 20px" >

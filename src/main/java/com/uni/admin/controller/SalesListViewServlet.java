@@ -44,7 +44,7 @@ public class SalesListViewServlet extends HttpServlet {
 		int pageLimit;		// 한페이지 하단에 보여질 페이지 최대갯수
 		int boardLimit; 	// 한페이지에 보여질 게시글 최대갯수
 		
-		//총게시글 갯수
+		//총 매출 갯수
 		proCount = new AdminService().getSalesListCount();
 						
 		//현재페이지
@@ -111,7 +111,7 @@ public class SalesListViewServlet extends HttpServlet {
 		
 		PageInfo pi = new PageInfo(proCount, currentPage, startPage, endPage, maxPage, pageLimit, boardLimit);
 		
-		ArrayList<Order> list = new AdminService().selectSalesList(pi);
+		ArrayList<Order> list = new AdminService().selectSalesList(pi); // 결제정보 가져오기
 		
 		request.setAttribute("list", list);
 		request.setAttribute("pi", pi);

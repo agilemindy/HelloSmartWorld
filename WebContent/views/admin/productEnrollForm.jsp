@@ -63,7 +63,7 @@
 		
 		<form id="insertForm" action="<%= contextPath %>/insertProduct.do" method="post" enctype="multipart/form-data">
 			<table align="center">
-                <tr>
+                <tr><!-- 제품이미지첨부 -->
 					<th>제품대표<br>이미지</th>
 					<td colspan="3">
 						<img id="titleImg" width="150" height="120">
@@ -72,29 +72,29 @@
                         </div>
 					</td>
 				</tr>
-				<tr>
+				<tr><!-- 제품아이디 -->
 					<th width="100">제품아이디</th>
 					<td width="500">
 						<input type="text" name="P_ID" required>
 					</td>
 				</tr>
-				<tr>
+				<tr><!-- 제품명 -->
 					<th>제품명</th>
 					<td><input type="text" name="P_NAME" required></td>
 				</tr>
-                <tr>
+                <tr><!-- 제조사 -->
 					<th>제조사</th>
 					<td><input type="text" name="BRAND" required></td>
 				</tr>
-                <tr>
+                <tr><!-- 색상 -->
 					<th>색상</th>
 					<td><input type="text" name="COLOR" required></td>
 				</tr>
-                <tr>
+                <tr><!-- 용량 -->
 					<th>용량</th>
 					<td><input type="text" name="CAPACITY" required></td>
 				</tr>
-                <tr>
+                <tr><!-- 가격 -->
 					<th>가격</th>
 					<td><input type="text" name="PRICE" required></td>
 				</tr>
@@ -107,7 +107,9 @@
 			<br>
 			
 			<div class="btns" align="center">
+				<!-- 취소하기 : 한페이지 뒤로 -->
 				<button type="reset" class="button" style="margin-right: 30px;" OnClick="javascript:history.back(-1)">취소하기</button>
+				<!-- 등록하기 : form 전송 -->
 				<button type="submit" class="button">등록하기</button>
 			</div>
 		</form>
@@ -117,7 +119,7 @@
 </body>
 </html>
 <script>
-	$(function(){		
+	$(function(){		// 이미지첨부칸을 누르면 파일선택 눌러지도록
 		
 		$("#titleImg").click(function(){
 			$("#file1").click();

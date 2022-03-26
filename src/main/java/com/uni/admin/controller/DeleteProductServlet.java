@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.uni.admin.model.service.AdminService;
 import com.uni.admin.model.vo.Pro_Attachment;
 
+// 삭제기능 없앰
+
 /**
  * Servlet implementation class DeleteProductServlet
  */
@@ -37,7 +39,7 @@ public class DeleteProductServlet extends HttpServlet {
 		
 				
 		if(result > 0) {
-			request.getSession().setAttribute("msg", "제품삭제완료!"); // 삭제성공 메세지가 안뜸.....
+			request.getSession().setAttribute("msg", "제품삭제완료!"); 
 			response.sendRedirect("adminProductListView.do");			
 		}else {
 			request.setAttribute("msg", "제품삭제실패!");

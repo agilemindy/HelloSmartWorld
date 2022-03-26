@@ -79,10 +79,13 @@
 		<br>
 		
 		<div align="right" style="margin-right: 180px; margin-bottom: 20px" >
+			<!-- 최신순정렬 버튼 -->
 			<a class ="sort" href="<%= contextPath %>/SalesListView.do";>최신순</a>
+			<!-- 오래된순정렬 버튼 -->
 			<a class ="sort" href="<%= contextPath %>/sortAsc.do";>오래된순</a>
 		</div>
 		<div align="right" style="margin-right: 180px; margin-bottom: 20px" >
+			<!-- 총 결제 건수 -->
 			<h4> 총 <%= proCount %> 건 </h4>
 		</div>
 		
@@ -101,12 +104,12 @@
 				</tr>
 			<thead>
 			<tbody id="tbody">
-				<%if(list.isEmpty()){ %>
+				<%if(list.isEmpty()){ %><!-- 결제내역이 없을 경우 -->
 				<tr>
 					<td colspan="6">조회된 리스트가 없습니다.</td>
 				</tr>
-				<%}else{ %>
-					<% for(Order o : list){ %>
+				<%}else{ %><!-- 결제내역이 있을 경우 -->
+					<% for(Order o : list){ %><!-- for-each문 사용 -->
 					<tr>						
 						<td><%= o.getOrderNo() %></td>
 						<td><%= o.getUserNo() %></td>
@@ -161,22 +164,7 @@
 	</div>
 	
 	<script>		
-	$(function(){
-		$("#date").change(function(){
-			
-			$.ajax({
-				url : "sortDate.do",
-				data : "",
-				type : "get",
-				success : function(data){
-					$('#tbody').html(data);
-				},
-				error : function(){
-					console.log("ajax통신실패")
-				}
-			})
-		})
-	})
+	
 			
 	</script>	
 	

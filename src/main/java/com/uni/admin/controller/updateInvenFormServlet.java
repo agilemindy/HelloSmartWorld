@@ -32,9 +32,9 @@ public class updateInvenFormServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String pNo = request.getParameter("pNo");
+		String pNo = request.getParameter("pNo"); // 재고관리에서 재고번호
 		
-		Pro_Detail pd = new AdminService().selectInventory(pNo);		
+		Pro_Detail pd = new AdminService().selectInventory(pNo); // 선택한 재고번호의 재고 상세내역		
 		
 		String view = "";
 		if(pd != null) {

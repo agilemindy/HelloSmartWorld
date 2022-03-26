@@ -29,7 +29,7 @@ public class DeleteMemberServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int userNo = Integer.parseInt(request.getParameter("userNo"));
+		int userNo = Integer.parseInt(request.getParameter("userNo")); // 회원번호
 		
 		int result = new AdminService().deleteMember(userNo);
 		

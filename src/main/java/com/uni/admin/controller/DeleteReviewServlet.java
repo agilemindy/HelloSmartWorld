@@ -28,9 +28,9 @@ public class DeleteReviewServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int rNo = Integer.parseInt(request.getParameter("rNo"));
+		int rNo = Integer.parseInt(request.getParameter("rNo")); // 리뷰번호
 		
-		int result = new AdminService().deleteReview(rNo);
+		int result = new AdminService().deleteReview(rNo); // 리뷰삭제
 		
 		
 		if(result > 0) {

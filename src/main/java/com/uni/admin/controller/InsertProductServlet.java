@@ -43,14 +43,14 @@ public class InsertProductServlet extends HttpServlet {
 			
 			String resources = request.getSession().getServletContext().getRealPath("/resources");
 			
-			String savePath = resources + "\\product_upfiles\\";
+			String savePath = resources + "\\product_upfiles\\"; 
 			
 			System.out.println("savePath" + savePath);
 			
 			//MultipartRequest 객체 생성			
 			MultipartRequest multiRequest = new MultipartRequest(request, savePath, maxSize, "UTF-8", new MyFileRenamePolicy());
 			
-			Product p = new Product();
+			Product p = new Product(); // 제품객체에 값 불러와 담기
 			
 			String p_id = multiRequest.getParameter("P_ID");
 			String p_name = multiRequest.getParameter("P_NAME");
@@ -59,7 +59,7 @@ public class InsertProductServlet extends HttpServlet {
 			String capacity = multiRequest.getParameter("CAPACITY");
 			int price = Integer.parseInt(multiRequest.getParameter("PRICE"));
 			String p_status = multiRequest.getParameter("P_STATUS");
-			//int p_stock = Integer.parseInt(multiRequest.getParameter("P_STOCK"));
+			
 			
 			p.setP_id(p_id);
 			p.setP_name(p_name);
@@ -68,12 +68,12 @@ public class InsertProductServlet extends HttpServlet {
 			p.setCapacity(capacity);
 			p.setPrice(price);
 			p.setP_status(p_status);
-			//p.setP_stock(p_stock);
 			
 			
-			ArrayList<Pro_Attachment> fileList = new ArrayList<>();
 			
-			for(int i = 1; i <= 4; i++) {
+			ArrayList<Pro_Attachment> fileList = new ArrayList<>(); // 제품사진 저장할 fileList
+			
+			for(int i = 1; i <= 4; i++) { 
 				String name = "file"+i;
 				
 				if(multiRequest.getOriginalFileName(name) != null) {
