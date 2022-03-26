@@ -4,25 +4,19 @@
 <%
 	
 String msg = (String)session.getAttribute("msg");
+Review r = (Review)request.getAttribute("r");
 
 String contextPath = request.getContextPath();
-
 ArrayList<Review> list = (ArrayList<Review>)request.getAttribute("list");
-
 ReviewPageInfo rpi = (ReviewPageInfo)request.getAttribute("rpi");
 
 int listCount = rpi.getListCount();
-
 int currentPage = rpi.getCurrentPage();
-
 int maxPage = rpi.getMaxPage();
-
 int startPage = rpi.getStartPage();
-
 int endPage = rpi.getEndPage();
-
-
 %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,9 +33,48 @@ int endPage = rpi.getEndPage();
 <style> .carousel-inner > .carousel-item > img{  width: 1000px; height: 500px;  } 
         .carousel-inner > .carousel-item > video{  width: 1000px; height: 500px;  } 
 
-.topList{
-background-color: gray;
+
+
+.pagingArea >button{
+  background:rgb(73, 83, 113);
+  color:#fff;
+  border:none;
+  position:relative;
+  height:50px;
+  font-size:11pt;
+  padding:0 2em;
+  cursor:pointer;
+  transition:800ms ease all;
+  outline:none;
+  border-radius: 6px;
 }
+
+.pagingArea>button:hover{
+  background:#fff;
+  color:rgb(73, 83, 113);
+  
+}
+.pagingArea>button:before,.pagingArea>button:after{
+  content:'';
+  position:absolute;
+  top:0;
+  right:0;
+  height:2px;
+  width:0;
+  background: rgb(73, 83, 113);
+  transition:400ms ease all;
+}
+.pagingArea>button:after{
+  right:inherit;
+  top:inherit;
+  left:0;
+  bottom:0;
+}
+.pagingArea>button:hover:before,.pagingArea>button:hover:after{
+  width:100%;
+  transition:800ms ease all;
+}
+
 
 </style>
 <title>My Review | HELLO SMART WORLD</title>
@@ -61,52 +94,40 @@ background-color: gray;
 	<% } %>
 	</div>
  	
+ 
 	<section class="py-5">	
             <div class="container px-4 px-lg-5 mt-5">           
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-                      <%for(Review r : list){ %>
+                      <%for(Review re : list){ %>
                       <div class="col mb-5">                    
-                        <div class="card h-100">
-                        <input type="hidden" value="<%=r.getReviewNo()%>">
-                            <!-- Product image-->
-                            <%-- 
-                            <img class="card-img-top" src="<%=contextPath %>/resources/review_upfiles/<%= r.getTitleImg() %>" alt="리뷰보러가기" />--%>
-                            <img class="card-img-top" src="https://img.insight.co.kr/static/2021/05/07/700/img_20210507093529_8hq8orse.webp" alt="리뷰보러가기" />
-                            <!-- Product details-->
+                        <div class="card h-100">                        
+                        <input type="hidden" value="<%=re.getReviewNo()%>">   
+                          
+                          <!-- Product details-->
                             <div class="card-body p-4">
                                 <div class="text-center">
                                     <!-- Product name-->
-                                    <h5 class="fw-bolder"> <%=r.getReviewTitle()%> </h5>
+                                    <h5 class="fw-bolder"> <%=re.getReviewTitle()%> </h5>
+                                    
+      
+                                    
                                     <!-- Product price-->
                                     
-                                    <% int star = r.getStar();
+                                    <% int star = re.getStar();
                                     for(int i=0; i<star; i++){ %>
                                     <i class="bi bi-star-fill"></i> <%}%> <br>
-                                    <%=r.getReviewContent() %>
+                                    <%=re.getReviewContent() %>
                                 </div>
                             </div>
-                            <!-- Product actions-->
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">자세히 보기</a></div>
-                            </div>
-                            
+                          
                         </div>
                         
                     </div>
-     <%} %>
+     					<%}%>
                 </div>           
             </div>            
      </section>   
   	
-     <script>
-		
-			$(function(){
-				$(".py-5").click(function(){
-					var bId = $(this).children().eq(0).val();
-					location.href="<%=contextPath%>/detailThumb.do?bId=" + bId;
-				});
-			});
-	</script>
 	
   	<!-- Bootstrap core JS-->
   	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -114,8 +135,6 @@ background-color: gray;
   	<script src="js/scripts.js"></script>
  
 
- 
- 
   	 <!-- 페이징바 만들기 -->
 	 <div class="pagingArea" align="center">
 	<!-- 맨 처음으로 (<<) -->
@@ -132,7 +151,7 @@ background-color: gray;
 	<%for(int p=startPage; p<=endPage; p++){ %>
 				
 		<%if(p == currentPage){ %>
-		<button disabled> <%= p %> </button>
+		<button disabled style="background:#8f9dca"> <%= p %> </button>
 		<%}else{ %>
 		<button onclick="location.href='<%=contextPath %>/ReviewList.do?currentPage=<%= p %>'"> <%= p %> </button>
 		<%} %>

@@ -44,7 +44,7 @@ public class ReviewService {
 		// TODO Auto-generated method stub
 		Connection conn = getConnection();
 		ArrayList<Review> list = new ReviewDao().myReviewList(conn, rpi, rw);
-		
+		System.out.println(" 서비스 리뷰 작성자 : "+ rw);
 		close(conn);
 		
 		return list;

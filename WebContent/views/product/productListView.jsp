@@ -32,6 +32,47 @@
         <link href="resources/css/productStyles.css" rel="stylesheet" />
         <style> .carousel-inner > .carousel-item > img{  width: 1000px; height: 500px;  } 
                 .carousel-inner > .carousel-item > video{  width: 1000px; height: 500px;  } 
+        .pagingArea >button{
+			  background:rgb(73, 83, 113);
+			  color:#fff;
+			  border:none;
+			  position:relative;
+			  height:50px;
+			  font-size:11pt;
+			  padding:0 2em;
+			  cursor:pointer;
+			  transition:800ms ease all;
+			  outline:none;
+			  border-radius: 6px;
+			}
+			
+			.pagingArea>button:hover{
+			  background:#fff;
+			  color:rgb(73, 83, 113);
+			  
+			}
+			.pagingArea>button:before,.pagingArea>button:after{
+			  content:'';
+			  position:absolute;
+			  top:0;
+			  right:0;
+			  height:2px;
+			  width:0;
+			  background: rgb(73, 83, 113);
+			  transition:400ms ease all;
+			}
+			.pagingArea>button:after{
+			  right:inherit;
+			  top:inherit;
+			  left:0;
+			  bottom:0;
+			}
+			.pagingArea>button:hover:before,.pagingArea>button:hover:after{
+			  width:100%;
+			  transition:800ms ease all;
+			}
+        
+        
         </style>
 
 
@@ -187,7 +228,7 @@
          <%for(int p=startPage; p<=endPage; p++){ %>
             
             <%if(p == currentPage){ %>
-            <button class="pageButton" disabled> <%= p %> </button>
+            <button class="pageButton" style="background:#8f9dca" disabled> <%= p %> </button>
             <%}else{ %>
             <button class="pageButton" onclick="location.href='<%=contextPath %>/productList.do?currentPage=<%= p %>'"> <%= p %> </button>
             <%} %>

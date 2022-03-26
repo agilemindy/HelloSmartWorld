@@ -9,7 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.uni.member.model.vo.Member;
 import com.uni.review.model.service.ReviewService;
+import com.uni.review.model.vo.Attachment;
 import com.uni.review.model.vo.Review;
 import com.uni.review.model.vo.ReviewPageInfo;
 
@@ -114,12 +116,20 @@ public class MyReviewListServlet extends HttpServlet {
 		
 		ReviewPageInfo rpi = new ReviewPageInfo(proCount, currentPage, startPage, endPage, maxPage, pageLimit, boardLimit);
 		Review r = new Review();
-		int rw = r.getReviewWriter();
+
+		
+		//세션에서 로그인유저 받아와서 USER넘버 rw에 넣기
+		Member loginUser = (Member)request.getSession().getAttribute("loginUser");		
+		int rw = loginUser.getUserNo();
+		
+		
+		System.out.println(" 서블렛 리뷰 작성자 : "+ rw);
 		
 		ArrayList<Review> list = new ReviewService().myReviewList(rpi, rw);
 		
 		request.setAttribute("list", list);
 		request.setAttribute("rpi", rpi);
+		request.setAttribute("r", r);
 		
 		request.getRequestDispatcher("views/review/myReviewList.jsp").forward(request, response);
 	
