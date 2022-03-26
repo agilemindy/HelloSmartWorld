@@ -68,7 +68,7 @@ public class OrderInfoServlet extends HttpServlet {
 			// 최대 페이지 개수
 			pageLimit = 10;
 			// 최대 게시글 개수
-			boardLimit = 8;
+			boardLimit = 10;
 
 			maxPage = (int) Math.ceil((double) listCount / boardLimit);
 

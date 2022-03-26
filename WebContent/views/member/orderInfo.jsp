@@ -8,7 +8,6 @@ String msg = (String) request.getSession().getAttribute("msg");
 String contextPath = request.getContextPath();
 
 PageInfo pi = (PageInfo) request.getAttribute("pi");
-int listCount = pi.getListCount();
 int currentPage = pi.getCurrentPage();
 int maxPage = pi.getMaxPage();
 int startPage = pi.getStartPage();
@@ -26,17 +25,15 @@ int endPage = pi.getEndPage();
 	color: white;
 }
 </style>
-<script
-	src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+<script	src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+<script	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 
 </head>
 <body>
 	<script>
 	var msg = "<%=msg%>";
+	console.log(msg);
 	
 	$(function(){
 		if(msg != "null"){
@@ -122,84 +119,44 @@ int endPage = pi.getEndPage();
 				</div>
 			</div>
 		</div>
-
+</section>
 		<!-- 페이징바 만들기 -->
 		<div class="pagingArea my-2" align="center">
 			<!-- 맨 처음으로 (<<) -->
-			<button class="pageButton"
-				onclick="location.href='<%=contextPath%>/orderInfo.do?currentPage=1'">
-				<i class="bi bi-chevron-double-left"></i>
-			</button>
-
+			<button class="pageButton" onclick="location.href='<%=contextPath%>/orderInfo.do?currentPage=1'">
+				<i class="bi bi-chevron-double-left"></i></button>
+				
 			<!-- 이전페이지로(<) -->
-			<%
-			if (currentPage == 1) {
-			%>
-			<button class="pageButton" disabled>
-				<i class="bi bi-chevron-left"></i>
-			</button>
-			<%
-			} else {
-			%>
-			<button class="pageButton"
-				onclick="location.href='<%=contextPath%>/orderInfo.do?currentPage=<%=currentPage - 1%>'">
-				<i class="bi bi-chevron-left"></i>
-			</button>
-			<%
-			}
-			%>
+			<%	if (currentPage == 1) {	%>
+			<button class="pageButton" disabled><i class="bi bi-chevron-left"></i></button>
+			<%	} else { %>
+			<button class="pageButton" onclick="location.href='<%=contextPath%>/orderInfo.do?currentPage=<%=currentPage - 1%>'">
+			<i class="bi bi-chevron-left"></i></button>
+			<%	} %>
 
 			<!-- 페이지 목록 -->
-			<%
-			for (int p = startPage; p <= endPage; p++) {
-			%>
-
-			<%
-			if (p == currentPage) {
-			%>
-			<button class="pageButton" disabled>
-				<%=p%>
-			</button>
-			<%
-			} else {
-			%>
-			<button class="pageButton"
-				onclick="location.href='<%=contextPath%>/orderInfo.do?currentPage=<%=p%>'">
-				<%=p%>
-			</button>
-			<%
-			}
-			%>
-
-			<%
-			}
-			%>
+			<%	for (int p = startPage; p <= endPage; p++) {%>
+			<%	if (p == currentPage) {	%>			
+			<button class="pageButton" disabled><%=p%></button>
+			<%  } else {  %>
+			<button class="pageButton" onclick="location.href='<%=contextPath%>/orderInfo.do?currentPage=<%=p%>'"><%=p%></button>
+			<%	}	%>
+			<%	}	%>
 
 			<!-- 다음페이지로(>) -->
-			<%
-			if (currentPage == maxPage) {
-			%>
-			<button class="pageButton" disabled>
-				<i class="bi bi-chevron-right"></i>
-			</button>
-			<%
-			} else {
-			%>
-			<button class="pageButton"
-				onclick="location.href='<%=contextPath%>/orderInfo.do?currentPage=<%=currentPage + 1%>'">
-				<i class="bi bi-chevron-right"></i>
-			</button>
-			<%
-			}
-			%>
+			<%	if (currentPage == maxPage) {	%>
+			<button class="pageButton" disabled><i class="bi bi-chevron-right"></i></button>
+			<%	} else { %>
+			<button class="pageButton"	onclick="location.href='<%=contextPath%>/orderInfo.do?currentPage=<%=currentPage + 1%>'">
+				<i class="bi bi-chevron-right"></i>	</button>
+			<%	}  %>
 
 			<!-- 맨 끝으로 (>>) -->
-			<button class="pageButton"
-				onclick="location.href='<%=contextPath%>/orderInfo.do?currentPage=<%=maxPage%>'">
-				<i class="bi bi-chevron-double-right"></i>
-			</button>
+			<button class="pageButton" onclick="location.href='<%=contextPath%>/orderInfo.do?currentPage=<%=maxPage%>'">
+				<i class="bi bi-chevron-double-right"></i></button>
 		</div>
-	</section>
+	
+	
 	<script>
 			//해당 라인의 주문취소 버튼을 누르면 오더넘버를 선택해 orderCancel.do로 값을 넘김
 			$(".cancel").click(function(){
