@@ -8,6 +8,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.websocket.Session;
+
+import org.apache.jasper.tagplugins.jstl.core.Out;
 
 import com.uni.admin.model.service.AdminService;
 import com.uni.admin.model.vo.Pro_Attachment;
@@ -38,7 +41,8 @@ public class updateInvenFormServlet extends HttpServlet {
 		
 		String view = "";
 		if(pd != null) {
-			request.setAttribute("pd", pd);			
+			request.setAttribute("pd", pd);
+			request.getSession().setAttribute("msg", "※재고수량 변경시 제품현재수량에는 반영이 되지 않습니다.              되도록 입출고 등록으로 조정하시길 바랍니다.");
 			
 			view = "views/admin/updateInventory.jsp";
 		}else {
