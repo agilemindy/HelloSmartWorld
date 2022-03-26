@@ -37,7 +37,7 @@ public class OrderCanceledInfoServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		Member m = (Member) request.getSession().getAttribute("loginUser");
-
+		//로그인이 되어있을 때만 접근 가능하도록 함
 		if (m != null) {
 			int userNo = m.getUserNo();
 

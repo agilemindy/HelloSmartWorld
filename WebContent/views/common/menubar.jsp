@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import = "com.uni.member.model.vo.Member" %>
 <%
-	Member loginUser = (Member)session.getAttribute("loginUser");
+	Member loginUser = (Member)request.getSession().getAttribute("loginUser");
 	
 %>
 <!DOCTYPE html>

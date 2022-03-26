@@ -34,18 +34,17 @@ public class MemberInfoServlet extends HttpServlet {
 		
 		Member loginUser = (Member)request.getSession().getAttribute("loginUser");
 		
+		//로그인이 되어있으면 해당 정보를 불러옴
 		if(loginUser != null) {
 		
 			String userId = loginUser.getUserId();
 			
 			Member member = new MemberService().selectMember(userId);
 			
-			System.out.println("MemberInfoServlet에서 출력: " + member);
-			
 			RequestDispatcher view = null;
 			
 			if(member != null) {
-				request.setAttribute("loginUser", member);
+				
 				view = request.getRequestDispatcher("views/member/memberInfo.jsp");
 			}else {
 				request.setAttribute("msg", "조회에 실패했습니다.");

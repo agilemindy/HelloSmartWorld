@@ -3,6 +3,7 @@ package com.uni.order.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.uni.admin.model.vo.Product;
+import com.uni.member.model.service.MemberService;
+import com.uni.member.model.vo.Member;
 
 /**
  * Servlet implementation class orderFormServlet
@@ -31,21 +34,25 @@ public class orderFormServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String brand = request.getParameter("brand");
-		String name = request.getParameter("name");
-		String color = request.getParameter("color");
-		String capacity = request.getParameter("capacity");
-		String price = request.getParameter("price");
-		String pId = request.getParameter("pId");
+		Member loginUser = (Member)request.getSession().getAttribute("loginUser");
 		
-		request.setAttribute("brand", brand);
-		request.setAttribute("name", name);
-		request.setAttribute("color", color);
-		request.setAttribute("capacity", capacity);
-		request.setAttribute("price", price);
-		request.setAttribute("pId", pId);
+		//로그인되어있으면 주문 페이지로 이동
+		if(loginUser != null) {
 		
-		request.getRequestDispatcher("views/order/orderForm.jsp").forward(request, response);
+			String price = request.getParameter("price");
+			String pId = request.getParameter("pId");
+			
+			request.setAttribute("price", price);
+			request.setAttribute("pId", pId);
+			
+			request.getRequestDispatcher("views/order/orderForm.jsp").forward(request, response);
+		
+		}else {//로그인되어있지 않으면 로그인 창으로 이동
+			
+			request.setAttribute("msg", "로그인 후에 이용해주세요.");
+			request.getRequestDispatcher("views/member/memberLogin.jsp").forward(request, response);
+		}
+	
 	}
 
 	/**

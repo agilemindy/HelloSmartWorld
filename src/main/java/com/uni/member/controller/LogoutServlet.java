@@ -26,7 +26,8 @@ public class LogoutServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("로그아웃서블릿");
+		
+		//세션을 만료시켜 로그아웃 진행
 		request.getSession().invalidate();
 		response.sendRedirect(request.getContextPath());
 	}

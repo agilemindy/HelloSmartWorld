@@ -37,15 +37,12 @@ public class OrderInfoServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		Member m = (Member) request.getSession().getAttribute("loginUser");
-
+		//로그인이 되어있을 때만 접근 가능하도록 함
 		if (m != null) {
 			int userNo = m.getUserNo();
 
-			// System.out.println(userNo);
-
 			ArrayList<Order> order = new MemberService().myOrderInfo(userNo); // 주문내역 불러오기
 
-			// System.out.println("서블릿: " + order);
 			request.setAttribute("order", order);
 
 			// 페이징 처리

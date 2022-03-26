@@ -38,6 +38,7 @@ public class MemberInsertServlet extends HttpServlet {
 		String userId = request.getParameter("userId");
 		String userPwd = request.getParameter("userPwd");
 		String userName = request.getParameter("userName");
+		//일반전화는 선택사항이기 때문에 값이 없으면 공백처리함
 		String tel = request.getParameter("tel")!=null ? request.getParameter("tel") : "";
 		String phone = request.getParameter("phone");
 		String address = request.getParameter("address");
@@ -45,7 +46,6 @@ public class MemberInsertServlet extends HttpServlet {
 		String email = request.getParameter("email");
 		
 		Member mem = new Member(userId, userPwd, userName, address, addressDet, tel, phone, email);
-		System.out.println("멤버인서트서블릿 : " + mem);
 		
 		int result = new MemberService().insertMember(mem);
 		

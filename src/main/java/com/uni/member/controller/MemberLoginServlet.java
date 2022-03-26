@@ -38,15 +38,15 @@ public class MemberLoginServlet extends HttpServlet {
 		String userId = request.getParameter("userId");
 		String userPwd = request.getParameter("userPwd");
 		
+		//loginMember로 아이디와 비밀번호를 넘겨 일치하는 멤버 값을 불러옴
 		Member loginUser = new MemberService().loginMember(userId, userPwd);
-		System.out.println("loginUser"+loginUser);
 		
 		if(loginUser != null) {
 			
 			HttpSession session = request.getSession();
 			session.setAttribute("loginUser", loginUser);
 			
-			response.sendRedirect(request.getContextPath()); // 단순 화면 전환
+			response.sendRedirect(request.getContextPath()); 
 			
 		}else {
 			request.setAttribute("msg", "로그인에 실패했습니다.");

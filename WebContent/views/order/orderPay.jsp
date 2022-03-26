@@ -1,17 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="com.uni.member.model.vo.Member"%>
+	pageEncoding="UTF-8" import="com.uni.member.model.vo.Member , com.uni.order.model.vo.Order"%>
 <%
-String pId = request.getParameter("pId");
-String addrName = request.getParameter("addrName");
-String addrPhone = request.getParameter("addrPhone");
-String addrAddress = request.getParameter("addrAddress");
-String addrAddressDet = request.getParameter("addrAddressDet");
-String comment = request.getParameter("comment") != "" ? request.getParameter("comment") : "요청사항 없음";
-String payCode =request.getParameter("payCode");
-String price = request.getParameter("price");
-String userNo = request.getParameter("userNo");
+//제품, 배송지관련 정보
+Order o = (Order)request.getSession().getAttribute("order");
+String pId = o.getpId();
+String addrName = o.getAddrName();
+String addrPhone = o.getAddrPhone();
+String addrAddress = o.getAddrAddress();
+String addrAddressDet = o.getAddrAddressDet();
+String comment = o.getComment();
+int payCode = o.getPayCode();
+int price = o.getPrice();
+int userNo = o.getUserNo();
 
-
+//주문자 정보
 Member m = (Member) request.getSession().getAttribute("loginUser");
 String name = m.getUserName();
 String phone = m.getPhone();
@@ -56,20 +58,12 @@ String email = m.getEmail();
 					msg += '결제 금액 : ' + rsp.paid_amount;
 					msg += '카드 승인번호 : ' + rsp.apply_num;
 					let purchaseVo = {
-							pId : '<%=pId%>',
-	                        addrName : '<%=addrName%>',
-	                        addrPhone : '<%=addrPhone%>',
-	                        addrAddress : '<%=addrAddress%>',
-	                        addrAddressDet : '<%=addrAddressDet%>',
-	                        comment : '<%=comment%>',
-	                        payCode : '<%=payCode%>',
-	                        price : '<%=price%>',
-	                        userNo : '<%=userNo%>'
 						
 						}
 					// 컨트롤러에 데이터를 전달하여 DB에 입력하는 로직
 	                // 결제내역을 사용자에게 보여주기 위해 필요함.
-	               			$.ajax({
+	             
+              			$.ajax({
 						url : "orderProduct.do",
 						type : "post",
 						data : purchaseVo,
@@ -93,7 +87,6 @@ String email = m.getEmail();
     });
     </script> 
     
-
 	<!-- Bootstrap core JS-->
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>

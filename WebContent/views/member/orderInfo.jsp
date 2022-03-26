@@ -2,12 +2,12 @@
 	pageEncoding="UTF-8"
 	import="java.util.ArrayList, com.uni.order.model.vo.Order, com.uni.member.model.vo.*"%>
 <%
-Member m = (Member) request.getSession().getAttribute("loginUser");
+
 ArrayList<Order> order = (ArrayList<Order>) request.getAttribute("order");
 String msg = (String) request.getSession().getAttribute("msg");
 String contextPath = request.getContextPath();
-PageInfo pi = (PageInfo) request.getAttribute("pi");
 
+PageInfo pi = (PageInfo) request.getAttribute("pi");
 int listCount = pi.getListCount();
 int currentPage = pi.getCurrentPage();
 int maxPage = pi.getMaxPage();
@@ -37,7 +37,6 @@ int endPage = pi.getEndPage();
 <body>
 	<script>
 	var msg = "<%=msg%>";
-	console.log(msg);
 	
 	$(function(){
 		if(msg != "null"){
@@ -67,8 +66,7 @@ int endPage = pi.getEndPage();
 										<th>금액</th>
 										<th>배송지 정보</th>
 										<th></th>
-										<!-- https://tracker.delivery/guide -->
-										<!-- http://info.sweettracker.co.kr/apidoc/ -->
+										
 									</tr>
 									<%
 									if (order.isEmpty()) {
@@ -104,9 +102,7 @@ int endPage = pi.getEndPage();
 												배송요청사항 :
 												<%=o.getComment()%></h6>
 											<h6>운송장번호 : 운송장이 아직 등록되지 않았습니다.</h6>
-											<!-- <a
-											href="https://tracker.delivery/#/kr.epost/1111111111111"
-											target="_blank">배송조회</a>  -->
+
 										</td>
 
 										<td><button type="button"
@@ -205,7 +201,7 @@ int endPage = pi.getEndPage();
 		</div>
 	</section>
 	<script>
-
+			//해당 라인의 주문취소 버튼을 누르면 오더넘버를 선택해 orderCancel.do로 값을 넘김
 			$(".cancel").click(function(){
 				
 				var yn = confirm("주문을 취소하시겠습니까?")
