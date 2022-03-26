@@ -43,7 +43,7 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
-	var msg = "<%=msg%>";
+	var msg = "<%=msg%>"; // 에러시 메시지 띄우기
 	
 	$(function(){
 		if(msg != "null"){
@@ -126,7 +126,7 @@
                     <div class="col mb-5">
                         <div class="card h-100">
                             <!-- Product image-->
-                            <% if(p.getTitleImg() != null){ %>
+                            <% if(p.getTitleImg() != null){ %> <!-- 이미지가 있으면 그 제품 이미지 출력 -->
                             <img class="card-img-top" src="<%=contextPath %>/resources/product_upfiles/<%= p.getTitleImg() %>" width="150px" height="300px" alt="..." />
                             <% }else{ %>
                             <img class="card-img-top" src="<%=contextPath %>/resources/product_upfiles/noImg.png" width="150px" height="300px" alt="..." />							
@@ -134,12 +134,16 @@
                             <!-- Product details-->
                             <form action="<%=request.getContextPath()%>/orderForm.do" method="get">
                             
+                            <!-- 카드방식으로 제품 나열 -->
                             <div class="card-body p-4">
                                 <div class="text-center">
+                                	<!-- Product Brand -->
                                 	<%= p.getBrand() %>
                                     <!-- Product name-->
                                     <h5 class="fw-bolder"><%= p.getP_name() %></h5>
+                                    <!-- Product Color -->
                                     <%= p.getColor() %> <br>
+                                    <!-- Product Capacity -->
                                     <%= p.getCapacity() %> <br>
                                     <!-- Product price-->
                                     <%= p.getPrice() %> 원

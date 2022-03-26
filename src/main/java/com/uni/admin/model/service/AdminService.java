@@ -28,7 +28,7 @@ public class AdminService {
 		return ProCount;
 	}
 
-	public ArrayList<Product> selectList(PageInfo pi) {
+	public ArrayList<Product> selectList(PageInfo pi) { // 제품관리에 필요한 제품들 나열
 		Connection conn = getConnection();
 		ArrayList<Product> list = new AdminDao().selectList(conn, pi);		
 		

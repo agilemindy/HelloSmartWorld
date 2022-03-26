@@ -96,14 +96,7 @@ public class AdminDao {
 				
 				list.add(p);
 				
-				/*list.add(new Product(rset.getString("P_ID"),
-								   rset.getString("P_NAME"),
-								   rset.getString("BRAND"),
-								   rset.getString("COLOR"),
-								   rset.getString("CAPACITY"),
-								   rset.getInt("PRICE"),
-								   rset.getString("P_STATUS"),
-								   rset.getInt("P_STOCK")));*/
+				
 			}
 						
 		} catch (SQLException e) {
@@ -212,7 +205,7 @@ try {
 		return result;
 	}
 
-	public Product selectProduct(Connection conn, String pid) {
+	public Product selectProduct(Connection conn, String pid) { // 제품디테일에 보낼 제품상세정보 가져오기
 		Product p = null;								   
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -248,7 +241,7 @@ try {
 		return p;
 	}
 
-	public ArrayList<Pro_Attachment> selectPro_Attachment(Connection conn, String pid) {
+	public ArrayList<Pro_Attachment> selectPro_Attachment(Connection conn, String pid) { // 제품 상세보기에 뿌릴 제품사진 가져오기
 		ArrayList<Pro_Attachment> list = null;								   
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;

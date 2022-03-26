@@ -97,11 +97,12 @@
 			<button id="enrollButton" onclick="location.href = '/HelloSmartWorld/productEnrollForm.do'"><i class="bi bi-phone"></i>제품등록</button>
 		</div>
 		<div align="right" style="margin-right: 180px; margin-bottom: 20px" >
+			<!-- 현재 등록되어있는 제품 갯수 -->
 			<h4> 총 <%= proCount %> 개 </h4>
 		</div>
 		
 		
-		
+		<!-- 제품관리내용 -->
 		<table class="listArea" align="center">
 			<thead>
 				<tr>
@@ -119,17 +120,18 @@
 				</tr>
 			<thead>
 			<tbody>
+				<!-- 제품을 저장한 list 에 내용이 없을 경우 -->
 				<%if(list.isEmpty()){ %>
 				<tr>
 					<td colspan="6">조회된 리스트가 없습니다.</td>
 				</tr>
-				<%}else{ %>
-					<% for(Product p : list){ %>
+				<%}else{ %><!-- 제품이 list 잘 담겼을 경우 -->
+					<% for(Product p : list){ %><!-- for-each문 이용 -->
 					<tr>
 						<td>
-						<% if(p.getTitleImg() != null){ %>
+						<% if(p.getTitleImg() != null){ %><!-- 대표이미지가 있을 경우 -->
 						<img src="<%=contextPath %>/resources/product_upfiles/<%= p.getTitleImg() %>" width="150px" height="150px">
-						<% }else{ %>
+						<% }else{ %><!-- 대표이미지가 없을 경우 -->
 						<img src="<%=contextPath %>/resources/product_upfiles/noImg.png" width="150px" height="150px">
 						<% } %>
 						</td>
@@ -189,7 +191,7 @@
 	
 	<script>		
 		
-			$(".listArea>tbody>tr").click(function(){
+			$(".listArea>tbody>tr").click(function(){ // 한 행을 선택 - 제품아이디를 pId 에 담아 상세정보 보기
 				var pId = $(this).children().eq(1).text();				
 				location.href="<%=contextPath%>/adminProDetailViewServlet.do?pId="+pId;		
 			});
