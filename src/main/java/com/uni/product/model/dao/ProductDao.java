@@ -34,7 +34,7 @@ public class ProductDao {
 		}
 	}
 	
-	public int getListCount(Connection conn) {
+	public int getListCount(Connection conn) { // 제품 갯수 구하기
 		int ProCount = 0;
 		Statement stmt = null;
 		ResultSet rset = null;		

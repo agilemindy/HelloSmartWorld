@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="EUC-KR"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -97,14 +97,14 @@
                     player = new YT.Player('muteYouTubeVideoPlayer', {
                         videoId : '2Jdpwb_0F5w',
                         playerVars : {
-                            autoplay : 1, 		// Auto-play the video on load // ÀÚµ¿ Àç»ı (À¯)
-                            controls : 0, 		// Show pause/play buttons in player // ÄÁÆ®·Ñ·¯ÀÇ À¯¹« (¹«)
-                            rel : 0,			// ÇØ´ç ¿µ»óÀÌ Á¾·áµÈ ÈÄ °ü·Ã µ¿¿µ»ó Ç¥½ÃÇÒÁö
+                            autoplay : 1, 		// Auto-play the video on load // ìë™ ì¬ìƒ (ìœ )
+                            controls : 0, 		// Show pause/play buttons in player // ì»¨íŠ¸ë¡¤ëŸ¬ì˜ ìœ ë¬´ (ë¬´)
+                            rel : 0,			// í•´ë‹¹ ì˜ìƒì´ ì¢…ë£Œëœ í›„ ê´€ë ¨ ë™ì˜ìƒ í‘œì‹œí• ì§€
                             start : 0,
                             end : 301,
-                            showinfo : 0, 		// Hide the video title // Àç»ı ¿µ»ó¿¡ ´ëÇÑ Á¤º¸ À¯¹«
+                            showinfo : 0, 		// Hide the video title // ì¬ìƒ ì˜ìƒì— ëŒ€í•œ ì •ë³´ ìœ ë¬´
                             modestbranding : 1, // Hide the Youtube Logo
-                            loop : 1, 			// Run the video in a loop // ¹İº¹ Àç»ı¿¡ ´ëÇÑ ¿©ºÎ
+                            loop : 1, 			// Run the video in a loop // ë°˜ë³µ ì¬ìƒì— ëŒ€í•œ ì—¬ë¶€
                             playlist : '2Jdpwb_0F5w',
                             fs : 0, 			// Hide the full screen button
                             cc_load_policy : 0, // Hide closed captions

@@ -45,8 +45,8 @@ public class ProductListServlet extends HttpServlet {
 		int pageLimit;		// 한페이지 하단에 보여질 페이지 최대갯수
 		int boardLimit; 	// 한페이지에 보여질 게시글 최대갯수
 		
-		//총게시글 갯수
-		proCount = new ProductService().getListCount();
+		//총 제품 갯수 구해오기
+		proCount = new ProductService().getListCount(); 
 						
 		//현재페이지
 		currentPage = 1;
@@ -112,7 +112,7 @@ public class ProductListServlet extends HttpServlet {
 		
 		PageInfo pi = new PageInfo(proCount, currentPage, startPage, endPage, maxPage, pageLimit, boardLimit);
 		
-		ArrayList<Product> list = new ProductService().selectList(pi);
+		ArrayList<Product> list = new ProductService().selectList(pi); // 제품을 List에 담는데, 페이징처리를 위해 pi 객체도 보내서 처리한다.
 		
 		request.setAttribute("list", list);
 		request.setAttribute("pi", pi);

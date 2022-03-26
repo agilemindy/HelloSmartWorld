@@ -32,11 +32,11 @@ public class AdminProductDetailViewServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String pId = request.getParameter("pId"); // AdminProductDetailView.jsp 에서 선택한 글의 제품아이디
+		String pId = request.getParameter("pId"); // AdminProductListView.jsp 에서 선택한 행의 제품아이디
 		
-		Product p = new AdminService().selectProduct(pId);
+		Product p = new AdminService().selectProduct(pId); // 위에서 선택한 제품 내용 가져오기
 		
-		ArrayList<Pro_Attachment> fileList = new AdminService().selectPro_Attachment(pId);
+		ArrayList<Pro_Attachment> fileList = new AdminService().selectPro_Attachment(pId); // 제품아이디에 저장된 제품사진 가져오기
 		
 		String view = "";
 		if(p != null) {
