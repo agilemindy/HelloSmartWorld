@@ -130,7 +130,7 @@ public class ReviewDao {
 		int startRow = (rpi.getCurrentPage()-1) * rpi.getBoardLimit() +1;
 		int endRow = startRow + rpi.getBoardLimit() - 1;
 		
-		
+		System.out.println(" 다오 리뷰 작성자 : "+ rw);
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, startRow);

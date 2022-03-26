@@ -104,10 +104,13 @@ Attachment at = (Attachment)request.getAttribute("at");
 
 			<div style="margin-top : 20px">
 
+				<!--내가 쓴 게시글만 수정삭제 버튼 보이도록  -->
+				<% if(loginUser != null && loginUser.getUserNo()==(r.getReviewWriter())){ %>
 				
 				<button type="button" onclick="updateFormReview();" class="btn btn-sm btn-dark" id="btnUpdate">수정</button>
 				<button type="button" onclick="deleteBoard();" class="btn btn-sm btn-dark" id="btnDelete">삭제</button>
 				
+				<% } %>
 				
 				<button type="button" class="btn btn-sm btn-dark" id="btnList" onclick="location.href='<%=contextPath%>/reviewList.do'">목록</button>
 
@@ -122,8 +125,17 @@ Attachment at = (Attachment)request.getAttribute("at");
 	<script type="text/javascript">
 	
 	function deleteBoard(){
-		$("#postForm").attr("action", "<%=contextPath%>/deleteReviewUser.do");
-		$("#postForm").submit();
+		
+		var val = confirm("정말로 삭제하시겠습니까?");
+		
+		if(val){
+			$("#postForm").attr("action", "<%=contextPath%>/deleteReviewUser.do");
+			$("#postForm").submit();
+		}else{
+			alert("글 삭제를 취소했습니다.");
+		}
+		
+		
 	}
 	
 	

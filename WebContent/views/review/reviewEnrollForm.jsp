@@ -28,12 +28,12 @@ Review r = (Review)request.getAttribute("r");
 
 <h4>리뷰작성</h4>
 
-    <form id="insertForm" action="<%= contextPath %>/insertReview.do" method="post" enctype="multipart/form-data">
+    <form id="insertForm" name="isf"  action="<%= contextPath %>/insertReview.do" method="post" enctype="multipart/form-data">
       <input type="hidden" id="writer" name="writer" value="<%= loginUser.getUserNo() %>">
     
       <div class="form-group">      
         <label for="subject">제목</label>
-        <input type="text" class="form-control" id="subject" name="subject" placeholder="제목을 입력하세요.">
+        <input type="text" required class="form-control" id="subject" name="subject" placeholder="제목을 입력하세요.">
       </div>
       
       <%--
@@ -47,7 +47,7 @@ Review r = (Review)request.getAttribute("r");
       
       <div class="form-group">      
         <label for="product">제품명</label>
-        <input type="text" class="form-control" id="product" name="product" placeholder="제품명을 입력하세요.">
+        <input type="text"  required class="form-control" id="product" name="product" placeholder="제품명을 입력하세요.">
       
       </div>
       
@@ -56,8 +56,8 @@ Review r = (Review)request.getAttribute("r");
       
       <div class="form-group">
       	<label for="starcontent">별점</label>
-        <select class="form-select form-select-md mb-3" id="star" name="star">
-   			 <option selected>별점을 고르세요</option>   			  
+        <select required class="form-select form-select-md mb-3" id="star" name="star">
+   			 <option value="" disabled selected>별점을 고르세요</option>   			  
    			 <option value="1">&bigstar;</option>
     		 <option value="2">&bigstar;&bigstar;</option>
     	     <option value="3">&bigstar;&bigstar;&bigstar;</option>
@@ -69,7 +69,7 @@ Review r = (Review)request.getAttribute("r");
 
       <div class="form-group">
         <label for="content">내용</label>
-        <textarea class="form-control" id="content" name="content" rows="10"></textarea>
+        <textarea required class="form-control" id="content" name="content" rows="10"></textarea>
       </div>
       
       <div class="form-group">
@@ -77,13 +77,18 @@ Review r = (Review)request.getAttribute("r");
       <img id="titleImg" width="150" height="120">
       </div>
       
+      <!-- 이미지 파일만 업로드할 수 있도록 유효성검사 -->
       <div id="fileArea">
-        <input type="file" name="file1" id="file1" onchange="loadImg(this, 1);">
+        <input accept="image/*" required type="file" name="file1" id="file1" onchange="loadImg(this, 1);">
       </div>
       
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>  
 	
 	<script>
+
+	
+	
+	
 	$(function(){
 		$("#fileArea").hide();
 		
@@ -114,7 +119,7 @@ Review r = (Review)request.getAttribute("r");
       <button type="submit" class="btn btn-dark">리뷰 작성하기</button>
       
     </form>
-    
+
  	<!-- Bootstrap core JS-->
   	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
   	<!-- Core theme JS-->

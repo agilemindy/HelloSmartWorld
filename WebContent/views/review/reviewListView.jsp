@@ -272,7 +272,7 @@ border-radius: 10px;
 	<!-- 페이지 목록 -->
 	<%for(int p=startPage; p<=endPage; p++){ %>				
 		<%if(p == currentPage){ %>
-			<button disabled> <%= p %> </button>
+			<button disabled style="background:#8f9dca"> <%= p %> </button>
 		<%}else{ %>
 			<button onclick="location.href='<%=contextPath %>/reviewList.do?currentPage=<%= p %>'"> <%= p %> </button>
 		<%} %>				
