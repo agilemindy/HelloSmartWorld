@@ -84,6 +84,7 @@ ArrayList<Attachment> fileList = (ArrayList<Attachment>)request.getAttribute("fi
       <!-- 기존의 첨부파일이 있었을 경우 -->
       <% if(fileList != null){ %> 
 			<%=fileList.get(0).getOriginName() %> <br>
+			<%=fileList.get(0).getChangeName()%>
 			<input type='hidden' name='originFile' value='<%=fileList.get(0).getChangeName()%>'>
 			<input type='hidden' name='originFileNo' value='<%=fileList.get(0).getFileNo()%>'>
 	 <% }%>

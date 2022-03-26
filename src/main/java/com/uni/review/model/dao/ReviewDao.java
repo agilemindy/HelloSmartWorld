@@ -438,4 +438,37 @@ public class ReviewDao {
 		return result;
 	}
 
+	public ArrayList<Review> selectTopList(Connection conn) {
+		ArrayList<Review> list = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+
+		String sql = prop.getProperty("selectTopReviewList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+		
+			rset = pstmt.executeQuery();
+			list = new ArrayList<>();
+			while(rset.next()) {	
+				
+				Review r = new Review();
+				r.setReviewNo(rset.getInt("REVIEW_NO"));
+				r.setReviewTitle(rset.getString("RV_TITLE"));
+				r.setTitleImg(rset.getString("CHANGE_NAME"));
+				list.add(r);
+				
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
+
 }

@@ -5,6 +5,7 @@
 String msg = (String)session.getAttribute("msg");
 String contextPath = request.getContextPath();
 ArrayList<Review> list = (ArrayList<Review>)request.getAttribute("list");
+
 ReviewPageInfo rpi = (ReviewPageInfo)request.getAttribute("rpi");
 int listCount = rpi.getListCount();
 int currentPage = rpi.getCurrentPage();
@@ -19,7 +20,7 @@ int endPage = rpi.getEndPage();
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <!-- Favicon-->
 <link rel="icon" type="image/x-icon" href="resources/assets/favicon1.ico"/>
 <!-- Bootstrap icons-->
@@ -31,7 +32,8 @@ int endPage = rpi.getEndPage();
         .carousel-inner > .carousel-item > video{  width: 1000px; height: 500px;  } 
 
 .topList{
-background-color: gray;
+background-color: #F8F9FA;
+color: darkslategray;
 }
 
 .starC{
@@ -45,6 +47,75 @@ font-weight : bold;
 font-size: 8pt;
 
 }
+
+.thumb {
+		display: inline-block;
+		width: 250px;
+		height: 250px;
+		margin: 20px;
+		padding-top : 10px;	
+		border : 1px solid #DFDFDF;
+  		border-radius: 10px;
+ 		box-shadow: inset 0 0 3px rgb(73, 83, 113); 		
+		
+}
+	
+.thumb:hover {
+	cursor: pointer;
+}
+
+.hot{
+font-size: 7pt;
+color: rgb(232, 58, 20);
+
+}
+
+.topimg{
+border-radius: 10px;
+}
+
+
+.pagingArea >button{
+  background:rgb(73, 83, 113);
+  color:#fff;
+  border:none;
+  position:relative;
+  height:50px;
+  font-size:11pt;
+  padding:0 2em;
+  cursor:pointer;
+  transition:800ms ease all;
+  outline:none;
+  border-radius: 6px;
+}
+
+.pagingArea>button:hover{
+  background:#fff;
+  color:rgb(73, 83, 113);
+  
+}
+.pagingArea>button:before,.pagingArea>button:after{
+  content:'';
+  position:absolute;
+  top:0;
+  right:0;
+  height:2px;
+  width:0;
+  background: rgb(73, 83, 113);
+  transition:400ms ease all;
+}
+.pagingArea>button:after{
+  right:inherit;
+  top:inherit;
+  left:0;
+  bottom:0;
+}
+.pagingArea>button:hover:before,.pagingArea>button:hover:after{
+  width:100%;
+  transition:800ms ease all;
+}
+
+
 </style>
 
 <title>Review | HELLO SMART WORLD</title>
@@ -56,41 +127,33 @@ font-size: 8pt;
 	<div class="topList" align="center">
 
 		<br>
-		<h2>Best Review Top3</h2>
+		<h2>Best Review TOP3</h2>
 
-		<div id="thumbList">
-			<h5>구현예정</h5>
-			<%--  <div class="thumb" align="center">
-				<input type="hidden" value="1"> 
-				<img src="<%=contextPath%>/resources/board_upfiles/2020121711123393793.PNG" width="250px" height="200px"> <br>
-				<p>제목입니다.</p>
-			</div>--%>
+		<div id="thumbList">			
 
 		</div>
-
 	</div>
 	<script>
 	$(function(){		
-		//
+		
 		selectTopList();		
-		//
-		//setInterval(selectTopList,2000);
+
 		$("#thumbList").on("click",".thumb",function(){
-			var bId = $(this).children().eq(0).val();
-			location.href="<%=contextPath%>/detailThumb.do?bId="+bId;
+			var rId =$(".rId").val();
+			location.href="<%=contextPath%>/detailReview.do?rId="+rId;
 		})
 	})
 	function selectTopList(){		
 		$.ajax({
-			url:"topList.do",
+			url:"topReviewList.do",
 			type:"get",
 			success:function(list){
 				var value = "";
 				for(var i in list){
 					value += '<div class="thumb" align="center">'+
-							 '<input type="hidden" value="' +list[i].boardNo+ '">'+
-							 '<img src="<%=contextPath%>/resources/board_upfiles/' + list[i].titleImg + '" width="250px" height="200px"> <br>'+
-							 '<p>'+ list[i].boardTitle +'</p>'+
+							 '<input type="hidden" value="' +list[i].ReviewNo+ '">'+
+							 '<img class="topimg" src="<%=contextPath%>/resources/review_upfiles/' + list[i].titleImg + '" width="180px" height="180px"> <br>'+
+							 '<p><span class="hot"><i class="bi bi-stars"></i>인기리뷰</span> &nbsp&nbsp<br>'+ list[i].reviewTitle +'</p>'+
 							 '</div>';
 				}
 				
@@ -105,6 +168,7 @@ font-size: 8pt;
 	
 	</script>
 	<br><br>
+
 	<div align="center">
 	
 	<% if(loginUser != null){ %>
@@ -170,7 +234,7 @@ font-size: 8pt;
             </div>            
      </section>   
   	
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>     
+         
 	<script>
 	
 	<%if(!list.isEmpty()){%>

@@ -137,6 +137,16 @@ public class ReviewService {
 		return result1 * result2;
 	}
 
+	public ArrayList<Review> selectTopList() {
+		
+		Connection conn = getConnection();
+
+		ArrayList<Review> list= new ReviewDao().selectTopList(conn);
+
+		close(conn);
+		return list;
+	}
+
 
 
 
