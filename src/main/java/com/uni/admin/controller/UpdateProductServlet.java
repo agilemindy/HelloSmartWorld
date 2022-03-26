@@ -63,7 +63,7 @@ if(ServletFileUpload.isMultipartContent(request)) {
 			
 			Pro_Attachment at = null;
 			
-			if(multiRequest.getOriginalFileName("file1") != null) { // 바꿀 사진이 있다면!
+			if(multiRequest.getOriginalFileName("file1") != null) { // 수정할 사진이 있는 경우
 				
 				String originName = multiRequest.getOriginalFileName("file1");
 				String changeName = multiRequest.getFilesystemName("file1");
@@ -76,7 +76,7 @@ if(ServletFileUpload.isMultipartContent(request)) {
 				at.setOrigin_name(originName);
 				at.setChange_name(changeName);
 				
-				if(multiRequest.getParameter("originFile") != null) {
+				if(multiRequest.getParameter("originFile") != null) { // 기존 사진이 있을 경우, 기존사진은 삭제
 					File deleteFile = new File(savePath + multiRequest.getParameter("originFile"));
 					System.out.println("deleteFile : " + deleteFile);
 					System.out.println("deleteFile savePath : " + savePath + multiRequest.getParameter("originFile"));

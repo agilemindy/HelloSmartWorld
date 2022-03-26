@@ -121,7 +121,9 @@
 			<br>
 			
 			<div class="btns" align="center">
+				<!-- 취소하기 : 한페이지 뒤로 -->
 				<button type="reset" class="button" style="margin-right: 30px;" OnClick="javascript:history.back(-1)">취소하기</button>
+				<!-- 수정하기 : form 전송 -->
 				<button type="submit" class="button">수정하기</button>				
 			</div>
 		</form>

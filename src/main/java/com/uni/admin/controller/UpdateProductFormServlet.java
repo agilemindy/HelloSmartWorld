@@ -33,10 +33,10 @@ public class UpdateProductFormServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String pId = request.getParameter("pId");
+		String pId = request.getParameter("pId"); // 제품아이디
 		
-		Product p = new AdminService().selectProduct(pId);
-		ArrayList<Pro_Attachment> fileList = new AdminService().selectPro_Attachment(pId);
+		Product p = new AdminService().selectProduct(pId); // 제품 상세정보
+		ArrayList<Pro_Attachment> fileList = new AdminService().selectPro_Attachment(pId); // 제품사진
 		
 		String view = "";
 		if(p != null) {

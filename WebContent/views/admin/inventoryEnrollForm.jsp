@@ -70,19 +70,20 @@
 				<tr>
 					<th width="100">제품아이디</th>
 					<td width="500">		
+						<!-- 등록제품들의 아이디 -->
 						<select  id = "P_ID" name = "P_ID">
 							<option value=""></option>
-							<% for(Product p : list){ %>
+							<% for(Product p : list){ %><!-- for-each문 사용 -->
 							<option value=<%= p.getP_id() %>><%= p.getP_id() %></option>
 							<% } %>
 						</select>																								
 					</td>
 				</tr>	
 				</thead>
-				<tbody>							
+				<tbody><!-- ajax로 제품의 상세정보 출력 -->				
 				</tbody>
 				<tfoot>			
-				<tr>
+				<tr><!-- 입출고와 수량 입력 -->
 					<th>입출고</th>
 					<td>
 						<select id="STATUS" name="STATUS">
@@ -104,7 +105,9 @@
 			<br>
 			
 			<div class="btns" align="center">
+				<!-- 취소하기 : 뒤로가기 -->
 				<button type="reset" class="button" style="margin-right: 30px;" OnClick="javascript:history.back(-1)">취소하기</button>
+				<!-- 등록하기 : form 전송 -->
 				<button type="submit" class="button">등록하기</button>				
 			</div>
 		</form>
@@ -115,15 +118,15 @@
 </html>
 <script>
 $(function(){
-	$("#P_ID").change(function(){
+	$("#P_ID").change(function(){ // 제품아이디선택에 변화가 있으면
 		var input = $("#P_ID").val();
 		$.ajax({
-			url : "inventorySelect.do",
-			data : {keyword:input},
+			url : "inventorySelect.do", // 서블릿이동
+			data : {keyword:input}, // keyword에 제품아이디 저장
 			type : "get",
-			success : function(map) {
+			success : function(map) { // map 형태로 가져오기
 				
-				var $tableBody = $("#table tbody")
+				var $tableBody = $("#table tbody") 
 				$tableBody.html("");
 				$.each(map["jArr"], function(index, value){
 					console.log(value)

@@ -34,7 +34,7 @@ public class AdminMemberListViewServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//페이징 처리
 		
-		int proCount;   	// 총 제품 갯수
+		int proCount;   	// 총 회원 수
 		int currentPage; 	// 현재페이지 (요청한 페이지)
 		int startPage; 		// 현재 페이지 하단에 보여지는 페이징바의 시작수
 		int endPage; 		// 현재 페이지 하단에 보여지는 페이징바의 끝수
@@ -43,7 +43,7 @@ public class AdminMemberListViewServlet extends HttpServlet {
 		int pageLimit;		// 한페이지 하단에 보여질 페이지 최대갯수
 		int boardLimit; 	// 한페이지에 보여질 게시글 최대갯수
 		
-		//총게시글 갯수
+		//총 회원 수
 		proCount = new AdminService().getMemberCount();
 						
 		//현재페이지
@@ -110,7 +110,7 @@ public class AdminMemberListViewServlet extends HttpServlet {
 		
 		PageInfo pi = new PageInfo(proCount, currentPage, startPage, endPage, maxPage, pageLimit, boardLimit);
 		
-		ArrayList<Member> list = new AdminService().selectMemberList(pi);
+		ArrayList<Member> list = new AdminService().selectMemberList(pi); // 회원정보 불러오기
 		
 		request.setAttribute("list", list);
 		request.setAttribute("pi", pi);

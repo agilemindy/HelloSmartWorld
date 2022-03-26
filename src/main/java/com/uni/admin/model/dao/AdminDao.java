@@ -110,7 +110,7 @@ public class AdminDao {
 		return list;
 	}
 	
-	public ArrayList<Product> selectList(Connection conn) {
+	public ArrayList<Product> selectList(Connection conn) { // 재고관리에서 사용할 제품정보 가져오기
 		ArrayList<Product> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -148,7 +148,7 @@ public class AdminDao {
 		return list;
 	}
 
-	public int insertProductList(Connection conn, Product p) {
+	public int insertProductList(Connection conn, Product p) { // 제품등록
 		int result = 0;
 		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("insertProduct");
@@ -174,7 +174,7 @@ public class AdminDao {
 		return result;
 	}
 
-	public int insertPro_Attachment(Connection conn, ArrayList<Pro_Attachment> fileList) {
+	public int insertPro_Attachment(Connection conn, ArrayList<Pro_Attachment> fileList) { // 제품등록 - 사진
 		int result = 0;
 		PreparedStatement pstmt = null;
 		
@@ -275,7 +275,7 @@ try {
 		return list;
 	}
 
-	public int updateProduct(Connection conn, Product p) {
+	public int updateProduct(Connection conn, Product p) { // 제품수정
 		int result = 0;										
 		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("updateProduct");
@@ -303,7 +303,7 @@ try {
 		return result;
 	}
 
-	public int updatePro_Attachment(Connection conn, Pro_Attachment at) {
+	public int updatePro_Attachment(Connection conn, Pro_Attachment at) { // 제품수정 - 기존사진이 있을 경우
 		int result = 0;										
 		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("updateProAttachment");
@@ -327,7 +327,7 @@ try {
 		return result;
 	}
 
-	public int insertNewPro_Attachment(Connection conn, Pro_Attachment at, Product p) {
+	public int insertNewPro_Attachment(Connection conn, Pro_Attachment at, Product p) { // 제품수정 - 기존사진이 없을 경우
 		int result = 0;										
 		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("insertProAttachment");
@@ -418,7 +418,7 @@ try {
 		return InvenCount;
 	}
 
-	public ArrayList<Pro_Detail> selectInvenList(Connection conn, PageInfo pi) {
+	public ArrayList<Pro_Detail> selectInvenList(Connection conn, PageInfo pi) { // 재고관리 - 입출고 내역 정보
 		ArrayList<Pro_Detail> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -466,7 +466,7 @@ try {
 		return list;
 	}
 
-	public int insertInventoryList(Connection conn, Pro_Detail pd) {
+	public int insertInventoryList(Connection conn, Pro_Detail pd) { // 입출고 등록
 		int result = 0;
 		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("insertInventory");
@@ -491,7 +491,7 @@ try {
 		return result;
 	}
 
-	public ArrayList<Member> selectMemberList(Connection conn, PageInfo pi) {
+	public ArrayList<Member> selectMemberList(Connection conn, PageInfo pi) { // 회원정보 불러오기
 		ArrayList<Member> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -567,7 +567,7 @@ try {
 		return ProCount;
 	}
 
-	public int deleteMember(Connection conn, int userNo) {
+	public int deleteMember(Connection conn, int userNo) { // 회원관리 - 회원삭제 (회원상태를 N으로 돌려놓기)
 		int result = 0;
 		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("deleteMember");
@@ -587,7 +587,7 @@ try {
 		return result;
 	}
 
-	public int getSalesCount(Connection conn) {
+	public int getSalesCount(Connection conn) {// 결제건수구하기
 		int ProCount = 0;
 		Statement stmt = null;
 		ResultSet rset = null;		
@@ -616,7 +616,7 @@ try {
 	}
 	
 
-	public ArrayList<Order> selectSalesList(Connection conn, PageInfo pi) {
+	public ArrayList<Order> selectSalesList(Connection conn, PageInfo pi) { // 결제정보 구하기
 		ArrayList<Order> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -658,7 +658,7 @@ try {
 			return list;
 		}
 
-	public ArrayList<Order> selectSalesListSortAsc(Connection conn, PageInfo pi) {
+	public ArrayList<Order> selectSalesListSortAsc(Connection conn, PageInfo pi) { // 매출관리 결제내역 오래된순으로 구하기
 		ArrayList<Order> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -727,7 +727,7 @@ try {
 		return ProCount;
 	}
 
-	public ArrayList<Review> selectReviewList(Connection conn, PageInfo pi) {
+	public ArrayList<Review> selectReviewList(Connection conn, PageInfo pi) { // 등록된 리뷰 리스트
 		ArrayList<Review> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -772,7 +772,7 @@ try {
 			return list;
 	}
 
-	public int deleteReview(Connection conn, int rNo) {
+	public int deleteReview(Connection conn, int rNo) { // 리뷰삭제
 		int result = 0;
 		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("deleteReview");
@@ -792,7 +792,7 @@ try {
 		return result;
 	}
 
-	public Pro_Detail selectInventory(Connection conn, String pNo) {
+	public Pro_Detail selectInventory(Connection conn, String pNo) { // 재고상세내역
 		Pro_Detail pd = null;								   
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -831,7 +831,7 @@ try {
 		return pd;
 	}
 
-	public int updateInventory(Connection conn, Pro_Detail pd) {
+	public int updateInventory(Connection conn, Pro_Detail pd) { // 재고관리 수량 수정
 		int result = 0;										
 		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("updateInventory");
@@ -855,7 +855,7 @@ try {
 		return result;
 	}
 
-	public int deleteInventory(Connection conn, int pNo) {
+	public int deleteInventory(Connection conn, int pNo) { // 재고삭제
 		int result = 0;
 		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("deleteInventory");

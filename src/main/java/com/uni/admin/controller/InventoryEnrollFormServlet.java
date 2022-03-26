@@ -32,7 +32,7 @@ public class InventoryEnrollFormServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		ArrayList<Product> list = new AdminService().selectList();
+		ArrayList<Product> list = new AdminService().selectList(); // 제품정보가져오기
 		
 		request.setAttribute("list", list);
 		

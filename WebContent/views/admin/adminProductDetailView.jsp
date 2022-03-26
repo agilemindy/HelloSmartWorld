@@ -67,50 +67,59 @@
 		<form id="insertForm" action="<%= contextPath %>/?" method="post" enctype="multipart/form-data">
 			<table align="center">
                 <tr>
+                	<!-- 제품이미지 -->
 					<th>제품대표<br>이미지</th>
 					<td colspan="3">						
                         <div id="fileArea">
-                        <% if(fileList.size() != 0){ %>
+                        <% if(fileList.size() != 0){ %><!-- 사진이 있을 경우 resources 에서 사진 가져오기 -->
                             <img width="250px" height="250px" id="titleImg" src="<%= contextPath %>/resources/product_upfiles/<%= fileList.get(0).getChange_name() %>">				
-                       <% }else{ %>
+                       <% }else{ %><!-- 사진이 없을 경우 -->
                        		<img width="250px" height="250px" id="titleImg" src="<%= contextPath %>/resources/product_upfiles/noImg.png">
 					   <% } %>
                         </div>
 					</td>
 				</tr>
 				<tr>
+					<!-- 제품아이디 -->
 					<th width="100">제품아이디</th>
 					<td width="500">
 						<%= p.getP_id() %>
 					</td>
 				</tr>
 				<tr>
+					<!-- 제품명 -->
 					<th>제품명</th>
 					<td><%= p.getP_name() %></td>
 				</tr>
                 <tr>
+                	<!-- 제조사 -->
 					<th>제조사</th>
 					<td><%= p.getBrand() %></td>
 				</tr>
                 <tr>
+                	<!-- 색상 -->
 					<th>색상</th>
 					<td><%= p.getColor() %></td>
 				</tr>
                 <tr>
+                	<!-- 용량 -->
 					<th>용량</th>
 					<td><%= p.getCapacity() %></td>
 				</tr>
                 <tr>
+                	<!-- 가격 -->
 					<th>가격</th>
 					<td><%= p.getPrice() %></td>
 				</tr>
                 <tr>
+                	<!-- 판매상태 -->
 					<th>판매상태</th>
 					<td>
                         <%= p.getP_status() %>
                     </td>
 				</tr>
                 <tr>
+                	<!-- 현재수량 -->
 					<th>현재수량</th>
 					<td><%= p.getP_stock() %></td>
 				</tr>
@@ -122,6 +131,7 @@
 			<br>			
 			
 			<div class="btns" align="center">
+				<!-- 제품수정하기 -->
 				<button type="button" onclick="updateForm();" class="button">수정하기</button>
 				<!--  <button type="button" onclick="deleteProduct();" class="button">삭제하기</button> -->
 			</div>
@@ -131,12 +141,12 @@
 				<input type="hidden" name="pId" value=<%= p.getP_id() %>>
 		</form>
 		<script type="text/javascript">
-			function updateForm(){
+			function updateForm(){ // 수정하기
 				$("#postForm").attr("action", "<%=contextPath%>/updateFormProduct.do");
 				$("#postForm").submit();
 			}
 			
-			function deleteProduct(){
+			function deleteProduct(){ // 제품삭제기능은 현재 없앰
 				$("#postForm").attr("action", "<%=contextPath%>/deleteProduct.do");
 				$("#postForm").submit();
 			}

@@ -96,6 +96,7 @@
 			
 		</div>
 		<div align="right" style="margin-right: 150px; margin-bottom: 20px" >
+			<!-- 총 회원 수 -->
 			<h4> 총 <%= proCount %> 명 </h4>
 		</div>
 		
@@ -122,12 +123,12 @@
 				</tr>
 			<thead>
 			<tbody>
-				<%if(list.isEmpty()){ %>
+				<%if(list.isEmpty()){ %><!-- 회원정보가 없을 경우 -->
 				<tr>
 					<td colspan="6">조회된 리스트가 없습니다.</td>
 				</tr>
-				<%}else{ %>
-					<% for(Member m : list){ %>
+				<%}else{ %><!-- 회원정보가 있을 경우 -->
+					<% for(Member m : list){ %><!-- for-each문 사용 -->
 					<tr>
 						
 						<td><%= m.getUserNo() %></td>
@@ -143,6 +144,7 @@
 						<td><%= m.getDelDate() %></td>						
 						<td><%= m.getStatus() %></td>
 						<td>
+							<!-- 회원삭제버튼 -->
 							<button id="deleteButton" onclick="deleteMember();"><i class="bi bi-trash"></i></button>
 						</td>						
 					</tr>
@@ -193,8 +195,8 @@
 	
 	
 	<script>
-		$(".listArea>tbody>tr>td>button").click(function(){
-			var userNo = $(this).parentsUntil().eq(1).children().eq(0).text();					
+		$(".listArea>tbody>tr>td>button").click(function(){ // 각 행의 회원삭제버튼 클릭
+			var userNo = $(this).parentsUntil().eq(1).children().eq(0).text(); // 회원번호 선택				
 			location.href="<%=contextPath%>/deleteMember.do?userNo="+userNo;		
 		});			
 	</script>

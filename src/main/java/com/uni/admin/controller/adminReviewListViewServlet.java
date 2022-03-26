@@ -44,7 +44,7 @@ public class adminReviewListViewServlet extends HttpServlet {
 		int pageLimit;		// 한페이지 하단에 보여질 페이지 최대갯수
 		int boardLimit; 	// 한페이지에 보여질 게시글 최대갯수
 		
-		//총게시글 갯수
+		//총 리뷰 갯수
 		proCount = new AdminService().getReviewListCount();
 						
 		//현재페이지
@@ -111,7 +111,7 @@ public class adminReviewListViewServlet extends HttpServlet {
 		
 		PageInfo pi = new PageInfo(proCount, currentPage, startPage, endPage, maxPage, pageLimit, boardLimit);
 		
-		ArrayList<Review> list = new AdminService().selectReviewList(pi);
+		ArrayList<Review> list = new AdminService().selectReviewList(pi); // 리뷰
 		
 		request.setAttribute("list", list);
 		request.setAttribute("pi", pi);
