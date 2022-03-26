@@ -1,15 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="com.uni.member.model.vo.Member"%>
 <%
-String brand = (String) request.getAttribute("brand");
-String name = (String) request.getAttribute("name");
-String color = (String) request.getAttribute("color");
-String capacity = (String) request.getAttribute("capacity");
+//productListView에서 선택한 제품에 대한 pId와 price값을 orderFormServlet에서 받음
 String price = (String) request.getAttribute("price");
 String pId = (String) request.getAttribute("pId");
+
+//세션에 있는 로그인한 유저에 대한 정보를 Member m 변수에 담고 userNo값을 변수에 담음
 Member m = (Member) request.getSession().getAttribute("loginUser");
 int userNo = m.getUserNo();
-
 %>
 <!DOCTYPE html>
 <html>
@@ -52,23 +50,16 @@ int userNo = m.getUserNo();
 								<small class="text-muted"><%=pId%></small>
 						</div> 
 						</li>
-						<!-- <li class="list-group-item d-flex justify-content-between lh-sm">
-							<div>
-								<h6 class="my-0">Second product</h6>
-								<small class="text-muted">Brief description</small>
-							</div> <span class="text-muted">$8</span>
-						</li>
-						<li class="list-group-item d-flex justify-content-between lh-sm">
-							<div>
-								<h6 class="my-0">Third item</h6>
-								<small class="text-muted">Brief description</small>
-							</div> <span class="text-muted">$5</span>
-						</li> -->
 						<li class="list-group-item d-flex justify-content-between"><span>Total
 						</span> <strong><%=price%>원</strong></li>
 					</ul>
 					<button class="w-100 btn btn-primary btn-lg" type="submit">주문하기</button>
 					<div class="form-check form-switch my-3">
+					
+					<!-- 
+					스위치를 클릭하면 memberInput 함수가 동작됨. 
+					스위치를 활성화하면 로그인한 유저의 정보가 수취인 정보에 담기고, 비활성화시키면 수취인 정보를 비움
+					 -->
 					  <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" onclick="memberInput();">
 					  <label class="form-check-label" for="flexSwitchCheckChecked">배송지정보가 회원정보와 동일함</label>
 					</div>
@@ -76,10 +67,10 @@ int userNo = m.getUserNo();
 				<div class="col-md-7 col-lg-8">
 					<h4 class="mb-3">Billing address <i class="bi bi-receipt-cutoff"></i></h4>
 					
-					
-					<input type="hidden" value="<%= pId %>" name="pId">
 					<input type="hidden" value="<%= userNo %>" name="userNo">
+					<input type="hidden" value="<%= pId %>" name="pId">
 					<input type="hidden" value="<%= price %>" name="price">
+					
 						<div class="row g-3">
 							<div class="col-sm-6">
 								<label for="firstName" class="form-label">보내시는 분 성함</label> <input
@@ -114,17 +105,18 @@ int userNo = m.getUserNo();
 							<div class="col-12">
 								<label for="email" class="form-label">받으시는 분 주소</label>
 								<div class="row">
-								<div class="col-9">
-								<input
-									type="text" class="form-control" id="addrAddress" name="addrAddress"
-									placeholder="" required>
-								<div class="invalid-feedback">주소를 입력해주세요</div>
-								</div>
-								
-								<div class="col-3">
-								<button type="button" onclick="addressCheck();"
-									class="btn btn-primary btn-m">주소검색</button>
-							</div>
+									<div class="col-9">
+									<input
+										type="text" class="form-control" id="addrAddress" name="addrAddress"
+										placeholder="" required>
+									<div class="invalid-feedback">주소를 입력해주세요</div>
+									</div>
+									
+									<!-- 주소API를 이용해 #addrAddress에 값을 담음 -->
+									<div class="col-3">
+									<button type="button" onclick="addressCheck();"
+										class="btn btn-primary btn-m">주소검색</button>
+									</div>
 								</div>
 							</div>
 							
@@ -140,82 +132,32 @@ int userNo = m.getUserNo();
 									placeholder="배송요청사항을 입력해주세요">
 							</div>
 						</div>
-						<hr class="my-4">
-
-						<!--  <div class="form-check">
-							<input type="checkbox" class="form-check-input" id="same-address">
-							<label class="form-check-label" for="same-address">addr
-								address is the same as my billing address</label>
-						</div>
-
-						<div class="form-check">
-							<input type="checkbox" class="form-check-input" id="save-info">
-							<label class="form-check-label" for="save-info">Save this
-								information for next time</label>
-						</div>
 						
-						<hr class="my-4">-->
-
+						<hr class="my-4">
+						
 						<h4 class="mb-3">결제수단</h4>
-
 						<div class="my-3">
 							<div class="row col-md-12">
 								<div class="form-check col-md-3 ">
 									<input id="credit" name="paymentMethod" type="radio"
 										class="form-check-input" value="101" required checked> <label
 										class="form-check-label" for="deposit" >KG이니시스</label>
-
 								</div>
 							</div>
-							 <!-- <div class="row col-md-12">
-								<div class="form-check">
-									<input id="debit" name="paymentMethod" type="radio"
-										class="form-check-input" value="201" required> <label
-										class="form-check-label" for="credit">신용카드</label>
-								</div>
-							</div>-->
 						</div>
-
-						 <!--  <div class="row gy-3">
-							<div class="col-md-6">
-								<label for="cc-name" class="form-label">Name on card</label> <input
-									type="text" class="form-control" id="cc-name" placeholder=""
-									required> <small class="text-muted">Full name
-									as displayed on card</small>
-								<div class="invalid-feedback">Name on card is required</div>
-							</div>
-
-							<div class="col-md-6">
-								<label for="cc-number" class="form-label">Credit card
-									number</label> <input type="text" class="form-control" id="cc-number"
-									placeholder="" required>
-								<div class="invalid-feedback">Credit card number is
-									required</div>
-							</div>
-
-							<div class="col-md-3">
-								<label for="cc-expiration" class="form-label">Expiration</label>
-								<input type="text" class="form-control" id="cc-expiration"
-									placeholder="" required>
-								<div class="invalid-feedback">Expiration date required</div>
-							</div>
-
-							<div class="col-md-3">
-								<label for="cc-cvv" class="form-label">CVV</label> <input
-									type="text" class="form-control" id="cc-cvv" placeholder=""
-									required>
-								<div class="invalid-feedback">Security code required</div>
-							</div>
-						</div> -->
 						<hr class="my-4">
 					</form>
 				</div>
 			</div>
 		</main>
 	</div>
+	
 	<script>
+	
+		//다음주소API
+		//팝업 창에서 검색한 주소를 #addrAddress에 담음
 		function addressCheck() {
-			//https://postcode.map.daum.net/guide#usage
+			
 			new daum.Postcode(
 					{
 						oncomplete : function(data) {
@@ -226,31 +168,24 @@ int userNo = m.getUserNo();
 					}).open();
 		}
 		
-		
+		//수취인 정보가 회원정보와 일치할 때 
 		function memberInput(){
 			
 			var check = document.getElementById('flexSwitchCheckChecked').checked
 			
-			console.log(check)
-			console.log(check.checked)
-			console.log(document.getElementById('flexSwitchCheckChecked').checked)
-
-			
-			if(check){				
-				
+			if(check){			
+				//스위치를 활성화하면 수취인 정보에 회원정보를 담음
 				document.getElementById('addrName').value = "<%= m.getUserName()%>"
 				document.getElementById('addrPhone').value = "<%= m.getPhone()%>"
 				document.getElementById('addrAddress').value = "<%= m.getAddress()%>"
 				document.getElementById('addrAddressDet').value = "<%= m.getAddressDet()%>"
 			}else{
+				//스위치를 비활성화하면 수취인 정보를 비움
 				document.getElementById('addrName').value = ""
 				document.getElementById('addrPhone').value = ""
 				document.getElementById('addrAddress').value = ""
 				document.getElementById('addrAddressDet').value = ""
-			}
-			
-			
-			
+			}	
 		}
 	</script>
 <script

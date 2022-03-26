@@ -53,7 +53,7 @@ public class MemberService {
 		if(result > 0) {
 			commit(conn);
 			member = new MemberDao().selectMember(conn, mem.getUserId());
-			//System.out.println("멤버서비스 : " + member);
+			
 		}else {
 			rollback(conn);
 		}

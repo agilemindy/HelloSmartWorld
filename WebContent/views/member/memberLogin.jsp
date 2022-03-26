@@ -48,7 +48,6 @@ String msg = (String)request.getAttribute("msg");
 	<%@ include file="../../views/common/menubar.jsp"%>
 	<script>
 	var msg = "<%=msg%>";
-	console.log(msg);
 	
 	$(function(){
 		if(msg != "null"){
@@ -105,7 +104,7 @@ String msg = (String)request.getAttribute("msg");
 	</div>
 
 
-	<div id="dropDownSelect1"></div>
+	
 	<script>
 		function loginValidate() {
 			if ($("#userId").val().trim().length === 0) {
@@ -123,6 +122,7 @@ String msg = (String)request.getAttribute("msg");
 			return true;
 		}
 		
+		//회원가입 창으로 이동
 		function enrollPage(){
 			
 		location.href="<%=request.getContextPath()%>/joinMember.do";
@@ -148,7 +148,7 @@ String msg = (String)request.getAttribute("msg");
 		function onSignIn(googleUser) {
 			var access_token = googleUser.getAuthResponse().access_token
 			$.ajax({
-		    	// people api를 이용하여 프로필 및 생년월일에 대한 선택동의후 가져온다.
+		    	// people api를 이용하여 프로필 및 생년월일에 대한 선택동의 후 가져온다.
 				url: 'https://people.googleapis.com/v1/people/me'
 		        // key에 자신의 API 키를 넣습니다.
 				, data: {personFields:'birthdays', key:'AIzaSyD-7Bwwx7bw2U9b2dzTfpMWepu3mFazdAY', 'access_token': access_token}
@@ -156,6 +156,8 @@ String msg = (String)request.getAttribute("msg");
 			})
 			.done(function(e){
 		        //프로필을 가져온다.
+		        //id, pwd, name은 구글 프로필의 이름으로 설정.
+		        //전화번호, 주소 등은 임의의 값을 넣어서 DB에 값을 인서트할 수 있게 함
 				var profile = googleUser.getBasicProfile();
 				
 				$.ajax({
@@ -185,7 +187,7 @@ String msg = (String)request.getAttribute("msg");
 				})
 			})
 			.fail(function(e){
-				alert("동일한 아이디")
+				alert(e)
 			})
 		}
 		function onSignInFailure(t){		

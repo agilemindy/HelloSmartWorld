@@ -34,7 +34,7 @@ public class OrderDao {
 	}
 
 	public int orderProduct(Connection conn, Order order) {
-		System.out.println("다오" + order);
+		
 		int result = 0;
 		PreparedStatement pstmt = null;
 		
@@ -92,7 +92,7 @@ public class OrderDao {
 	}
 
 	public int orderCancel(Connection conn, int orderNo) {
-		System.out.println("다오" + orderNo);
+		
 		int result = 0;
 		PreparedStatement pstmt = null;
 		

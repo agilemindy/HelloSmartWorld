@@ -4,7 +4,6 @@
 	Member m = (Member) request.getSession().getAttribute("loginUser");
 	
 	Order order = (Order)request.getSession().getAttribute("order");
-
 %>
 <!DOCTYPE html>
 <html>
@@ -97,7 +96,7 @@
 								</div>
 								
 								<div class="col-3">
-								<button type="button" onclick="addressCheck();"
+								<button type="button"
 									class="btn btn-primary btn-m" disabled>주소검색</button>
 							</div>
 								</div>
@@ -114,6 +113,10 @@
 								<input type="text" class="form-control" id="comment" name="comment" value="<%= order.getComment() %>"
 									placeholder="배송요청사항을 입력해주세요" readonly>
 							</div>
+							<% 
+							//값을 모두 받은 후 세션에 있는 order값 지우기
+							request.getSession().removeAttribute("order"); 
+							%>
 						</div>
 						<hr class="my-4">
 
@@ -128,13 +131,6 @@
 
 								</div>
 							</div>
-							<!-- <div class="row col-md-12">
-								<div class="form-check">
-									<input id="debit" name="paymentMethod" type="radio"
-										class="form-check-input" value="201" disabled > <label
-										class="form-check-label" for="credit">신용카드</label>
-								</div>
-							</div> -->
 						</div>
 						<hr class="my-4">
 					
@@ -149,7 +145,7 @@
 			location.href = "<%=request.getContextPath() %>/orderInfo.do"
 			
 		}
-	
+		
 	</script>
 <script
 		src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>

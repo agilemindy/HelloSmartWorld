@@ -32,11 +32,14 @@ public class IdCheckServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		request.setCharacterEncoding("UTF-8");
+		
 		String userId = request.getParameter("userId");
-		System.out.println("아이디체크에서 " + userId);
 		
 		int result = new MemberService().idCheck(userId);
 		
+		//ajax로 값을 넘김
+		//result가 0보다 크다 == 동일한 아이디가 있다는 뜻으로 fail을 넘김
+		//result가 0이면 동일한 아이디가 없다는 뜻으로 success를 넘김
 		PrintWriter out = response.getWriter();
 		if(result > 0) {
 			out.print("fail");

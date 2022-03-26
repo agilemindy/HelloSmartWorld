@@ -42,18 +42,16 @@ public class MemberUpdateServlet extends HttpServlet {
 		String tel = request.getParameter("tel");
 		String phone = request.getParameter("phone");
 		String email = request.getParameter("email");
+		//패스워드 수정하지 않는 경우 값이 공백으로 넘어와서 기존의 값을 넣어 null이 뜨지 않게 함
 		String userPwd = request.getParameter("userPwd") == "" ? request.getParameter("originPwd") : request.getParameter("userPwd");
-		
-		System.out.println("멤버업뎃서블릿 출력: " + userId + name + address + tel + phone +email + userPwd );
-		//System.out.println("멤버업뎃 유저패스값" + userPwd);
 		
 		Member mem = new Member(userId, userPwd, name, address, addressDet, tel, phone, email);
 		
+		//updateMember로 멤버 값을 보내 userId와 동일한 정보의 값을 업데이트
 		Member member = new MemberService().updateMember(mem);	
 
-		request.setAttribute("loginUser", member);
-		
-		//System.out.println("멤버업뎃서블릿 출력: " + member);
+		//새로 업데이트된 정보를 loginUser에 다시 담음
+		request.getSession().setAttribute("loginUser", member);
 		
 		if(member != null) {
 			

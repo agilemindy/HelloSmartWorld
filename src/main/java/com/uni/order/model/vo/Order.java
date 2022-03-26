@@ -41,8 +41,6 @@ public class Order {
 		this.orderStatus = orderStatus;
 	}
 
-	
-
 	public Order(int userNo, String pId, int amount, String addrName, String addrPhone, String addrAddress,
 			String addrAddressDet, String comment, int payCode) {
 		super();
@@ -92,8 +90,6 @@ public class Order {
 		this.price = price;
 		this.date = date;
 	}
-
-
 
 	public int getOrderNo() {
 		return orderNo;

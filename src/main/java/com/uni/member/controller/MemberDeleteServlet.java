@@ -36,6 +36,7 @@ public class MemberDeleteServlet extends HttpServlet {
 		Member mem = (Member) request.getSession().getAttribute("loginUser");
 		String userId = mem.getUserId();
 		
+		//deleteMember에 userId 값을 보내 동일한 userId의 정보를 지움
 		int result = new MemberService().deleteMember(userId);
 		
 		if(result > 0) {

@@ -57,6 +57,7 @@ body {
 								<div class="invalid-feedback">아이디를 입력해주세요.</div>
 							</div>
 							<div class="col-md-3">
+							<!-- ajax로 화면전환하지 않고 데이터를 갱신함 -->
 								<button type="button" onclick="idCheck();"
 									class="btn btn-dark btn-m">중복확인</button>
 							</div>
@@ -107,6 +108,7 @@ body {
 								<div class="invalid-feedback">주소를 입력해주세요.</div>
 							</div>
 							<div class="col-md-3">
+							<!-- 주소API를 이용해 #addrAddress에 값을 담음 -->
 								<button type="button" onclick="addressCheck();"
 									class="btn btn-dark btn-m">주소검색</button>
 							</div>
@@ -132,7 +134,7 @@ body {
 					</div>
 					<div class="mb-4"></div>
 					<button class="btn btn-dark btn-lg btn-block"
-						onclick="pwdCheck();" type="submit" id="submitBtn" disabled>회원가입</button>
+						 type="submit" id="submitBtn" disabled>회원가입</button>
 				</form>
 			</div>
 		</div>
@@ -157,7 +159,7 @@ body {
 		}, 
 		false);
 	
-		//아이디 형식 먼저 체크하고 가능하면 중복체크
+		//아이디 형식 먼저 체크하고 형식이 맞으면 중복체크
 		function idCheck(){
 			
 			var userId = $('#userId').val();
@@ -217,8 +219,9 @@ body {
 		
 	}
 
+	//다음주소API
+	//팝업 창에서 검색한 주소를 #addrAddress에 담음
 	function addressCheck(){
-		//https://postcode.map.daum.net/guide#usage
 		new daum.Postcode({
 	        oncomplete: function(data) {
 

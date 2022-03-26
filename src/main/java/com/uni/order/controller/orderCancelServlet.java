@@ -32,7 +32,6 @@ public class orderCancelServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		int orderNo = Integer.parseInt( request.getParameter("orderNo"));
-		System.out.println("캔슬 서블릿 :" + orderNo);
 		
 		int result = new OrderService().orderCancel(orderNo);
 	

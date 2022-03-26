@@ -21,7 +21,7 @@ public class MemberDao {
 
 	public MemberDao() {
 		String fileName = MemberDao.class.getResource("/sql/member/member-query.properties").getPath();
-		System.out.println("fileName   " + fileName);
+		
 		try {
 			prop.load(new FileReader(fileName));
 		} catch (FileNotFoundException e) {
@@ -129,7 +129,6 @@ public class MemberDao {
 			pstmt.setString(1, userId);
 			
 			result = pstmt.executeUpdate();
-			//System.out.println("result 다오" + result);
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -159,7 +158,6 @@ public class MemberDao {
 			pstmt.setString(8, mem.getUserId());
 				
 			result = pstmt.executeUpdate();
-			//System.out.println("result 다오" + result);
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -232,7 +230,7 @@ public class MemberDao {
 		ArrayList<Order> order = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		System.out.println("마이오더인포 다오 " + userNo);
+
 		String sql = prop.getProperty("myOrderInfo");
 		
 		try {
@@ -268,7 +266,6 @@ public class MemberDao {
 			close(pstmt);
 		}
 
-		System.out.println("다오: " + order);
 		return order;
 	}
 
@@ -313,7 +310,6 @@ public class MemberDao {
 			close(pstmt);
 		}
 
-		System.out.println("다오: " + order);
 		return order;
 	}
 	

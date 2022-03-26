@@ -2,13 +2,12 @@
 	pageEncoding="UTF-8"
 	import="java.util.ArrayList, com.uni.order.model.vo.Order, com.uni.member.model.vo.*"%>
 <%
-Member m = (Member) request.getSession().getAttribute("loginUser");
+
 ArrayList<Order> order = (ArrayList<Order>) request.getAttribute("order");
 String msg = (String)request.getSession().getAttribute("msg");
 String contextPath = request.getContextPath();
 
 PageInfo pi = (PageInfo) request.getAttribute("pi");
-
 int listCount = pi.getListCount();
 int currentPage = pi.getCurrentPage();
 int maxPage = pi.getMaxPage();
@@ -39,7 +38,6 @@ int endPage = pi.getEndPage();
 <body>
 <script>
 	var msg = "<%=msg%>";
-	console.log(msg);
 	
 	$(function(){
 		if(msg != "null"){

@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8" import="com.uni.member.model.vo.Member"%>
 <%
 String msg = (String) (session.getAttribute("msg"));
-Member m = (Member) request.getAttribute("loginUser");
+Member m = (Member)request.getSession().getAttribute("loginUser");
 String userName = m.getUserName();
 String userId = m.getUserId();
 String address = m.getAddress();
@@ -21,7 +21,6 @@ String originUserPwd = m.getUserPwd();
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
 	var msg = "<%=msg%>";
-	console.log(msg);
 	
 	$(function(){
 		if(msg != "null"){
@@ -29,11 +28,9 @@ String originUserPwd = m.getUserPwd();
 			<%session.removeAttribute("msg");%>
 		}
 	})
-
 </script>
 </head>
 <body>
-
 	<%@ include file="../../views/common/menubar.jsp"%>
 	<div class="container">
 		<div class="input-form-backgroud row">
@@ -69,7 +66,9 @@ String originUserPwd = m.getUserPwd();
 									class="form-control" id="userPwdCheck" name="userPwdCheck"
 									placeholder="" value="">
 							</div>
-							
+								<!-- 비밀번호는 수정할 경우에만 값이 들어가기 때문에 
+									 비밀번호를 수정하지 않고 다른 회원정보만 수정하는 경우 originUserPwd값을 전달해 
+									 오류가 나지 않게 한다 -->
 								<input type="hidden"
 									class="form-control" id="originPwd" name="originPwd"
 									placeholder="" value="<%= originUserPwd %>">	
@@ -156,8 +155,9 @@ String originUserPwd = m.getUserPwd();
 			}
 		}
 
+	//주소api
 		function addressCheck() {
-			//https://postcode.map.daum.net/guide#usage
+			
 			new daum.Postcode({
 				oncomplete : function(data) {
 

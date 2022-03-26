@@ -34,28 +34,16 @@ public class orderProductServlet extends HttpServlet {
 		
 		request.setCharacterEncoding("UTF-8");
 		
-		int orderNo = 0;
-		int userNo = Integer.parseInt(request.getParameter("userNo"));
-		String pId = request.getParameter("pId");
-		int amount = 1;
-		String addrName = request.getParameter("addrName");
-		String addrPhone = request.getParameter("addrPhone");
-		String addrAddress = request.getParameter("addrAddress");
-		String addrAddressDet = request.getParameter("addrAddressDet");
-		String comment = request.getParameter("comment") != "" ? request.getParameter("comment") : "요청사항 없음";
-		int payCode = 101;
-		int price = Integer.parseInt(request.getParameter("price"));
+		Order order = (Order)request.getSession().getAttribute("order");
 		
-		Order order = new Order(orderNo, userNo, pId, amount, addrName, addrPhone, addrAddress, addrAddressDet, comment, payCode, price);
-		//System.out.println(order);
-		
+		//DB에 주문내역 인서트
 		int result = new OrderService().orderProduct(order);
-		order.setOrderNo(new OrderService().orderNumCheck(order)); //오더번호 가져오기
-		System.out.println(order.getOrderNo());
+		//오더번호 가져오기
+		order.setOrderNo(new OrderService().orderNumCheck(order)); 
 		
 		request.getSession().setAttribute("order", order);
 		
-		// 주문완료시 재고테이블에 출고로 삽입
+		// BY민지, 주문완료시 재고테이블에 출고로 삽입
 		int result2 = new OrderService().afterOrderPro_Detail(order);
 		
 		PrintWriter out = response.getWriter();
@@ -67,20 +55,6 @@ public class orderProductServlet extends HttpServlet {
 		
 		out.flush();
 		out.close();
-		
-//		if(result > 0) {
-//
-//			order.setOrderNo(new OrderService().orderNumCheck(order));
-//			request.setAttribute("order", order);
-//			
-//			request.getRequestDispatcher("views/order/orderResult.jsp").forward(request, response);
-//			
-//		}else {
-//			request.setAttribute("msg", "죄송합니다. 재고가 없어 구매할 수 없습니다.");
-//			RequestDispatcher view = request.getRequestDispatcher("/productList.do");
-//			view.forward(request, response);
-//		}
-		
 		
 	}
 
