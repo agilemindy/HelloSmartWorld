@@ -43,7 +43,7 @@ public class orderCancelServlet extends HttpServlet {
 			
 		}else {
 			
-			request.setAttribute("msg", "죄송합니다. 재고가 없어 구매할 수 없습니다.");
+			request.setAttribute("msg", "주문을 취소하지 못했습니다. 관리자에게 문의하세요.");
 			RequestDispatcher view = request.getRequestDispatcher("/orderInfo.do");
 			view.forward(request, response);
 			
