@@ -102,22 +102,21 @@ Attachment at = (Attachment)request.getAttribute("at");
                       <i class="bi bi-star-fill"></i> <%}%></b>
                 </div>
 
-				
-				<!-- 좋아요 버튼 -->
+				<%if(loginUser != null) {%>
+				<!-- 좋아요 버튼 로그인 되어있을때만 보이게 -->
 				<div  class="review_like">				
 					<form id="like_form">						
 						<input type="hidden" id="rId" name="rId" value="<%=r.getReviewNo() %>">
-						<input type="hidden" id="likeCount" name="likeCount" value="1">					
-						<input class="btn btn-sm btn-info" type="button" value="좋아요" id="likeBtn">						
-					</form>	
-					<div id="like_result">좋아요 : <%=r.getLike() %></div>
+						<input type="hidden" id="likeCount" name="likeCount" value="1">											
+						<input class="btn btn-sm btn-info" type="button" value="좋아요♥" id="likeBtn">						
+					</form>					
 					
 					<div id="like_result_area">
-	
+						좋아요 : <%=r.getLike() %>
 					</div>
 									
 				</div>
-
+				<% } %>
 			</div>
 
 			
@@ -168,8 +167,8 @@ Attachment at = (Attachment)request.getAttribute("at");
 					alert("좋아요가 추가 되었습니다.");
 					console.log("통신완료");
 					console.log("<%=r.getLike()%>");
-					
-					/* $("#like_result_area").html(like);*/
+					var like ="좋아요 : "+ result;
+					$("#like_result_area").html(like);
 
 				},
 				
