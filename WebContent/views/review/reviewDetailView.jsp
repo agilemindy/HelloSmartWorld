@@ -105,15 +105,12 @@ Attachment at = (Attachment)request.getAttribute("at");
 				
 				<!-- 좋아요 버튼 -->
 				<div  class="review_like">				
-					<form id="like_form">
-					<table id="listLike" style="margin-left: auto; margin-right: auto;">
-						<input type="hidden" name="command" value="like_it">
-						<input type="hidden" name="rId" value="<%=r.getReviewNo() %>">
-						<tr><div id="like_result">좋아요 수 : <%=r.getLike() %></div> </tr>
-						<tr><input class="btn btn-sm btn-info" type="button" value="좋아요" onclick="return like()" > </tr>
-						
-					</table>
-					</form>							
+					<form id="like_form">						
+						<input type="hidden" id="rId" name="rId" value="<%=r.getReviewNo() %>">
+						<input type="hidden" id="likeCount" name="likeCount" value="1">					
+						<input class="btn btn-sm btn-info" type="button" value="좋아요" id="likeBtn">						
+					</form>	
+					<div id="like_result">좋아요 : <%=r.getLike() %></div>						
 				</div>
 
 
@@ -144,26 +141,49 @@ Attachment at = (Attachment)request.getAttribute("at");
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script type="text/javascript">
 	
-	function like(){
-		
-		  $.ajax({
-			    url: "likeInsert.do",
-			    type: "POST",
-			    cache: false,
-			    dataType: "json",
-			    data: $('#like_form').serialize(),   //아이디가 like_form인 곳의 모든 정보를 가져와  파라미터 전송 형태(표준 쿼리형태)로 만들어줌
-			    success: 
-			    function(data){      					//ajax통신 성공시 넘어오는 데이터 통째 이름 =data
-			    	alert("'좋아요'가 반영되었습니다!") ;  // data중 put한 것의 이름 like
-	                $("#like_result").html(data.like);  //id값이 like_result인 html을 찾아서 data.like값으로 바꿔준다.
-			    },   
-			    
-			    error: 
-			    function (request, status, error){  
-			      alert("ajax실패")                  
-			    }
-			  });
-	}
+	$(function(){
+		$("#likeBtn").click(function(){
+			//var like = $("#likeCount").val();
+			var rId = $("#rId").val();
+			
+			//console.log(like);
+			console.log(rId);
+			
+			
+			$.ajax({
+				//1. url : 데이터를 전송할 url(필수!!)
+				url:"likeInsert.do",
+				
+				//2. data : 요청시 전달할 파라미터 설정(키 밸류 형식)
+				data: { 
+					//like : like,
+					rId : rId
+				},
+				
+				//3. type : 전송방식(get/post)
+				type : "get",
+				
+				//4. success : Ajax 통신 성공시 처리할 함수를 지정하는 속성. result값을 받아 실행
+				success : function(result){
+					alert("좋아요가 추가 되었습니다.");
+					console.log("통신완료")
+					console.log(result)
+					$("#like_result").val(result);
+				},
+				
+				//5. error : Ajax 통신 실패시 처리할 함수를 지정하는 속성
+				error : function(){
+					console.log("Ajax 통신 실패")
+				},
+				
+				//6. complete : 통신 여부와 상관없이 실행
+				complete : function(){
+					console.log("지금 진행되고 있나?")
+				}
+				
+			})
+		})
+	})
 	
 	
 	function deleteBoard(){
