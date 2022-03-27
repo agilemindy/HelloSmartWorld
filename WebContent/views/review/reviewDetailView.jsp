@@ -15,6 +15,16 @@ Attachment at = (Attachment)request.getAttribute("at");
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<!-- Favicon-->
+<link rel="icon" type="image/x-icon" href="resources/assets/favicon1.ico"/>
+<!-- Bootstrap icons-->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+<!-- Core theme CSS (includes Bootstrap)-->
+<link href="resources/css/productStyles.css" rel="stylesheet" />
+
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/></svg>
+
 <meta charset="UTF-8">
 <title>Review | HELLO SMART WORLD</title>
 <style type="text/css">
@@ -40,7 +50,7 @@ Attachment at = (Attachment)request.getAttribute("at");
 	font-size : 10pt;
 }
 
-.board_content, .board_pic  {
+.board_content, .board_pic, .like_result_area, .review_like  {
 	color : #444343;
 	font-size : 12pt;
 	margin : 10pt;
@@ -48,7 +58,7 @@ Attachment at = (Attachment)request.getAttribute("at");
 
 .board_star {
 
-	font-size : 11pt;
+	font-size : 13pt;
 	margin : 10pt;
 	padding-bottom : 10pt;
 	color: rgb(255, 212, 0);
@@ -91,16 +101,21 @@ Attachment at = (Attachment)request.getAttribute("at");
                <% } %> 					
 			
 				
-				</div>			
-
-				<div class="board_content"><%=r.getReviewContent() %></div>
-
+				</div>	
 				
 				<div class="board_star">
 					별점 : <b> <% int star = r.getStar();
                           for(int i=0; i<star; i++){ %>
                       <i class="bi bi-star-fill"></i> <%}%></b>
                 </div>
+                
+                
+                <div class="board_content"><%=r.getReviewContent() %></div>
+                
+                
+                <div id="like_result_area" class="like_result_area">
+				좋아요 <i class="bi bi-suit-heart"></i> : <%=r.getLike() %>개
+				</div>
 
 				<%if(loginUser != null) {%>
 				<!-- 좋아요 버튼 로그인 되어있을때만 보이게 -->
@@ -108,13 +123,9 @@ Attachment at = (Attachment)request.getAttribute("at");
 					<form id="like_form">						
 						<input type="hidden" id="rId" name="rId" value="<%=r.getReviewNo() %>">
 						<input type="hidden" id="likeCount" name="likeCount" value="1">											
-						<input class="btn btn-sm btn-info" type="button" value="좋아요♥" id="likeBtn">						
+						<input class="btn btn-sm btn-info" type="button" value="좋아요!" id="likeBtn">						
 					</form>					
-					
-					<div id="like_result_area">
-						좋아요 : <%=r.getLike() %>
-					</div>
-									
+								
 				</div>
 				<% } %>
 			</div>
@@ -164,10 +175,10 @@ Attachment at = (Attachment)request.getAttribute("at");
 				
 				//4. success : Ajax 통신 성공시 처리할 함수를 지정하는 속성. result값을 받아 실행
 				success : function(result){
-					alert("좋아요가 추가 되었습니다.");
+					alert("좋아요 완료😆!");
 					console.log("통신완료");
 					console.log("<%=r.getLike()%>");
-					var like ="좋아요 : "+ result;
+					var like ="좋아요 <i class='bi bi-suit-heart-fill'></i> : "+ result + "개";
 					$("#like_result_area").html(like);
 
 				},
@@ -175,9 +186,7 @@ Attachment at = (Attachment)request.getAttribute("at");
 				//5. error : Ajax 통신 실패시 처리할 함수를 지정하는 속성
 				error : function(){
 					console.log("Ajax 통신 실패")
-				}
-				
-		
+				}		
 				
 			})
 		})
