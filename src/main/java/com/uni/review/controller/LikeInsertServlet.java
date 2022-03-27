@@ -60,7 +60,7 @@ public class LikeInsertServlet extends HttpServlet {
 		//response.getWriter().print(obj);
 		
 		if(result > 0) {			
-			out.print("success");		
+			out.print(like);		
 
 		}else {	
 			out.print("fail");
