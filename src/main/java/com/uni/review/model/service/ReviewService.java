@@ -163,6 +163,22 @@ public class ReviewService {
 		return result;
 	}
 
+	public int selectLike(int rId) {
+		
+		Connection conn = getConnection();
+		
+		int result = new ReviewDao().selectLike(conn, rId); 		
+				
+		if(result > 0) {
+			commit(conn);
+			
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+
 
 
 

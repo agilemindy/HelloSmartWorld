@@ -495,4 +495,37 @@ public class ReviewDao {
 		return result;
 	}
 
+	public int selectLike(Connection conn, int rId) {
+		// TODO Auto-generated method stub
+		
+		int like = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = prop.getProperty("selectLike");
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, rId);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {	
+				
+				like = rs.getInt("RV_LIKE");
+		
+			}
+			
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			
+			close(pstmt);
+			close(rs);
+		}
+		
+		return like;
+	}
+
 }

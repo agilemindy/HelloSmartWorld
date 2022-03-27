@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONObject;
+
 import com.uni.review.model.service.ReviewService;
 import com.uni.review.model.vo.Review;
 
@@ -46,10 +48,20 @@ public class LikeInsertServlet extends HttpServlet {
 		System.out.println("서블릿 리절트값 :"+ result);
 		PrintWriter out = response.getWriter();
 		
-		if(result > 0) {
-			
-			out.print("success");
-			
+		
+		int like= new ReviewService().selectLike(rId);
+
+		System.out.println("LikeInsertServlet의 like 개수:"+ like);
+		
+	
+		//JSONObject obj = new JSONObject();
+		//obj.put("like",like);
+		//response.setContentType("application/x-json; charset=UTF-8");
+		//response.getWriter().print(obj);
+		
+		if(result > 0) {			
+			out.print("success");		
+
 		}else {	
 			out.print("fail");
 		}
