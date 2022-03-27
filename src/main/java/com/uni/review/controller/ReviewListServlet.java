@@ -110,7 +110,9 @@ public class ReviewListServlet extends HttpServlet {
 		// 단 , 예를 들어 maxPage 가 13이면 endPage 도 13
 		if(maxPage < endPage) {
 			endPage = maxPage;
-		}
+		}		
+		
+		
 		
 		ReviewPageInfo rpi = new ReviewPageInfo(proCount, currentPage, startPage, endPage, maxPage, pageLimit, boardLimit);
 		
