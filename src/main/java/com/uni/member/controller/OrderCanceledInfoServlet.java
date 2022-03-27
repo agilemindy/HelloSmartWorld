@@ -41,8 +41,6 @@ public class OrderCanceledInfoServlet extends HttpServlet {
 		if (m != null) {
 			int userNo = m.getUserNo();
 
-			System.out.println(userNo);
-
 			ArrayList<Order> order = new MemberService().orderCanceledInfo(userNo);
 
 			request.setAttribute("order", order);
