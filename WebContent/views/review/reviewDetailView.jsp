@@ -110,10 +110,13 @@ Attachment at = (Attachment)request.getAttribute("at");
 						<input type="hidden" id="likeCount" name="likeCount" value="1">					
 						<input class="btn btn-sm btn-info" type="button" value="좋아요" id="likeBtn">						
 					</form>	
-					<div id="like_result">좋아요 : <%=r.getLike() %></div>						
+					<div id="like_result">좋아요 : <%=r.getLike() %></div>
+					
+					<div id="like_result_area">
+	
+					</div>
+									
 				</div>
-
-
 
 			</div>
 
@@ -142,11 +145,9 @@ Attachment at = (Attachment)request.getAttribute("at");
 	<script type="text/javascript">
 	
 	$(function(){
-		$("#likeBtn").click(function(){
-			//var like = $("#likeCount").val();
-			var rId = $("#rId").val();
+		$("#likeBtn").click(function(){	
 			
-			//console.log(like);
+			var rId = $("#rId").val();			
 			console.log(rId);
 			
 			
@@ -155,9 +156,8 @@ Attachment at = (Attachment)request.getAttribute("at");
 				url:"likeInsert.do",
 				
 				//2. data : 요청시 전달할 파라미터 설정(키 밸류 형식)
-				data: { 
-					//like : like,
-					rId : rId
+				data: { 					
+					rId : rId					
 				},
 				
 				//3. type : 전송방식(get/post)
@@ -166,24 +166,27 @@ Attachment at = (Attachment)request.getAttribute("at");
 				//4. success : Ajax 통신 성공시 처리할 함수를 지정하는 속성. result값을 받아 실행
 				success : function(result){
 					alert("좋아요가 추가 되었습니다.");
-					console.log("통신완료")
-					console.log(result)
-					$("#like_result").val(result);
+					console.log("통신완료");
+					console.log("<%=r.getLike()%>");
+					
+					/* $("#like_result_area").html(like);*/
+
 				},
 				
 				//5. error : Ajax 통신 실패시 처리할 함수를 지정하는 속성
 				error : function(){
 					console.log("Ajax 통신 실패")
-				},
-				
-				//6. complete : 통신 여부와 상관없이 실행
-				complete : function(){
-					console.log("지금 진행되고 있나?")
 				}
+				
+		
 				
 			})
 		})
 	})
+	
+	
+
+	
 	
 	
 	function deleteBoard(){
