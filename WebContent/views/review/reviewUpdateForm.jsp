@@ -56,8 +56,8 @@ ArrayList<Attachment> fileList = (ArrayList<Attachment>)request.getAttribute("fi
       
       <div class="form-group">
       	<label for="starcontent">별점</label>
-        <select class="form-select form-select-md mb-3" id="star" name="star">
-   			 <option selected>별점을 고르세요</option>   			  
+        <select required class="form-select form-select-md mb-3" id="star" name="star">
+   			 <option value="" disabled selected>별점을 고르세요</option>   			  
    			 <option value="1">&bigstar;</option>
     		 <option value="2">&bigstar;&bigstar;</option>
     	     <option value="3">&bigstar;&bigstar;&bigstar;</option>

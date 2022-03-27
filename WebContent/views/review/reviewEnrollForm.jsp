@@ -89,8 +89,7 @@ Review r = (Review)request.getAttribute("r");
 	
 	
 	
-	$(function(){
-		$("#fileArea").hide();
+	$(function(){	
 		
 		$("#titleImg").click(function(){
 			$("#file1").click();
