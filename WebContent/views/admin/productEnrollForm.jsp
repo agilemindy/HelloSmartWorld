@@ -68,7 +68,7 @@
 					<td colspan="3">
 						<img id="titleImg" width="150" height="120">
                         <div id="fileArea">
-                            <input type="file" name="file1" id="file1" onchange="loadImg(this, 1);">				
+                            <input type="file" name="file1" id="file1" onchange="loadImg(this, 1);" required>				
                         </div>
 					</td>
 				</tr>
