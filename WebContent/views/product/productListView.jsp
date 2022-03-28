@@ -199,9 +199,14 @@
                             </div>
                             <!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                             	<% if(p.getP_stock() != 0) {%>
                                 <div class="text-center"><button class="btn btn-dark btn-lg btn-block"
 						 type="submit" id="submitBtn">주문하기</button></div>
                             </div>
+                            	<% }else{ %>
+                            	<div class="text-center"><button class="btn btn-dark btn-lg btn-block"
+						 type="button" id="failButton">주문하기</button></div>
+						  		<% } %>
                             </form>
                         </div>
                     </div>
@@ -257,3 +262,9 @@
         <script src="js/scripts.js"></script>
     </body>
 </html>
+<script>
+	$("#failButton").click(function(){
+		alert("재고 부족으로 주문하실 수 없습니다.")
+	})
+
+</script>
