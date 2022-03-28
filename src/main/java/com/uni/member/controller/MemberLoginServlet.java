@@ -48,8 +48,8 @@ public class MemberLoginServlet extends HttpServlet {
 			response.sendRedirect(request.getContextPath()); 
 			
 		}else {
-			request.setAttribute("msg", "로그인에 실패했습니다.");
-			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
+			request.setAttribute("msg", "로그인에 실패했습니다. 아이디 또는 비밀번호를 다시 확인해주세요");
+			RequestDispatcher view = request.getRequestDispatcher("views/member/memberLogin.jsp");
 			view.forward(request, response);
 		}
 

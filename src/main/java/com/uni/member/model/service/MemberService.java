@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import com.uni.member.model.dao.MemberDao;
 import com.uni.member.model.vo.Member;
+import com.uni.member.model.vo.PageInfo;
 import com.uni.order.model.vo.Order;
 
 public class MemberService {
@@ -85,26 +86,52 @@ public class MemberService {
 		return result;
 	}
 
-	public ArrayList<Order> myOrderInfo(int userNo) {
+	//주문상태가 Y인 주문내역======================
+	public int getListCount(int userNo) {
+		
 		Connection conn = getConnection();
 		
-		ArrayList<Order> order = new MemberDao().myOrderInfo(conn, userNo);
+		int count = new MemberDao().getListCount(conn, userNo);
+		
+		close(conn);
+		
+		return count;
+	}
+
+	public ArrayList<Order> myOrderInfo(PageInfo pi, int userNo) {
+		Connection conn = getConnection();
+		
+		ArrayList<Order> order = new MemberDao().myOrderInfo(conn, pi, userNo);
 		
 		close(conn);
 		
 		return order;
 	}
-
-	public ArrayList<Order> orderCanceledInfo(int userNo) {
+	//========================================
+	
+	
+	
+	//주문상태가 N인 주문내역======================
+	public int getCListCount(int userNo) {
 		Connection conn = getConnection();
 		
-		ArrayList<Order> order = new MemberDao().orderCanceledInfo(conn, userNo);
+		int count = new MemberDao().getCListCount(conn, userNo);
+		
+		close(conn);
+		
+		return count;
+	}
+
+	public ArrayList<Order> orderCanceledInfo(PageInfo pi, int userNo) {
+		Connection conn = getConnection();
+		
+		ArrayList<Order> order = new MemberDao().orderCanceledInfo(conn, pi, userNo);
 		
 		close(conn);
 		
 		return order;
 	}
-
+	//========================================
 	
 	
 }

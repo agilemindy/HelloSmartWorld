@@ -9,10 +9,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Properties;
 
 import com.uni.member.model.vo.Member;
+import com.uni.member.model.vo.PageInfo;
 import com.uni.order.model.vo.Order;
 
 
@@ -225,17 +227,51 @@ public class MemberDao {
 		return result;
 	}
 
-	public ArrayList<Order> myOrderInfo(Connection conn, int userNo) {
+	public int getListCount(Connection conn, int userNo) {
+		
+		int count = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;		
+		
+		String sql = prop.getProperty("getListCount");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, userNo);
+
+			rset = pstmt.executeQuery();
+		
+			if(rset.next()) {
+			count = rset.getInt(1);
+			}
+										
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return count;
+	}
+
+	public ArrayList<Order> myOrderInfo(Connection conn, PageInfo pi, int userNo) {
 		
 		ArrayList<Order> order = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 
+		int startRow = (pi.getCurrentPage()-1) * pi.getBoardLimit() +1;
+		int endRow = startRow + pi.getBoardLimit() - 1;
+		
 		String sql = prop.getProperty("myOrderInfo");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, userNo);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
 			
 			rset = pstmt.executeQuery();
 
@@ -269,16 +305,49 @@ public class MemberDao {
 		return order;
 	}
 
-	public ArrayList<Order> orderCanceledInfo(Connection conn, int userNo) {
+	public int getCListCount(Connection conn, int userNo) {
+		int count = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;		
+		
+		String sql = prop.getProperty("getCListCount");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, userNo);
+
+			rset = pstmt.executeQuery();
+		
+			if(rset.next()) {
+			count = rset.getInt(1);
+			}
+										
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return count;
+	}
+
+	public ArrayList<Order> orderCanceledInfo(Connection conn, PageInfo pi, int userNo) {
 		ArrayList<Order> order = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
+
+		int startRow = (pi.getCurrentPage()-1) * pi.getBoardLimit() +1;
+		int endRow = startRow + pi.getBoardLimit() - 1;
 		
 		String sql = prop.getProperty("orderCanceledInfo");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, userNo);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
 			
 			rset = pstmt.executeQuery();
 
@@ -299,7 +368,6 @@ public class MemberDao {
 				o.setPayCode(rset.getInt("PAY_CODE"));
 				o.setOrderStatus(rset.getString("ORDER_STATUS"));
 				o.setPrice(rset.getInt("PRICE"));
-				
 				order.add(o);
 			}
 						

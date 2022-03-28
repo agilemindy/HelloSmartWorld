@@ -10,9 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.uni.member.model.vo.PageInfo;
+import com.uni.admin.model.vo.Product;
 import com.uni.member.model.service.MemberService;
 import com.uni.member.model.vo.Member;
 import com.uni.order.model.vo.Order;
+import com.uni.product.model.service.ProductService;
 
 /**
  * Servlet implementation class OrderInfoServlet
@@ -41,10 +43,6 @@ public class OrderInfoServlet extends HttpServlet {
 		if (m != null) {
 			int userNo = m.getUserNo();
 
-			ArrayList<Order> order = new MemberService().myOrderInfo(userNo); // 주문내역 불러오기
-
-			request.setAttribute("order", order);
-
 			// 페이징 처리
 			int listCount; // 총 게시글 개수
 			int currentPage; // 현재 페이지(요청한 페이지)
@@ -55,9 +53,9 @@ public class OrderInfoServlet extends HttpServlet {
 			int pageLimit; // 한 페이지 하단에 보여질 페이지 최대 개수
 			int boardLimit; // 한 페이지에 보여질 게시글 최대 개수
 
-			// 총 게시글 개수 알아오기
-			listCount = order.size();
-
+			// userNo의 주문내역 중 상태가 Y인 주문내역 개수 알아오기
+			listCount = new MemberService().getListCount(userNo);
+			
 			// 현재 페이지
 			currentPage = 1;
 			// 페이지 전환시 전달받은 페이지가 있을 경우 전달받은 페이지를 currentPage에 담기
@@ -68,7 +66,7 @@ public class OrderInfoServlet extends HttpServlet {
 			// 최대 페이지 개수
 			pageLimit = 10;
 			// 최대 게시글 개수
-			boardLimit = 10;
+			boardLimit = 4;
 
 			maxPage = (int) Math.ceil((double) listCount / boardLimit);
 
@@ -82,7 +80,11 @@ public class OrderInfoServlet extends HttpServlet {
 
 			PageInfo pi = new PageInfo(listCount, currentPage, startPage, endPage, maxPage, pageLimit, boardLimit);
 
+			//userNo의 주문내역 중 상태가 Y인 주문내역 가져오기
+			ArrayList<Order> order = new MemberService().myOrderInfo(pi, userNo); 
+			
 			request.setAttribute("pi", pi);
+			request.setAttribute("order", order);
 
 			request.getRequestDispatcher("views/member/orderInfo.jsp").forward(request, response);
 			;
