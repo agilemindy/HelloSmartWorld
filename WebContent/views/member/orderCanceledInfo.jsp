@@ -156,7 +156,7 @@ int endPage = pi.getEndPage();
 		<div class="pagingArea my-2" align="center">
 			<!-- 맨 처음으로 (<<) -->
 			<button class="pageButton"
-				onclick="location.href='<%=contextPath%>/orderInfo.do?currentPage=1'">
+				onclick="location.href='<%=contextPath%>/canceledOrderInfo.do?currentPage=1'">
 				<i class="bi bi-chevron-double-left"></i>
 			</button>
 
@@ -171,7 +171,7 @@ int endPage = pi.getEndPage();
 			} else {
 			%>
 			<button class="pageButton"
-				onclick="location.href='<%=contextPath%>/orderInfo.do?currentPage=<%=currentPage - 1%>'">
+				onclick="location.href='<%=contextPath%>/canceledOrderInfo.do?currentPage=<%=currentPage - 1%>'">
 				<i class="bi bi-chevron-left"></i>
 			</button>
 			<%
@@ -193,7 +193,7 @@ int endPage = pi.getEndPage();
 			} else {
 			%>
 			<button class="pageButton"
-				onclick="location.href='<%=contextPath%>/orderInfo.do?currentPage=<%=p%>'">
+				onclick="location.href='<%=contextPath%>/canceledOrderInfo.do?currentPage=<%=p%>'">
 				<%=p%>
 			</button>
 			<%
@@ -215,7 +215,7 @@ int endPage = pi.getEndPage();
 			} else {
 			%>
 			<button class="pageButton"
-				onclick="location.href='<%=contextPath%>/orderInfo.do?currentPage=<%=currentPage + 1%>'">
+				onclick="location.href='<%=contextPath%>/canceledOrderInfo.do?currentPage=<%=currentPage + 1%>'">
 				<i class="bi bi-chevron-right"></i>
 			</button>
 			<%
@@ -224,7 +224,7 @@ int endPage = pi.getEndPage();
 
 			<!-- 맨 끝으로 (>>) -->
 			<button class="pageButton"
-				onclick="location.href='<%=contextPath%>/orderInfo.do?currentPage=<%=maxPage%>'">
+				onclick="location.href='<%=contextPath%>/canceledOrderInfo.do?currentPage=<%=maxPage%>'">
 				<i class="bi bi-chevron-double-right"></i>
 			</button>
 		</div>
