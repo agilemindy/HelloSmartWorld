@@ -21,9 +21,44 @@ int endPage = pi.getEndPage();
 <meta charset="UTF-8">
 <title>취소내역조회 | HELLO SMART WORLD</title>
 <style>
-.pageButton {
-	background: black;
-	color: white;
+.pageButton{
+  background:rgb(73, 83, 113);
+  color:#fff;
+  border:none;
+  position:relative;
+  height:50px;
+  font-size:11pt;
+  padding:0 2em;
+  cursor:pointer;
+  transition:800ms ease all;
+  outline:none;
+  border-radius: 6px;
+}
+
+.pageButton:hover{
+  background:#fff;
+  color:rgb(73, 83, 113);
+  
+}
+.pageButton:before, .pageButton:after{
+  content:'';
+  position:absolute;
+  top:0;
+  right:0;
+  height:2px;
+  width:0;
+  background: rgb(73, 83, 113);
+  transition:400ms ease all;
+}
+.pageButton:after{
+  right:inherit;
+  top:inherit;
+  left:0;
+  bottom:0;
+}
+.pageButton:hover:before,.pageButton:hover:after{
+  width:100%;
+  transition:800ms ease all;
 }
 </style>
 
