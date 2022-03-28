@@ -119,7 +119,7 @@ ArrayList<Attachment> fileList = (ArrayList<Attachment>)request.getAttribute("fi
 
     
     <br>
-    <button type="reset" class="btn btn-secondary">취소하기</button>
+    <button type="button" class="btn btn-secondary" id="btnList" onclick="location.href='<%=contextPath%>/reviewList.do'">목록으로</button>
     <button type="submit" class="btn btn-dark">리뷰 수정하기</button>
       
     </form>

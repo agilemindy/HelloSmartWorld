@@ -34,25 +34,14 @@ Review r = (Review)request.getAttribute("r");
       <div class="form-group">      
         <label for="subject">제목</label>
         <input type="text" required class="form-control" id="subject" name="subject" placeholder="제목을 입력하세요.">
-      </div>
-      
-      <%--
-      
-      <div class="form-group">
-        <label for="writer">작성자</label>
-        <input type="text" class="form-control" id="writer" name="writer" placeholder="내용을 입력하세요.">
-      </div>
-      
-      --%>
+      </div>      
+  
       
       <div class="form-group">      
         <label for="product">제품명</label>
         <input type="text"  required class="form-control" id="product" name="product" placeholder="제품명을 입력하세요.">
       
       </div>
-      
-      
-      
       
       <div class="form-group">
       	<label for="starcontent">별점</label>
@@ -109,15 +98,19 @@ Review r = (Review)request.getAttribute("r");
 				}
 			}
 		}
-	}	
+	}
+	
+
 	</script>
 
       
       <br>
-      <button type="reset" class="btn btn-secondary">취소하기</button>
+      <button type="button" class="btn btn-secondary" id="btnList" onclick="location.href='<%=contextPath%>/reviewList.do'">목록으로</button>
+      <button type="reset" onclick="resetimg()" class="btn btn-secondary">재작성</button>
       <button type="submit" class="btn btn-dark">리뷰 작성하기</button>
       
-    </form>
+    
+    </form>    
 
  	<!-- Bootstrap core JS-->
   	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
