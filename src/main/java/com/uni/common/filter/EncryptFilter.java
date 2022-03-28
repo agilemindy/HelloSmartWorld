@@ -38,6 +38,9 @@ public class EncryptFilter implements Filter {
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		
+		//회원탈퇴 시 비밀번호 일치 후 탈퇴가 진행돼서 오리지널 비번을 따로 저장해둔다.
+		((HttpServletRequest) request).getSession().setAttribute("originPwd", request.getParameter("userPwd"));
+		
 		request.setAttribute("userPwd", request.getParameter("userPwd"));
 		System.out.println("변경 전 userPwd : " + request.getParameter("userPwd"));
 		

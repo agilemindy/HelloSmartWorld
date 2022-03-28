@@ -141,8 +141,8 @@ String originUserPwd = m.getUserPwd();
 		
 		//비밀번호 한 번 더 입력한 후에 회원탈퇴처리하기
 		var pwd = prompt("회원탈퇴를 원하시면 고객님의 비밀번호를 입력해주세요.")
-		
-		if(pwd == "<%=originUserPwd%>"){
+
+		if(pwd == "<%= request.getSession().getAttribute("originPwd") %>"){
 			
 			var yn = confirm("정말 탈퇴하시겠습니까?");
 			if(yn){

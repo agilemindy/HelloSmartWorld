@@ -20,7 +20,7 @@ public class EncryptWrapper extends HttpServletRequestWrapper{
 
 		String value = "";
 		
-		if(key != null && (key.equals("userPwd")||key.equals("newPwd"))) {
+		if(key != null && key.equals("userPwd")) {
 			try {
 				MessageDigest md = MessageDigest.getInstance("SHA-512");//SHA-512 암호화 객체 이용			
 				
