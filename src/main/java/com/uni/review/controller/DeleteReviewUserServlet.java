@@ -36,8 +36,7 @@ public class DeleteReviewUserServlet extends HttpServlet {
 		int result = new ReviewService().deleteReviewUser(rNo);
 		
 		
-		if(result > 0) {
-			request.getSession().setAttribute("msg", "리뷰삭제완료"); 
+		if(result > 0) {			
 			response.sendRedirect("reviewList.do");			
 		}else {
 			request.setAttribute("msg", "리뷰삭제 실패");
