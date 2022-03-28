@@ -874,6 +874,81 @@ try {
 		
 		return result;
 	}
+
+	public ArrayList<Product> searchProduct(Connection conn, String search) {
+		ArrayList<Product> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("searchProduct");
+						
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, '%'+search+'%');				
+			pstmt.setString(2, '%'+search+'%');					
+			pstmt.setString(3, '%'+search+'%');			
+			
+									
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Product p = new Product();
+				p.setP_id(rset.getString("P_ID"));
+				p.setP_name(rset.getString("P_NAME"));
+				p.setBrand(rset.getString("BRAND"));
+				p.setColor(rset.getString("COLOR"));
+				p.setCapacity(rset.getString("CAPACITY"));
+				p.setPrice(rset.getInt("PRICE"));
+				p.setP_status(rset.getString("P_STATUS"));
+				p.setP_stock(rset.getInt("P_STOCK"));
+				p.setTitleImg(rset.getString("CHANGE_NAME"));				
+				
+				list.add(p);
+				
+				
+			}
+						
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
+
+	public int getSearchListCount(Connection conn, String search) { // 검색제품갯수
+		int ProCount = 0;
+				
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("getSearchCount");
+				
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, '%'+search+'%');					
+			pstmt.setString(2, '%'+search+'%');					
+			pstmt.setString(3, '%'+search+'%');					
+									
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				ProCount = rset.getInt(1);
+			}
+						
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return ProCount;
+	}
 		
 	}
 

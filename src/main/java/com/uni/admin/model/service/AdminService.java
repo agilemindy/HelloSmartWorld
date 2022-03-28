@@ -301,6 +301,25 @@ public class AdminService {
 		return result;
 	}
 
+	public ArrayList<Product> searchProduct(String search) { // 제품관리 - 검색기능
+		Connection conn = getConnection();
+		ArrayList<Product> list = new AdminDao().searchProduct(conn, search);		
+		
+		close(conn);
+		return list;
+	}
+
+	public int getSearchListCount(String search) { // 제품검색 갯수
+		Connection conn = getConnection();
+		
+		int ProCount = new AdminDao().getSearchListCount(conn, search);
+				
+		close(conn);
+		
+		return ProCount;
+		
+	}
+
 	 
 
 	
