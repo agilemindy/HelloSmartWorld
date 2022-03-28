@@ -71,10 +71,10 @@
 					<th width="100">제품아이디</th>
 					<td width="500">		
 						<!-- 등록제품들의 아이디 -->
-						<select  id = "P_ID" name = "P_ID">
+						<select  id = "P_ID" name = "P_ID" required>
 							<option value=""></option>
 							<% for(Product p : list){ %><!-- for-each문 사용 -->
-							<option value=<%= p.getP_id() %>><%= p.getP_id() %></option>
+							<option value=<%= p.getP_id() %> required><%= p.getP_id() %></option>
 							<% } %>
 						</select>																								
 					</td>
@@ -86,7 +86,7 @@
 				<tr><!-- 입출고와 수량 입력 -->
 					<th>입출고</th>
 					<td>
-						<select id="STATUS" name="STATUS">
+						<select id="STATUS" name="STATUS" required>
 							<option value=""></option>
 							<option value="입고">입고</option>
 							<option value="출고">출고</option>
