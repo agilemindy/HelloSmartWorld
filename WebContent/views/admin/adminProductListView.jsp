@@ -70,6 +70,13 @@
       border-color: white;
    }
    
+   #searchBtn{
+		border-radius: 15px;
+		border: 3px solid white;
+		background: black;
+		color: white;
+	}
+   
 </style>
 </head>
 <script>
@@ -150,6 +157,12 @@
 			</tbody>
 		</table>
 		
+		<br><br><br>
+		
+		<!-- 검색창 -->
+		<form action="<%= contextPath %>/searchProduct.do">
+		<div align="center"><span><input type="text" name="search"><button type="submit" id="searchBtn">검색</button></span></div>
+		</form>
 		<br><br>
 		
 		<!-- 페이징바 만들기 -->
