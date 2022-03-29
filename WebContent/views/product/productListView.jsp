@@ -261,10 +261,10 @@
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
     </body>
-</html>
-<script>
+    <script>
 	$("#failButton").click(function(){
 		alert("재고 부족으로 주문하실 수 없습니다.")
 	})
 
 </script>
+</html>
