@@ -68,10 +68,10 @@ public class UpdateReviewServlet extends HttpServlet {
 			r.setReviewNo(rId);
 
 			
-			Attachment at = null; //있을 수도 있고 없을 수도 있어서 null로 선언
-			if(multiRequest.getOriginalFileName("file1") != null) {
-				String originName = multiRequest.getOriginalFileName("file1");
-				String changeName = multiRequest.getFilesystemName("file1");
+			Attachment at = null; 
+			if(multiRequest.getOriginalFileName("upFile") != null) {
+				String originName = multiRequest.getOriginalFileName("upFile");
+				String changeName = multiRequest.getFilesystemName("upFile");
 			
 				System.out.println(originName);
 				System.out.println(changeName);

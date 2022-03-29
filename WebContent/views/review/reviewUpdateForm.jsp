@@ -74,30 +74,33 @@ ArrayList<Attachment> fileList = (ArrayList<Attachment>)request.getAttribute("fi
       
       <div class="form-group">
       <label for="content"><i class="bi bi-camera-fill"></i> 수정하기 </label><br>
-      <img id="titleImg" width="150" height="120">
+      
+      </div>      
+   
+			
+	  <div id="fileArea">
+	  		<img id="titleImg" width="150" height="120" src="<%= contextPath %>/resources/review_upfiles/<%= fileList.get(0).getChangeName() %>">
+        	<input required type="file" name="upFile" id="upFile" onchange="loadImg(this, 1);">    
       </div>
       
-      <div id="fileArea">
-        <input type="file" name="file1" id="file1" onchange="loadImg(this, 1);">
-      </div>
-      
-      <!-- 기존의 첨부파일이 있었을 경우 -->
-      <% if(fileList != null){ %> 
-			<%=fileList.get(0).getOriginName() %> <br>
-			<%=fileList.get(0).getChangeName()%>
-			<input type='hidden' name='originFile' value='<%=fileList.get(0).getChangeName()%>'>
-			<input type='hidden' name='originFileNo' value='<%=fileList.get(0).getFileNo()%>'>
-	 <% }%>
+	  <br>
+	  <%=fileList.get(0).getOriginName() %> <br>			
+	  <input type='hidden' name='originFile' value='<%=fileList.get(0).getChangeName()%>'>
+	  <input type='hidden' name='originFileNo' value='<%=fileList.get(0).getFileNo()%>'>
+	  
+	 
+	 
+
 
       
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>  
 	
 	<script>
 	$(function(){
-		$("#fileArea").hide();
+		//$("#fileArea").hide();
 		
 		$("#titleImg").click(function(){
-			$("#file1").click();
+			$("#upFile").click();
 		});		
 		
 		
