@@ -138,7 +138,7 @@
 						<td><%= r.getCount() %></td>	
 						<td>
 						<!-- 리뷰삭제 -->
-						<button id="deleteButton" onclick="deleteMember();"><i class="bi bi-trash"></i></button>
+						<button id="deleteButton" ><i class="bi bi-trash"></i></button>
 						</td>					
 					</tr>
 					<%} %>
