@@ -8,6 +8,8 @@ import static com.uni.common.JDBCTemplate.rollback;
 import java.sql.Connection;
 import java.util.ArrayList;
 
+import com.uni.member.model.dao.MemberDao;
+import com.uni.member.model.vo.Member;
 import com.uni.review.model.dao.ReviewDao;
 import com.uni.review.model.vo.Attachment;
 import com.uni.review.model.vo.Review;
@@ -177,6 +179,16 @@ public class ReviewService {
 		}
 		close(conn);
 		return result;
+	}
+
+	public Member selectUserName(int rw) {
+		// TODO Auto-generated method stub
+		
+		Connection conn = getConnection();
+		Member m = new ReviewDao().selectUserName(conn, rw);
+		close(conn);
+		
+		return m;
 	}
 
 
