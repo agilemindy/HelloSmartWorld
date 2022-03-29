@@ -159,8 +159,7 @@ Attachment at = (Attachment)request.getAttribute("at");
 		$("#likeBtn").click(function(){	
 			
 			var rId = $("#rId").val();			
-			console.log(rId);
-			
+			console.log(rId);			
 			
 			$.ajax({
 				//1. url : 데이터를 전송할 url(필수!!)
