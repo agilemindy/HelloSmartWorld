@@ -229,8 +229,6 @@ body {
 	            document.getElementById("address").value = roadAddr;
 	        }
 	    }).open();
-		
-		
 	}
 	</script>
 	<script
