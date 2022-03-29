@@ -39,16 +39,12 @@ public class ReviewDetailServlet extends HttpServlet {
 		//request.getRequestDispatcher("views/review/reviewDetailView.jsp").forward(request, response);
 		
 		int rId = Integer.parseInt(request.getParameter("rId"));
-		Review r = new ReviewService().selectReview(rId);
 		
-		
+		Review r = new ReviewService().selectReview(rId);		
 		int rw = r.getReviewWriter();
-		System.out.println("리뷰디테일 서블렛 rw "+rw);
 		
-		Member m = new ReviewService().selectUserName(rw);
 		
-		System.out.println("리뷰디테일서블렛 멤버객체 m : "+ m);
-	
+		Member m = new ReviewService().selectUserName(rw);	
 		ArrayList<Attachment> fileList = new ReviewService().selectAttachment(rId);
 		
 		if(r != null) {

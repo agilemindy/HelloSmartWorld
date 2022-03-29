@@ -36,29 +36,15 @@ public class LikeInsertServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		
-		int rId = Integer.parseInt(request.getParameter("rId"));
-		//int like = Integer.parseInt(request.getParameter("like"));
+		int rId = Integer.parseInt(request.getParameter("rId"));				
+		int result = new ReviewService().insertLike(rId);		
 		
-		System.out.println("서블렛 잘왔나 확인(rId) : " + rId);
-		//System.out.println("서블렛 잘왔나 확인(like) : " + like);
-		
-				
-		int result = new ReviewService().insertLike(rId);
-		
-		System.out.println("서블릿 리절트값 :"+ result);
-		PrintWriter out = response.getWriter();
-		
+		PrintWriter out = response.getWriter();		
 		
 		int like= new ReviewService().selectLike(rId);
-
 		System.out.println("LikeInsertServlet의 like 개수:"+ like);
 		
-	
-		//JSONObject obj = new JSONObject();
-		//obj.put("like",like);
-		//response.setContentType("application/x-json; charset=UTF-8");
-		//response.getWriter().print(obj);
-		
+
 		if(result > 0) {			
 			out.print(like);		
 

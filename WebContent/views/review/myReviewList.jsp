@@ -103,25 +103,20 @@ int endPage = rpi.getEndPage();
                         <div class="card h-100">                        
                         <input type="hidden" value="<%=re.getReviewNo()%>">   
                           
-                          <!-- Product details-->
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <!-- Product name-->
-                                    <h5 class="fw-bolder"> <%=re.getReviewTitle()%> </h5>
+                          <!--리뷰 페이지-->
+                          <div class="card-body p-4">
+                          <div class="text-center">
+                          	<!-- 리뷰 타이틀-->
+                          		<h5 class="fw-bolder"> <%=re.getReviewTitle()%> </h5>
                                     
-      
-                                    
-                                    <!-- Product price-->
-                                    
-                                    <% int star = re.getStar();
-                                    for(int i=0; i<star; i++){ %>
-                                    <i class="bi bi-star-fill"></i> <%}%> <br>
-                                    <%=re.getReviewContent() %>
-                                </div>
-                            </div>
-                          
-                        </div>
-                        
+                          	<!-- 별점-->                                    
+                          		<% int star = re.getStar();
+                             		for(int i=0; i<star; i++){ %>
+                                  		<i class="bi bi-star-fill"></i> <%}%> <br>
+                                    	<%=re.getReviewContent() %>
+                       	  </div>
+                          </div>                          
+                        </div>                        
                     </div>
      					<%}%>
                 </div>           
@@ -162,7 +157,7 @@ int endPage = rpi.getEndPage();
 	<%if(currentPage == maxPage){ %>
 		<button disabled> &gt; </button>
 	<%}else { %>
-		button onclick="location.href='<%= contextPath %>/ReviewList.do?currentPage=<%= currentPage+1 %>'"> &gt; </button>
+		<button onclick="location.href='<%= contextPath %>/ReviewList.do?currentPage=<%= currentPage+1 %>'"> &gt; </button>
 	<%} %>
 		
 	<!-- 맨 끝으로 (>>) -->

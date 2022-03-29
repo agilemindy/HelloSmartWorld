@@ -86,7 +86,7 @@
                 </div>
             </div>
         </header>
-        <!-- Section-->
+        <!-- 동영상 Section-->
         
         <section class="py-5">
             <div class="video-background">
@@ -103,7 +103,7 @@
 
             
         
-           
+           <%--동영상 삽입 --%>
             <script defer src="https://www.youtube.com/iframe_api"></script>
             <script type="text/javascript">
                 var player;
