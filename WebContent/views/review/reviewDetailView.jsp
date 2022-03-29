@@ -5,9 +5,9 @@ String msg = (String)session.getAttribute("msg");
 String contextPath = request.getContextPath();
 Member m = (Member)request.getAttribute("m");
 Review r = (Review)request.getAttribute("r");
+
 ArrayList<Attachment> fileList = (ArrayList<Attachment>)request.getAttribute("fileList");
 Attachment titleImg = fileList.get(0);
-
 Attachment at = (Attachment)request.getAttribute("at");
 
 
@@ -83,8 +83,8 @@ Attachment at = (Attachment)request.getAttribute("at");
 				<div class="board_title"><%=r.getReviewTitle()%></div>
 
 				<div class="board_info_box">
-
-				<span class="board_author">작성자 : <%=r.getReviewWriter() %> </span><br>
+				
+				<span class="board_author">작성자 : <%=m.getUserName() %> </span><br>
 				<span class="board_date">작성일 : <%=r.getCreateDate() %></span> <span class="board_count">조회수 : <%=r.getCount() %></span>
 				<br><span class="board_product">제품명 : <%=r.getProductId() %> </span>
 				</div>
@@ -150,6 +150,7 @@ Attachment at = (Attachment)request.getAttribute("at");
 	<br>
 	<form action="" id="postForm" method="post">
 			<input type="hidden" name="rNo" value="<%=r.getReviewNo()%>">
+		
 	</form>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script type="text/javascript">

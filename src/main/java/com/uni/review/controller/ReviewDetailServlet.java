@@ -40,14 +40,21 @@ public class ReviewDetailServlet extends HttpServlet {
 		
 		int rId = Integer.parseInt(request.getParameter("rId"));
 		Review r = new ReviewService().selectReview(rId);
-		//String rw = request.getParameter("rw");
-		//Member m = new MemberService().selectMember(rw);
+		
+		
+		int rw = r.getReviewWriter();
+		System.out.println("리뷰디테일 서블렛 rw "+rw);
+		
+		Member m = new ReviewService().selectUserName(rw);
+		
+		System.out.println("리뷰디테일서블렛 멤버객체 m : "+ m);
+	
 		ArrayList<Attachment> fileList = new ReviewService().selectAttachment(rId);
 		
 		if(r != null) {
 			request.setAttribute("r", r);
 			request.setAttribute("fileList", fileList);
-			//request.setAttribute("m", m);
+			request.setAttribute("m", m);
 			request.getRequestDispatcher("views/review/reviewDetailView.jsp").forward(request, response);
 		}else {
 			request.setAttribute("msg", "사진 게시글 상세 조회에 실패했습니다.");
