@@ -14,7 +14,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Properties;
 
-
+import com.uni.member.model.vo.Member;
 import com.uni.review.model.vo.Attachment;
 import com.uni.review.model.vo.Review;
 import com.uni.review.model.vo.ReviewPageInfo;
@@ -526,6 +526,49 @@ public class ReviewDao {
 		}
 		
 		return like;
+	}
+
+	public Member selectUserName(Connection conn, int rw) {
+		// TODO Auto-generated method stub
+		
+		Member mem = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectUserName");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, rw);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				mem = new Member(
+						rset.getInt("USER_NO"),
+						rset.getString("USER_ID"),
+						rset.getString("USER_PWD"),
+						rset.getString("USER_NAME"),
+						rset.getString("ADDRESS"),
+						rset.getString("ADDRESS_DETAIL"),
+						rset.getString("TEL"),
+						rset.getString("PHONE"),
+						rset.getString("EMAIL"),
+						rset.getDate("ENROLL_DATE"),
+						rset.getDate("DEL_DATE"),
+						rset.getString("STATUS")
+								);
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return mem;
 	}
 
 }
