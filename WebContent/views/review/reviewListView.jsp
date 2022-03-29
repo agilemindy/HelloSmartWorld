@@ -130,7 +130,7 @@ border-radius: 10px;
 		<h2>Best Review TOP3</h2>
 
 		<div id="thumbList">			
-		<input type="hidden"
+		
 		</div>
 	</div>
 	<script>
@@ -143,7 +143,7 @@ border-radius: 10px;
 				var value = "";
 				for(var i in list){
 					value += '<div class="thumb" id="thumbSelect" align="center">'+
-							 '<input type="hidden" class="rId1" id="rId1" value="' +list[i].ReviewNo+ '">'+
+							 '<input type="hidden" value="' +list[i].reviewNo+ '">'+
 							 '<img class="topimg" src="<%=contextPath%>/resources/review_upfiles/' + list[i].titleImg + '" width="180px" height="180px"> <br>'+
 							 '<p><span class="hot"><i class="bi bi-stars"></i>인기리뷰</span> &nbsp&nbsp<br>'+ list[i].reviewTitle +'</p>'+
 							 '</div>';
@@ -162,18 +162,13 @@ border-radius: 10px;
 		
 		selectTopList();		
 
+
 		
 		$("#thumbList").on("click",".thumb",function(){
 			var rId =$(this).children().eq(0).val();		
 			location.href="<%=contextPath%>/detailReview.do?rId="+rId;
 		})
 
-		
-		
-		$("#thumbList").click(function(){
-				var rId =$(".rId1").val();
-				 location.href="<%=contextPath%>/detailReview.do?rId="+rId;
-		})
 		
 	
 	})

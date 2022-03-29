@@ -32,7 +32,9 @@ public class topReviewList extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	ArrayList<Review> list = new ReviewService().selectTopList();
+		
+		
+		ArrayList<Review> list = new ReviewService().selectTopList();
 		
 		response.setContentType("application/json; charset=utf-8");
 
