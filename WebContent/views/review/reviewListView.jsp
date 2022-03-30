@@ -161,9 +161,11 @@ border-radius: 10px;
 	
 	
 	$(function(){		
-		//우선 selectTopList 함수 실행
+		//우선 selectTopList 함수 실행(먼저 안해주면 화면이 비어보이는 텀이생김)
 		selectTopList();		
 
+		//1초간격으로 주기적으로 불러오기 해줌
+		setInterval(selectTopList,1000);
 
 		//해당하는 리뷰를 누르면 디테일 페이지로 이동한다.
 		$("#thumbList").on("click",".thumb",function(){
