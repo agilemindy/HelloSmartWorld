@@ -135,23 +135,25 @@ border-radius: 10px;
 	</div>
 	<script>
 
+	//ajax통신 이용
 	function selectTopList(){		
 		$.ajax({
 			url:"topReviewList.do",
 			type:"get",
-			success:function(list){
+			success:function(list){//총 3개의 리뷰를 받아오기때문에 list사용한다.
+								   //인덱스를 이용해 해당 하는 Reviw의 정보를 가져올 수 있다.
 				var value = "";
-				for(var i in list){
+				for(var i in list){ //반복문을 사용하여 표시 div이지만 CSS inline-block 속성을 주었기 때문에 가로로 표시된다.
 					value += '<div class="thumb" id="thumbSelect" align="center">'+
 							 '<input type="hidden" value="' +list[i].reviewNo+ '">'+
 							 '<img class="topimg" src="<%=contextPath%>/resources/review_upfiles/' + list[i].titleImg + '" width="180px" height="180px"> <br>'+
 							 '<p><span class="hot"><i class="bi bi-stars"></i>인기리뷰</span> &nbsp&nbsp<br>'+ list[i].reviewTitle +'</p>'+
 							 '</div>';
 				}
-				
+				//미리 id를 설정해 작성해놓은 div에 해당 내용(vlaue) 작성함
 				$("#thumbList").html(value);
 			},
-			error:function(){
+			error:function(){//통신실패시 콘솔에 표시되도록
 				console.log("ajax통신실패");
 			}
 		})	
@@ -159,11 +161,11 @@ border-radius: 10px;
 	
 	
 	$(function(){		
-		
+		//우선 selectTopList 함수 실행
 		selectTopList();		
 
 
-		
+		//해당하는 리뷰를 누르면 디테일 페이지로 이동한다.
 		$("#thumbList").on("click",".thumb",function(){
 			var rId =$(this).children().eq(0).val();		
 			location.href="<%=contextPath%>/detailReview.do?rId="+rId;
@@ -190,9 +192,14 @@ border-radius: 10px;
                     <%for(Review r : list){ %>
                       <div class="col mb-5">                    
                         <div class="card h-100">
+                        
+                        <%--폼태그 사용하여 이동 --%>
                         <form action="<%=request.getContextPath()%>/detailReview.do" method="get">
+                        
+                        <%--디테일페이지로 이동시 필요하기때문에 반드시 ReviewNo를 히든타입으로 받아둠 --%>
                         <input type="hidden" class="rId" id="rId" name="rId" value="<%=r.getReviewNo()%>">
-                            <!-- Review image-->
+                          
+                           <!-- Review image-->
                            <% if(r.getTitleImg() != null){ %>
                             <img class="card-img-top" width="100px" height="250px" src="<%=contextPath%>/resources/review_upfiles/<%=r.getTitleImg()%>" alt="리뷰보러가기" />
                             <% }else{ %>
@@ -200,18 +207,20 @@ border-radius: 10px;
                             <% } %>                  
      
                             <%-- <img class="card-img-top" src="https://img.insight.co.kr/static/2021/05/07/700/img_20210507093529_8hq8orse.webp" alt="리뷰보러가기" />--%>
-                            <!-- Product details-->                            
+                            <!-- Review details-->                            
                             <div class="card-body p-4">
                                 <div class="text-center">
-                                    <!-- Product name-->
+                                    <!-- Review Title-->
                                     <h5 class="fw-bolder"> <%=r.getReviewTitle()%> </h5>
                                     
                                
-                                    
+                                    <%--별점을 아이콘으로 표현함 --%>
                                     <div class="starC">
                                     <% int star = r.getStar();
-                                    for(int i=0; i<star; i++){ %>
-                                    <i class="bi bi-star-fill"></i> <%}%></div>
+                                    	for(int i=0; i<star; i++){ %>
+                                    		<i class="bi bi-star-fill"></i>
+                                    	<%}%>
+                                    </div>
                                     
                                     
                                     <div class="productId">
@@ -221,19 +230,12 @@ border-radius: 10px;
                                 </div>
                             </div>
                             
-                            <!-- Product actions-->
+                            <!-- submit버튼으로 해당 정보를 이용하여 리뷰보기페이지로 이동하는 actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                             <div class="text-center"><button class="btn btn-dark btn-lg btn-block" type="submit" id="submitBtn">리뷰보기</button></div>
                             </div>
                             </form>
-                            
-                            
-                            <!-- Product actions
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" id="reviewDetail" name="reviewDetail" onclick="detail_click();">자세히 보기</a></div>
-                            </div>--> 
-                            
-                                                       
+                                           
                         </div>                        
                       </div>
      				<%} %>
@@ -278,7 +280,7 @@ border-radius: 10px;
 			
 	<!-- 페이지 목록 -->
 	<%for(int p=startPage; p<=endPage; p++){ %>				
-		<%if(p == currentPage){ %>
+		<%if(p == currentPage){ %> <!-- 현재페이지버튼만 색을 다르게 하여 표시함 -->
 			<button disabled style="background:#8f9dca"> <%= p %> </button>
 		<%}else{ %>
 			<button onclick="location.href='<%=contextPath %>/reviewList.do?currentPage=<%= p %>'"> <%= p %> </button>
