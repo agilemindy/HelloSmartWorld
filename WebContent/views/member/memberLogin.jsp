@@ -182,7 +182,7 @@ String msg = (String)request.getAttribute("msg");
 						}	
 					},
 					error:function(error){
-						alert(error + "동일한 아이디로 이미 회원가입되어있습니다.")
+						alert(error + "통신실패")
 					}
 				})
 			})

@@ -202,11 +202,12 @@
                              	<% if(p.getP_stock() != 0) {%>
                                 <div class="text-center"><button class="btn btn-dark btn-lg btn-block"
 						 type="submit" id="submitBtn">주문하기</button></div>
-                            </div>
+                           
                             	<% }else{ %>
                             	<div class="text-center"><button class="btn btn-dark btn-lg btn-block"
 						 type="button" id="failButton">주문하기</button></div>
 						  		<% } %>
+						  		 </div>
                             </form>
                         </div>
                     </div>
