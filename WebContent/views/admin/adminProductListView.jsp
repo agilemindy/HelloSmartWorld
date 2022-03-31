@@ -161,7 +161,12 @@
 		
 		<!-- 검색창 -->
 		<form action="<%= contextPath %>/searchProduct.do">
-		<div align="center"><span><input type="text" name="search"><button type="submit" id="searchBtn">검색</button></span></div>
+			<div align="center">
+				<span>
+					<input type="text" name="search">
+					<button type="submit" id="searchBtn">검색</button>
+				</span>
+			</div>
 		</form>
 		<br><br>
 		
